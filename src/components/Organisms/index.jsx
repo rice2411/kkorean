@@ -5,4 +5,14 @@ import * as Header from "./Header";
 import * as Sidebar from "./Sidebar";
 import * as ModalCustom from "./ModalCustom";
 import * as Table from "./Table";
-export { Footer, Header, Sidebar, Section, Modal, ModalCustom, Table };
+import * as Dropdown from "./Dropdown";
+export {
+  Footer,
+  Header,
+  Sidebar,
+  Section,
+  Modal,
+  ModalCustom,
+  Table,
+  Dropdown,
+};
