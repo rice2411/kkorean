@@ -18,7 +18,7 @@ Tiến hành cài đặt vercel
 npm i -g vercel
 ```
 
-Tiến hành chạy vercel để cấp quyền truy cập
+Tiến hành chạy vercel để cấp quyền truy cậpa
 
 ```bash
 vercel dev
@@ -98,4 +98,3 @@ Vui lòng đảm bảo `self test` trước khi tạo
 [MIT](https://choosealicense.com/licenses/mit/)
 
 ![image](https://github.com/user-attachments/assets/d6e466dd-041d-4c4a-a881-bf3334639823)
-
