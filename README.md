@@ -18,7 +18,7 @@ Tiến hành cài đặt vercel
 npm i -g vercel
 ```
 
-Tiến hành chạy vercel để cấp quyền truy cậpa
+Tiến hành chạy vercel để cấp quyền truy cập
 
 ```bash
 vercel dev
