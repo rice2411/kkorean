@@ -97,7 +97,7 @@ const firebaseService = {
         data.password
       );
       const { user } = res;
-      const { name, role } = await firebaseService.getDocumentById(
+      const { fullName, role } = await firebaseService.getDocumentById(
         "users",
         user.uid
       );
@@ -105,7 +105,7 @@ const firebaseService = {
         id: user.uid,
         email: user.email,
         role,
-        name,
+        fullName,
       };
       return Response.success(result, "Đăng nhập thành công");
     } catch (err) {
