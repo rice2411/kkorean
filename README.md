@@ -107,7 +107,7 @@ Hướng dẫn sử dụng:
 
 ## Folder Structure
 
-Cấu trúc dự án:
+**Top level folder:**
 
     .
     ├── api                     # Cung cấp các serverless function cho ứng dụng
@@ -124,6 +124,31 @@ Cấu trúc dự án:
     ├── tailwind.config.js      # Config tailwind
     ├── vercel                  # Config production
     └── README.md
+
+**./src:**
+
+    .
+    ├── components              # Chứa các thành phần giao điện của ứng dụng
+    ├── constants               # Những hằng số liên quan
+    ├── contexts                # Global State
+    ├── helpers                 # Các hàm tiện ích
+    ├── hooks                   # Customhook
+    ├── layout                  # Khung giao diện ứng dụng
+    ├── pages                   # Các trang của ứng dụng
+    ├── routers                 # Định tuyến của ứng dụng
+    ├── services                # Hỗ trợ các đối tượng liên quan đến API, feth data
+    ├── utils                   # Các module hỗ trợ
+    ├── index.css               # File css chính
+    ├── main.jsx                # File root
+
+**./src/components ( Atomic Desgin ):**
+
+    .
+    ├── Atoms ( Nguyên tử )     # Chứa các phần tử nhỏ nhất (Button, Label, Input ,...)
+    ├── Molecules ( Phân tử )   # Chứa các phần tử đơn gỉản kết hợp gồm 2 - 3 Atoms (Loading, Pagination, Float Button, ...)
+    ├── Organisms  ( Sinh vật ) # Chứa nhiều phân tử, có giao diện tương đối phức tạp ( Modal, Table, Header, Section ,...)
+    ├── Organisms ( Loài )      # Chứa nhiều sinh vật tạo nên 1 khung ( Layout không chứa content ở giữa)
+    ├── Pages ( Hệ sinh thái)   # Mọi thứ có thể nhìn thấy
 
 ## Environment Variables
 
