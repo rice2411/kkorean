@@ -63,6 +63,30 @@ npm run dev
 
 Dự án sẽ chạy ở port `5137` của `vite` và `serverless api` sẽ chạy ở `3000` của `vercel`
 
+### Cấu trúc thư mục
+
+============================
+
+> Một số chú thích và quy ước đặt tên cho cấu trúc thư mục
+
+### A typical top-level directory layout
+
+    .
+    ├── api                     # Cung cấp các serverless function cho ứng dụng
+    ├── node_modules            # Chứa các package cần thiết
+    ├── public                  # Chứa các static files ( images, svg .. )
+    ├── src                     # Source files
+    ├── tools                   # Tools and utilities
+    ├── .env.sample             # Cấu trúc file môi trường
+    ├── .gitignore              # File config của git
+    ├── .node-version           # Phiên bản nodejs của dự án
+    ├── eslint.config.js        # Config Eslint
+    ├── index.html              # File HTML chính
+    ├── jsconfig.json           # ....
+    ├── tailwind.config.js      # Config tailwind
+    ├── vercel                  # Config production
+    └── README.md
+
 ## Contributing
 
 Pull requests are welcome. Đối với những thay đổi lớn, vui lòng `open issue` trước để thảo luận về những gì bạn muốn thay đổi.
