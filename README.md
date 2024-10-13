@@ -2,31 +2,132 @@
 
 KKorean là 1 trang web giúp bạn luyện đề thi TOPIK ở kĩ năng nghe và đọc.
 
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Development](#development)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+
+## Introduction
+
+Dự án là trang web nơi để các bạn có thể luyện tập thêm về kĩ năng nghe, đọc trong các kì thi TOPIK gồm các bộ đề đa dạng được tổng hợp qua các kì thi
+
+## Features
+
+Các chức năng chính:
+
+- Landing Page giới thiệu về trung tâm
+- Làm thử đề thi ( miễn phí và trả phí )
+- Quản lý bộ đề thi
+- Cung cấp tài khoản cho học viên
+- Thống kê điểm
+
+## Tech Stack
+
+Dự án sử dụng các công nghệ sau:
+
+- **Frontend:** React, Tailwind CSS, Vite
+- **Backend:** Firebase (Firestore, Authentication, Realtime Database )
+- **Other:** Cloudinary
+- **Deployment:** Vercel
+
 ## Installation
 
-Yêu cầu sử dụng version [nodejs](https://nodejs.org/en) 20.18.0.
+Hướng dẫn cài đặt dự án ở máy local:
 
-Cài đặt các package
+1. Clone the repository:
 
-```bash
-npm i
-```
+   ```bash
+   git clone https://github.com/rice2411/kkorean.git
 
-Tiến hành cài đặt vercel
+   ```
 
-```bash
-npm i -g vercel
-```
+2. Chuyển hướng tới thư mục dự án:
 
-Tiến hành chạy vercel để cấp quyền truy cập
+   ```bash
+   cd kkorean
 
-```bash
-vercel dev
-```
+   ```
+
+3. Cài đặt các package cần thiết:
+
+   ```bash
+   npm install
+
+   ```
+
+4. Tạo file .env:
+
+   ```bash
+   touch .env
+   ```
+
+   Thêm các biến môi trường theo file `.env.sample`
+
+5. Cài đặt vercel:
+
+   ```bash
+   npm i -g vercel
+
+   ```
+
+6. Xác thực vercel:
+
+   ```bash
+   vercel dev
+   ```
+
+   Hãy làm theo các chỉ dẫn ở trên terminal
+
+7. Khởi chạy dự án:
+   ```bash
+   npm run dev
+   ```
 
 ## Usage
 
-Tạo file `.env` cùng cấp với thư mục root theo cấu trúc ở `.env.sample`
+Hướng dẫn sử dụng:
+
+- Dự án mặc định chạy ở `http://localhost:5317` port của Vite
+- Dự án có sử dụng `Serverless Function` được cấu hình bằng `vercel` chạy ở `http://localhost:3000`
+- Dự án dùng `BaaS Firebase` để thay thế Backend
+- Sử dụng `Cloudinary` để lưu trữ các file image, audio
+
+## Scripts
+
+- Development: npm run dev (khởi chạy Vite và Vercel dev functions cùng 1 lúc)
+- Build: npm run build (build cho production)
+- Vercel Functions: npm run vercel-function (khởi chạy server vercel)
+
+## Folder Structure
+
+Cấu trúc dự án:
+
+    .
+    ├── api                     # Cung cấp các serverless function cho ứng dụng
+    ├── node_modules            # Chứa các package cần thiết
+    ├── public                  # Chứa các static files ( images, svg .. )
+    ├── src                     # Source files
+    ├── tools                   # Tools and utilities
+    ├── .env.sample             # Cấu trúc file môi trường
+    ├── .gitignore              # File config của git
+    ├── .node-version           # Phiên bản nodejs của dự án
+    ├── eslint.config.js        # Config Eslint
+    ├── index.html              # File HTML chính
+    ├── jsconfig.json           # ....
+    ├── tailwind.config.js      # Config tailwind
+    ├── vercel                  # Config production
+    └── README.md
+
+## Environment Variables
+
+Cung cấp giá trị cho các biến môi trường ở `.env.sample` để khởi chạy
 
 ```bash
 # APP
@@ -55,46 +156,27 @@ VITE_CLOUDINARY_UPLOAD_LINK =
 VITE_CLOUDINARY_CLOUD_NAME =
 ```
 
-Khởi chạy dự án
-
-```bash
-npm run dev
-```
-
-Dự án sẽ chạy ở port `5137` của `vite` và `serverless api` sẽ chạy ở `3000` của `vercel`
-
-### Cấu trúc thư mục
-
-============================
-
-> Một số chú thích và quy ước đặt tên cho cấu trúc thư mục
-
-### A typical top-level directory layout
-
-    .
-    ├── api                     # Cung cấp các serverless function cho ứng dụng
-    ├── node_modules            # Chứa các package cần thiết
-    ├── public                  # Chứa các static files ( images, svg .. )
-    ├── src                     # Source files
-    ├── tools                   # Tools and utilities
-    ├── .env.sample             # Cấu trúc file môi trường
-    ├── .gitignore              # File config của git
-    ├── .node-version           # Phiên bản nodejs của dự án
-    ├── eslint.config.js        # Config Eslint
-    ├── index.html              # File HTML chính
-    ├── jsconfig.json           # ....
-    ├── tailwind.config.js      # Config tailwind
-    ├── vercel                  # Config production
-    └── README.md
-
 ## Contributing
 
-Pull requests are welcome. Đối với những thay đổi lớn, vui lòng `open issue` trước để thảo luận về những gì bạn muốn thay đổi.
+Một số git convention:
 
-Vui lòng đảm bảo `self test` trước khi tạo
+1. Fork the repository.
+2. Create a new branch (git checkout -b feature/your-feature).
+3. Commit your changes (git commit -m 'Add new feature').
+4. Push to the branch (git push origin feature/your-feature).
+5. Create a new pull request.
+
+Đảm bảo các PR được follow theo đúng trình tự.
 
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
 
-![image](https://github.com/user-attachments/assets/d6e466dd-041d-4c4a-a881-bf3334639823)
+## Contact
+
+Thông tin liên lạc:
+
+1. **Author**: Rice.
+2. **Email**: minhrice.dev@gmail.com
+3. **Github**: [rice2411](https://github.com/rice2411)
+4. **LinkedIn**: [Anh Minh](https://www.linkedin.com/in/rice2411/)
