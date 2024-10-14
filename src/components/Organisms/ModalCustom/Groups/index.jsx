@@ -2,7 +2,7 @@ import { Box, Input, Label, Button } from "@/components/Atoms";
 import { Modal } from "@/components/Organisms";
 import { MODAL_CONSTANTS } from "@/constants";
 import { useLoading } from "@/hooks";
-import useModal from "@/hooks/useModal";
+import { useModal } from "@/hooks";
 import { GroupService } from "@/services";
 import Toast from "@/utils/Toast";
 import { useEffect, useState } from "react";

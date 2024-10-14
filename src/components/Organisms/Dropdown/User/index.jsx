@@ -7,11 +7,12 @@ import {
 } from "@/components/Atoms";
 import { CONFIG_CONSTANTS } from "@/constants";
 import { getLocalFile } from "@/helpers/File";
-import { useAuth } from "@/hooks";
-import { useState } from "react";
+import { useAuth, useClickOutside } from "@/hooks";
+import { useRef, useState } from "react";
 
 function UserDropdown({ dropdownClass }) {
     const { user, handleLogout } = useAuth();
+    const dropdownRef = useRef();
     const [isOpenUserMenu, setIsOpenUserMenu] = useState(false);
 
     const links = [
@@ -50,6 +51,8 @@ function UserDropdown({ dropdownClass }) {
         },
     ];
 
+    useClickOutside(dropdownRef, () => setIsOpenUserMenu(false));
+
     return (
         <>
             <Box
@@ -65,6 +68,7 @@ function UserDropdown({ dropdownClass }) {
                 />
             </Box>
             <Box
+                ref={dropdownRef}
                 className={`${
                     !isOpenUserMenu && "hidden"
                 } absolute z-50 my-4 w-56 text-base list-none bg-white rounded Boxide-y Boxide-gray-100 shadow top-7 right-5 ${dropdownClass}`}
@@ -89,6 +93,9 @@ function UserDropdown({ dropdownClass }) {
                             aria-labelledby="dropdown"
                         >
                             <Link
+                                onClick={() => {
+                                    setIsOpenUserMenu(false);
+                                }}
                                 to={"/dashboard"}
                                 className="block py-2 px-4 text-sm hover:bg-gray-100   "
                             >

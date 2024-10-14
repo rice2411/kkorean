@@ -8,7 +8,7 @@ import {
     Paragraph,
 } from "@/components/Atoms";
 import { DOMHelpers, FileHelpers } from "@/helpers";
-import useModal from "@/hooks/useModal";
+import { useModal } from "@/hooks";
 import React, { useEffect, useState } from "react";
 
 const ImportantConfirmModal = () => {
