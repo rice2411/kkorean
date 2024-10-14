@@ -14,6 +14,7 @@
         "@cloudinary/react": "^1.13.0",
         "@cloudinary/url-gen": "^1.21.0",
         "cloudinary": "^2.5.1",
+        "date-fns": "^4.1.0",
         "dotenv": "^16.4.5",
         "firebase": "^10.13.2",
         "firebase-admin": "^12.6.0",

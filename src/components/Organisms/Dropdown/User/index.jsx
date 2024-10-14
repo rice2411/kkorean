@@ -5,14 +5,17 @@ import {
     Link,
     Paragraph,
 } from "@/components/Atoms";
-import { CONFIG_CONSTANTS } from "@/constants";
+import { CONFIG_CONSTANTS, NOTIFICATION_CONSTANTS } from "@/constants";
 import { getLocalFile } from "@/helpers/File";
 import { useAuth, useClickOutside } from "@/hooks";
+import { NotificationService } from "@/services";
+import DateFNSUtils from "@/utils/DateFNS";
 import { useRef, useState } from "react";
 
 function UserDropdown({ dropdownClass }) {
     const { user, handleLogout } = useAuth();
     const dropdownRef = useRef();
+    const parentRef = useRef();
     const [isOpenUserMenu, setIsOpenUserMenu] = useState(false);
 
     const links = [
@@ -51,11 +54,14 @@ function UserDropdown({ dropdownClass }) {
         },
     ];
 
-    useClickOutside(dropdownRef, () => setIsOpenUserMenu(false));
+    useClickOutside(parentRef, dropdownRef, () => setIsOpenUserMenu(false));
+
+    if (!user) return null;
 
     return (
         <>
             <Box
+                ref={parentRef}
                 onClick={() => {
                     setIsOpenUserMenu((state) => !state);
                 }}
@@ -129,7 +135,16 @@ function UserDropdown({ dropdownClass }) {
                 <Box className="py-1 text-gray-500 " aria-labelledby="dropdown">
                     <Link
                         to={"/login"}
-                        onClick={() => handleLogout()}
+                        onClick={async () => {
+                            await NotificationService.createNotification({
+                                type: NOTIFICATION_CONSTANTS.NOTIFICATION_TYPE
+                                    .LOGOUT,
+                                message: `Người dùng <b>${
+                                    user.email
+                                }</b> đã <b>đăng xuất</b> khỏi hệ thống vào lúc ${DateFNSUtils.now()}`,
+                            });
+                            handleLogout();
+                        }}
                         className="block py-2 px-4 text-sm hover:bg-gray-100  "
                     >
                         Đăng xuất
