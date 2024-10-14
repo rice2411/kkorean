@@ -1,4 +1,4 @@
-import Response from "../HTTP/response";
+import Response from "../HTTP";
 
 const ApiUtils = {
   fetchAdminAPI: async (url, payload) => {
@@ -12,10 +12,10 @@ const ApiUtils = {
       });
       const data = await response.json();
       if (response.ok) {
-        return Response.success(data);
+        return HttpUtils.Response.success(data);
       }
     } catch (err) {
-      return Response.error(err);
+      return HttpUtils.Response.error(err);
     }
   },
 };

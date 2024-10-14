@@ -63,6 +63,7 @@ const Input = React.forwardRef(
             name={name}
             accept={accept}
             multiple={multiple}
+            ref={ref}
           />
         </div>
         {helperText && (

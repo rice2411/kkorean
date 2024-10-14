@@ -1,26 +1,27 @@
 import ApiUtils from "@/utils/API";
-import Response from "@/utils/HTTP/response";
+import HttpUtils from "@/utils/HTTP";
+import Response from "@/utils/HTTP";
 
 const UPLOAD_LINK = import.meta.env.VITE_CLOUDINARY_UPLOAD_LINK;
 const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
 
 const route = {
   adminApi: `/api/cloudinary`,
-  upload: `${UPLOAD_LINK}/${CLOUD_NAME}/image/upload`,
+  upload: `${UPLOAD_LINK}/${CLOUD_NAME}`,
 };
 
 const CloudinaryService = {
-  upload: async (payload) => {
+  upload: async (payload, type = "image") => {
     try {
-      const response = await fetch(route.upload, {
+      const response = await fetch(route.upload + `/${type}/upload`, {
         method: "POST",
         body: payload,
       });
 
       const data = await response.json();
-      return Response.success(data);
+      return HttpUtils.Response.success(data);
     } catch (err) {
-      return Response.error(err);
+      return HttpUtils.Response.error(err);
     }
   },
   deleteImageByPublicId: async (publicId) => {
@@ -32,10 +33,10 @@ const CloudinaryService = {
 
       const data = await response.json();
       if (response.ok) {
-        return Response.success(data);
+        return HttpUtils.Response.success(data);
       }
     } catch (error) {
-      return Response.error(err);
+      return HttpUtils.Response.error(err);
     }
   },
   searchImageByPublicIdPrefix: async (examId) => {
@@ -44,10 +45,10 @@ const CloudinaryService = {
         examId,
         api: "searchImageByPublicIdPrefix",
       });
-      return Response.success(response.data.resources);
+      return HttpUtils.Response.success(response.data.resources);
     } catch (err) {
       console.log(err);
-      return Response.error(err);
+      return HttpUtils.Response.error(err);
     }
   },
 };
