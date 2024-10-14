@@ -1,5 +1,5 @@
 import { Box, Heading } from "@/components/Atoms";
-import useModal from "@/hooks/useModal";
+import { useModal } from "@/hooks";
 import React, { useEffect, useState } from "react";
 
 const BlankModal = ({ children }) => {
