@@ -1,7 +1,8 @@
 // Link.js
 import React from "react";
 import PropTypes from "prop-types";
-import { Link as ReactRouterLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Box } from "@/components/Atoms";
 
 const Link = ({
     to = "#",
@@ -9,18 +10,24 @@ const Link = ({
     className = "",
     target = "_self",
     rel,
-    onClick = () => {},
+    onClick = null,
 }) => {
+    const navigate = useNavigate();
+
     return (
-        <ReactRouterLink
-            to={to}
-            className={`${className} text-blue-600  `}
+        <Box
+            className={`${className} text-blue-600 cursor-pointer`}
             target={target}
             rel={rel}
-            onClick={onClick}
+            onClick={() => {
+                if (onClick) {
+                    onClick();
+                }
+                navigate(to);
+            }}
         >
             {children}
-        </ReactRouterLink>
+        </Box>
     );
 };
 

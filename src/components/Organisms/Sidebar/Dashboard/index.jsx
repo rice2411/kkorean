@@ -95,8 +95,9 @@ function DashboardSidebar({ toggleSidebar }) {
                     <Box className="space-y-2">
                         {items.map((item) => (
                             <Link
-                                key={useId()}
                                 to={item.href}
+                                onClick={null}
+                                key={useId()}
                                 className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg  hover:bg-gray-100 group"
                             >
                                 {item.icon}
