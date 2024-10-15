@@ -1,5 +1,6 @@
-import { Box, Link, Image, Paragraph } from "@/components/Atoms";
+import { Box, Link, Image, Paragraph, Svg } from "@/components/Atoms";
 import { Dropdown } from "@/components/Organisms";
+import { FileHelpers } from "@/helpers";
 
 function DashboardHeader({ setToggleSidebar }) {
     return (
@@ -7,28 +8,6 @@ function DashboardHeader({ setToggleSidebar }) {
             <nav className="bg-white border-b border-gray-200 px-4 py-2.5 fixed left-0 right-0 top-0 z-50">
                 <Box className="flex flex-wrap justify-between items-center">
                     <Box className="flex justify-start items-center">
-                        <Box
-                            id="toggleSidebar"
-                            aria-expanded="true"
-                            aria-controls="sidebar"
-                            className="hidden p-2 mr-3 text-gray-600 rounded cursor-pointer lg:inline hover:text-gray-900 hover:bg-gray-100 "
-                        >
-                            <svg
-                                className="w-5 h-5"
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 16 12"
-                            >
-                                <path
-                                    stroke="currentColor"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M1 1h14M1 6h14M1 11h7"
-                                />
-                            </svg>
-                        </Box>
                         <Box
                             onClick={() => {
                                 setToggleSidebar((state) => !state);
@@ -38,21 +17,12 @@ function DashboardHeader({ setToggleSidebar }) {
                             aria-controls="sidebar"
                             className="p-2 mr-2 text-gray-600 rounded-lg cursor-pointer lg:hidden hover:text-gray-900 hover:bg-gray-100 focus:bg-gray-100 "
                         >
-                            <svg
+                            <Svg
                                 className="w-[18px] h-[18px]"
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 17 14"
-                            >
-                                <path
-                                    stroke="currentColor"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M1 1h15M1 7h15M1 13h15"
-                                />
-                            </svg>
+                                src={FileHelpers.getLocalFile("menu", "path")}
+                            ></Svg>
                             <Paragraph className="sr-only">
                                 Toggle sidebar
                             </Paragraph>

@@ -13,6 +13,7 @@ import RadioButton from "./RadioButton";
 import Toggle from "./Toggle";
 import Input from "./Input";
 import Tooltip from "./Tooltip";
+import Svg from "./Svg";
 
 export {
     Box,
@@ -30,4 +31,5 @@ export {
     Toggle,
     Input,
     Tooltip,
+    Svg,
 };

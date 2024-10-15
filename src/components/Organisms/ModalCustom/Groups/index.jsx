@@ -1,6 +1,7 @@
-import { Box, Input, Label, Button } from "@/components/Atoms";
+import { Box, Input, Label, Button, Svg } from "@/components/Atoms";
 import { Modal } from "@/components/Organisms";
 import { MODAL_CONSTANTS } from "@/constants";
+import { FileHelpers } from "@/helpers";
 import { useLoading } from "@/hooks";
 import { useModal } from "@/hooks";
 import { GroupService } from "@/services";
@@ -126,18 +127,12 @@ function GroupsModalCustom() {
                 >
                     {modalBlank.type === MODAL_CONSTANTS.MODAL_TYPE.CREATE ? (
                         <>
-                            <svg
+                            <Svg
                                 className="mr-1 -ml-1 w-6 h-6"
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    fillRule="evenodd"
-                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clipRule="evenodd"
-                                ></path>
-                            </svg>
+                                src={FileHelpers.getLocalFile("add", "path")}
+                            ></Svg>
                             Tạo lớp
                         </>
                     ) : (

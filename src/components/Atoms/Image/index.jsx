@@ -14,19 +14,10 @@ const Image = ({
 }) => {
     const roundedClass = rounded ? "rounded-full" : "";
 
-    const [url, setUrl] = useState("");
-
-    const fetchUrl = async () => {
-        try {
-            const response = await src;
-            setUrl(response);
-        } catch (err) {
-            setUrl("https://placehold.co/600x400/png");
-        }
-    };
+    const [url, setUrl] = useState("https://placehold.co/50x50/png");
 
     useEffect(() => {
-        fetchUrl();
+        setUrl(src);
     }, []);
 
     return (

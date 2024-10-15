@@ -6,6 +6,7 @@ import {
     Input,
     Label,
     Paragraph,
+    Svg,
 } from "@/components/Atoms";
 import { DOMHelpers, FileHelpers } from "@/helpers";
 import { useModal } from "@/hooks";
@@ -42,46 +43,21 @@ const ImportantConfirmModal = () => {
                         className="absolute cursor-pointer top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center "
                         data-modal-toggle="defaultModal"
                     >
-                        <svg
-                            aria-hidden="true"
+                        <Svg
                             className="w-5 h-5"
                             fill="currentColor"
                             viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                fillRule="evenodd"
-                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                clipRule="evenodd"
-                            ></path>
-                        </svg>
-                        <span className="sr-only">Close modal</span>
+                            src={FileHelpers.getLocalFile("close", "path")}
+                        ></Svg>
                     </Box>
                     <Box className="p-4 md:p-5 text-center">
                         <Box className="flex items-center justify-center">
-                            <svg
+                            <Svg
                                 className="h-20 w-20 "
                                 viewBox="0 0 24 24"
                                 fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <g id="SVGRepo_bgCarrier"></g>
-                                <g id="SVGRepo_tracerCarrier"></g>
-                                <g id="SVGRepo_iconCarrier">
-                                    <path
-                                        d="M12 2.98828L22.2924 21H1.70764L12 2.98828ZM4.29241 19.5H19.7076L12 6.01163L4.29241 19.5Z"
-                                        fill="#080341"
-                                    ></path>{" "}
-                                    <path
-                                        d="M11.25 15L11.25 10.5L12.75 10.5L12.75 15L11.25 15Z"
-                                        fill="#080341"
-                                    ></path>{" "}
-                                    <path
-                                        d="M11.25 17.25L11.25 15.75L12.75 15.75L12.75 17.25L11.25 17.25Z"
-                                        fill="#080341"
-                                    ></path>{" "}
-                                </g>
-                            </svg>
+                                src={FileHelpers.getLocalFile("danger", "svg")}
+                            ></Svg>
                         </Box>
 
                         <Heading className="mb-5 text-lg font-normal text-gray-500">
