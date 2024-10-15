@@ -27,8 +27,8 @@ export default async function handler(req, res) {
             .status(200)
             .json({ message: "Account status have been updated" });
         case `deleteAccountByEmail`:
-          const userRecord = await getAuth().getUserByEmail(email);
-          await getAuth().deleteUser(userRecord.uid);
+          const userRecord = await admin.auth().getUserByEmail(email);
+          await admin.auth().deleteUser(userRecord.uid);
           return res
             .status(200)
             .json({ message: "User deleted successfully." });
@@ -41,8 +41,6 @@ export default async function handler(req, res) {
             .json({ message: "Password updated successfully" });
         default:
           return res.status(400).end(`API key unknow`);
-
-
       }
     } catch (error) {
       return res.status(500).json({ error: "Failed to fetch", details: error });
