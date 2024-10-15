@@ -1,10 +1,10 @@
+import { FilesAPI } from "@/apis/";
 import { Box, Heading, Image } from "@/components/Atoms";
 import { Modal } from "@/components/Organisms";
 import { useLoading } from "@/hooks";
 import { useModal } from "@/hooks";
-import { CloudinaryService } from "@/services";
+import { ToastUtils } from "@/utils";
 import { useEffect, useState } from "react";
-import { useRevalidator } from "react-router-dom";
 
 function ExamPreviewerModal({ exam }) {
     const { loading } = useModal();
@@ -16,12 +16,14 @@ function ExamPreviewerModal({ exam }) {
     const fetchImages = async () => {
         showLoading();
         try {
-            const response =
-                await CloudinaryService.searchImageByPublicIdPrefix(exam.id);
-            if (response.data) {
-                setImages(response.data);
+            const response = await FilesAPI.searchImageByPublicIdPrefix(
+                exam.id
+            );
+            if (response.resources) {
+                setImages(response.resources);
             }
         } catch (err) {
+            ToastUtils.error("Đã có lỗi xảy ra vui lòng thử lại");
             console.log(err);
         } finally {
             hideLoading();
@@ -38,14 +40,14 @@ function ExamPreviewerModal({ exam }) {
             setQuestions(result);
             fetchImages();
         }
-    }, exam);
+    }, [exam]);
 
     return (
         <>
             {!loading && questions.length > 0 && (
                 <Modal.BlankModal>
                     {questions.map((question, index) => (
-                        <Box className="flex flex-col" key={question.id}>
+                        <Box className="flex flex-col" key={index}>
                             <Heading>{question}</Heading>
                             {images
                                 .filter((item) =>

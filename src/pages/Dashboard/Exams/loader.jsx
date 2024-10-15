@@ -1,6 +1,6 @@
-import { ExamService } from "@/services";
+import { ExamsAPI } from "@/apis";
 
 export const ExamsPageLoader = async () => {
-    const response = await ExamService.getList();
+    const response = await ExamsAPI.getList();
     return response || [];
 };

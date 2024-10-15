@@ -1,6 +1,6 @@
-import { GroupService } from "@/services";
+import { GroupsAPI } from "@/apis";
 
 export const GroupsPageLoader = async () => {
-    const response = await GroupService.getList();
+    const response = await GroupsAPI.getList();
     return response || [];
 };

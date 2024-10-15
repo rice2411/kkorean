@@ -179,7 +179,13 @@ VITE_FIREBASE_MEASUREMENT_ID =
 VITE_CLOUDINARY_RESPONSE_LINK =
 VITE_CLOUDINARY_UPLOAD_LINK =
 VITE_CLOUDINARY_CLOUD_NAME =
+
 ```
+## Design Pattern
+
+1. Atomic Desgin For Components
+2. Container-Presenter Pattern
+3. Custom Hooks Pattern
 
 ## Contributing
 

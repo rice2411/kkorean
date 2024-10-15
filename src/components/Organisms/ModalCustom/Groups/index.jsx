@@ -4,7 +4,7 @@ import { MODAL_CONSTANTS } from "@/constants";
 import { FileHelpers } from "@/helpers";
 import { useLoading } from "@/hooks";
 import { useModal } from "@/hooks";
-import { GroupService } from "@/services";
+import { GroupsAPI } from "@/apis";
 import Toast from "@/utils/Toast";
 import { useEffect, useState } from "react";
 import { useRevalidator } from "react-router-dom";
@@ -30,7 +30,7 @@ function GroupsModalCustom() {
             name: groupName,
             members: 0,
         };
-        const response = await GroupService.create(param);
+        const response = await GroupsAPI.create(param);
         if (response.data) {
             const textResult = `Lớp <b>${param.name}</b> đã được tạo.`;
             handleModiferModalSuccess({
@@ -53,7 +53,7 @@ function GroupsModalCustom() {
             ...modalBlank.defaultData,
             name: groupName,
         };
-        const response = await GroupService.update(param);
+        const response = await GroupsAPI.update(param);
         if (response.data) {
             const textResult = `Lớp <b>${param.name}</b> đã được cập nhật.`;
             handleModiferModalSuccess({
