@@ -8,6 +8,7 @@ function Footer() {
                     to="#"
                     className="flex justify-center items-center text-2xl font-semibold text-gray-900"
                 >
+                    {/* LOGO */}
                     <svg
                         className="mr-2 h-8"
                         viewBox="0 0 33 33"

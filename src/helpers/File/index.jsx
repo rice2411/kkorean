@@ -1,25 +1,30 @@
-import firebaseService from "@/services/Firebase";
+const FileHelpers = {
+    getLocalFile: (fileName, extension) => {
+        return `/${FileHelpers.getPath(
+            extension
+        )}/${fileName}.${FileHelpers.getExtension(extension)}`;
+    },
 
-const getLocalFile = async (fileName, extension) => {
-    return `/${getPath(extension)}/${fileName}.${extension}`;
+    getPath: (extension) => {
+        switch (extension) {
+            case "path":
+                return "svgPath";
+            case "svg":
+                return "svg";
+            case "jpg":
+            case "png":
+                return "images";
+        }
+    },
+
+    getExtension: (extension) => {
+        switch (extension) {
+            case "path":
+                return "path.svg";
+            default:
+                return extension;
+        }
+    },
 };
 
-const getCloudFile = async (fileName, extension) => {
-    if (import.meta.env.MODE === "production") {
-        const url = await firebaseService.getFile(fileName, extension);
-        return url;
-    }
-    return null;
-};
-
-const getPath = (extension) => {
-    switch (extension) {
-        case "svg":
-            return "svg";
-        case "jpg":
-        case "png":
-            return "images";
-    }
-};
-
-export { getLocalFile, getPath };
+export default FileHelpers;

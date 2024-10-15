@@ -4,9 +4,10 @@ import {
     Image,
     Link,
     Paragraph,
+    Svg,
 } from "@/components/Atoms";
 import { CONFIG_CONSTANTS, NOTIFICATION_CONSTANTS } from "@/constants";
-import { getLocalFile } from "@/helpers/File";
+import { FileHelpers } from "@/helpers/";
 import { useAuth, useClickOutside } from "@/hooks";
 import { NotificationService } from "@/services";
 import DateFNSUtils from "@/utils/DateFNS";
@@ -22,33 +23,23 @@ function UserDropdown({ dropdownClass }) {
         {
             href: "/dashboard/users/",
             icon: (
-                <svg
+                <Svg
                     className="mr-2 w-4 h-4 text-gray-400"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor"
-                    viewBox="0 0 20 18"
-                >
-                    <path d="M17.947 2.053a5.209 5.209 0 0 0-3.793-1.53A6.414 6.414 0 0 0 10 2.311 6.482 6.482 0 0 0 5.824.5a5.2 5.2 0 0 0-3.8 1.521c-1.915 1.916-2.315 5.392.625 8.333l7 7a.5.5 0 0 0 .708 0l7-7a6.6 6.6 0 0 0 2.123-4.508 5.179 5.179 0 0 0-1.533-3.793Z" />
-                </svg>
+                    viewBox="0 0 24 24"
+                    src={FileHelpers.getLocalFile("account", "path")}
+                ></Svg>
             ),
             text: "Tài khoản",
         },
         {
             href: "/dashboard/exams",
             icon: (
-                <svg
+                <Svg
                     className="mr-2 w-4 h-4 text-gray-400"
-                    aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor"
                     viewBox="0 0 20 20"
-                >
-                    {" "}
-                    <path d="m1.56 6.245 8 3.924a1 1 0 0 0 .88 0l8-3.924a1 1 0 0 0 0-1.8l-8-3.925a1 1 0 0 0-.88 0l-8 3.925a1 1 0 0 0 0 1.8Z" />{" "}
-                    <path d="M18 8.376a1 1 0 0 0-1 1v.163l-7 3.434-7-3.434v-.163a1 1 0 0 0-2 0v.786a1 1 0 0 0 .56.9l8 3.925a1 1 0 0 0 .88 0l8-3.925a1 1 0 0 0 .56-.9v-.786a1 1 0 0 0-1-1Z" />{" "}
-                    <path d="M17.993 13.191a1 1 0 0 0-1 1v.163l-7 3.435-7-3.435v-.163a1 1 0 1 0-2 0v.787a1 1 0 0 0 .56.9l8 3.925a1 1 0 0 0 .88 0l8-3.925a1 1 0 0 0 .56-.9v-.787a1 1 0 0 0-1-1Z" />{" "}
-                </svg>
+                    src={FileHelpers.getLocalFile("exams", "path")}
+                ></Svg>
             ),
             text: "Bộ đề",
         },
@@ -69,7 +60,7 @@ function UserDropdown({ dropdownClass }) {
             >
                 <Image
                     className="w-8 h-8 rounded-full"
-                    src={getLocalFile("user-none", "jpg")}
+                    src={FileHelpers.getLocalFile("user-none", "jpg")}
                     alt="user photo"
                 />
             </Box>

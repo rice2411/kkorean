@@ -1,6 +1,5 @@
-import * as FileHelpers from "./File";
-import * as DOMHelpers from "./DOM";
-import * as StringHelpers from "./String";
-import * as ExamUtils from "../utils/Exam";
+import FileHelpers from "./File";
+import DOMHelpers from "./DOM";
+import StringHelpers from "./String";
 
-export { FileHelpers, DOMHelpers, StringHelpers, ExamUtils };
+export { FileHelpers, DOMHelpers, StringHelpers };
