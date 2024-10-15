@@ -83,7 +83,25 @@ Hướng dẫn cài đặt dự án ở máy local:
    vercel dev
    ```
 
-   Hãy làm theo các chỉ dẫn ở trên terminal
+   6.1 `Link to existing project`:
+
+   ```bash
+   Link to existing project? No
+   ```
+
+6.2 `What's your project name`:
+
+```bash
+What's your project name? kkorean
+```
+
+6.3 `In which directory is your code located?`:
+
+```bash
+In which directory is your code located? ./api
+```
+
+Hãy làm theo các chỉ dẫn ở trên terminal
 
 7. Khởi chạy dự án:
    ```bash
@@ -181,6 +199,7 @@ VITE_CLOUDINARY_UPLOAD_LINK =
 VITE_CLOUDINARY_CLOUD_NAME =
 
 ```
+
 ## Design Pattern
 
 1. Atomic Desgin For Components
