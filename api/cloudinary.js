@@ -19,7 +19,7 @@ export default async function handler(req, res) {
   }
 
   if (req.method === "POST") {
-    const { api, publicId, examId } = req.body;
+    const { api, publicId, examId } = JSON.parse(req.body);
     let result = null;
     try {
       switch (api) {
@@ -37,6 +37,8 @@ export default async function handler(req, res) {
             message: "Images fetched successfully",
             resources: result.resources,
           });
+        default:
+          return res.status(400).json({ error: "API unknow" });
       }
     } catch (error) {
       return res.status(500).json({ error: "Failed to fetch", details: error });

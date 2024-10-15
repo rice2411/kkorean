@@ -1,8 +1,8 @@
-import firebaseService from "../Firebase";
+import { FirebaseService } from "@/services";
 
 const key = "notifications";
 
-const NotificationService = {
+const NotificationsAPI = {
     createNotification: async (data) => {
         try {
             const notificationData = {
@@ -11,15 +11,15 @@ const NotificationService = {
                 createdDate: Date.now(),
                 isRead: false,
             };
-            const response = await firebaseService.createDocument(
+            const response = await FirebaseService.createDocument(
                 key,
                 notificationData
             );
             if (response.data) {
                 return response.data;
             }
-            if (response.err) {
-                return response.err;
+            if (response.error) {
+                return response.error;
             }
         } catch (err) {
             return err;
@@ -27,19 +27,19 @@ const NotificationService = {
     },
     updateMultiple: async (data) => {
         try {
-            const response = await firebaseService.updateMutilpleDocument(
+            const response = await FirebaseService.updateMutilpleDocument(
                 key,
                 data
             );
             if (response.data) {
                 return response.data;
             }
-            if (response.err) {
-                return response.err;
+            if (response.error) {
+                return response.error;
             }
         } catch (err) {
             return err;
         }
     },
 };
-export default NotificationService;
+export default NotificationsAPI;

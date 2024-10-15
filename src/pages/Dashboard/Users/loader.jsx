@@ -1,6 +1,6 @@
-import { UserService } from "@/services";
+import { UsersAPI } from "@/apis";
 
 export const UsersPageLoader = async () => {
-    const response = await UserService.getList();
+    const response = await UsersAPI.getList();
     return response || [];
 };

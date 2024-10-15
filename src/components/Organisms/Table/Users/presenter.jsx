@@ -6,177 +6,21 @@ import {
     CONFIG_CONSTANTS,
 } from "@/constants";
 import { FileHelpers } from "@/helpers";
-import { useEffect, useState } from "react";
-
-import { useModal } from "@/hooks";
-import Toast from "@/utils/Toast";
-import { GroupsAPI, UsersAPI } from "@/apis";
-import { useRevalidator } from "react-router-dom";
-import { useLoading } from "@/hooks";
+import { useState } from "react";
 import { Empty } from "@/components/Molecules";
 
 import { ModalCustom } from "@/components/Organisms/";
 
-function TableUsers({ users }) {
-    const revalidator = useRevalidator();
-    const { showLoading, hideLoading } = useLoading();
-    const {
-        handleModiferModalBlank,
-        handleModiferModalConfirm,
-        handleModiferModalImportantConfirm,
-    } = useModal();
-
+function TableUsersPresenter({
+    users,
+    groups,
+    handleConfirmUpdateAccountStatus,
+    handleImportantConfirm,
+    handleOpenModalUser,
+    handleConfirmResetPassword,
+}) {
     const [searchContent, setSearchContent] = useState("");
     const [page, setPage] = useState(1);
-    const [groups, setGroups] = useState([]);
-
-    const handleOpenModalUser = (type, data) => {
-        handleModiferModalBlank({
-            isOpen: true,
-            title:
-                type === MODAL_CONSTANTS.MODAL_TYPE.CREATE
-                    ? "Thêm tài khoản"
-                    : "Chỉnh sửa tài khoản",
-            type,
-            defaultData: data,
-        });
-    };
-
-    const handleClose = () => {
-        handleModiferModalConfirm({ isOpen: false });
-    };
-
-    const handleResetPassword = async (user) => {
-        try {
-            showLoading();
-            const response = await UsersAPI.resetAccountPassword(user);
-            if (response.data) {
-                Toast.success(
-                    `Đổi mật khẩu thành công, mật khẩu là ${CONFIG_CONSTANTS.DEFAULT_PASSWORD}`
-                );
-                return;
-            }
-        } catch (err) {
-            console.log(err);
-            Toast.error("Đã có lỗi xảy ra vui lòng thử lại");
-        } finally {
-            handleClose();
-            hideLoading();
-        }
-    };
-
-    const handleConfirmResetPassword = (user) => {
-        handleModiferModalConfirm({
-            isOpen: true,
-            text: `Bạn có muốn khôi phục mật khẩu cho tài khoản <b>${user.email}</b> không? Mật khẩu mặc định sẽ là <b>${CONFIG_CONSTANTS.DEFAULT_PASSWORD}<b>`,
-            okButton: {
-                text: "Xác nhận",
-                onClick: () => {
-                    handleResetPassword(user);
-                },
-            },
-            cancelButton: {
-                text: "Hủy",
-                onClick: handleClose,
-            },
-        });
-    };
-
-    const handleUpdateAccountStatus = async (user) => {
-        try {
-            showLoading();
-            const userUpdated = {
-                ...user,
-                isDisabled: user.isDisabled ? 0 : 1,
-            };
-            await UsersAPI.update(userUpdated);
-            await UsersAPI.updateAccountStatus(
-                user,
-                userUpdated.isDisabled ? true : false
-            );
-            await revalidator.revalidate();
-            Toast.success(
-                `${
-                    userUpdated.isDisabled ? "Vô hiệu hóa" : "Khổi phục"
-                } thành công tài khoản ${user.email}`
-            );
-            handleClose();
-        } catch (err) {
-            Toast.error("Đã có lỗi xảy ra vui lòng thử lại sau");
-            console.log(err);
-        } finally {
-            hideLoading();
-        }
-    };
-
-    const handleConfirmUpdateAccountStatus = (user) => {
-        handleModiferModalConfirm({
-            isOpen: true,
-            text: `Bạn có muốn ${
-                user.isDisabled ? "khôi phục" : "vô hiệu hóa "
-            } tài khoản <b>${user.email}</b>`,
-            okButton: {
-                text: "Xác nhận",
-                onClick: () => {
-                    handleUpdateAccountStatus(user);
-                },
-            },
-            cancelButton: {
-                text: "Hủy",
-                onClick: handleClose,
-            },
-        });
-    };
-
-    const handleDeleteAccount = async (user) => {
-        try {
-            showLoading();
-            await UsersAPI.delete(user);
-            await revalidator.revalidate();
-            handleClose();
-            Toast.success(`Đã xóa thành công tài khoản ${user.email}`);
-        } catch (err) {
-            Toast.error("Đã có lỗi xảy ra vui lòng thử lại sau");
-            console.log(err);
-        } finally {
-            handleModiferModalImportantConfirm({
-                isOpen: false,
-                confirmData: "",
-            });
-            hideLoading();
-        }
-    };
-
-    const handleImportantConfirm = (user) => {
-        handleModiferModalImportantConfirm({
-            isOpen: true,
-            text: `Bạn có muốn <b>xóa vĩnh viễn</b> tài khoản <b>${user.email}</b> <br/> <span class='text-sm'>Hành động này sẽ không khôi phục lại được</span>`,
-            okButton: {
-                text: "Xóa",
-                onClick: () => {
-                    handleDeleteAccount(user);
-                },
-            },
-            confirmData: "delete " + user.email.split("@")[0],
-        });
-    };
-
-    const handleGetClassList = async () => {
-        showLoading();
-        try {
-            const response = await GroupsAPI.getListCache();
-            setGroups(response);
-        } catch (err) {
-            Toast.error("Có lỗi xảy ra vui lòng thử lại sau");
-            console.log(err);
-        } finally {
-            hideLoading();
-        }
-    };
-
-    useEffect(() => {
-        handleGetClassList();
-    }, []);
 
     return (
         <>
@@ -441,4 +285,4 @@ function TableUsers({ users }) {
     );
 }
 
-export default TableUsers;
+export default TableUsersPresenter;

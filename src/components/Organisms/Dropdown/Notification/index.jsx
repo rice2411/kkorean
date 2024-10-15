@@ -1,8 +1,8 @@
+import { NotificationsAPI } from "@/apis";
 import { Box, Image, Link, Svg } from "@/components/Atoms";
 import { DOMHelpers, FileHelpers } from "@/helpers";
 import { useClickOutside, useLoading } from "@/hooks";
-import { NotificationService } from "@/services";
-import firebaseService from "@/services/Firebase";
+import FirebaseService from "@/services/Firebase";
 import DateFNSUtils from "@/utils/DateFNS";
 
 import { useEffect, useRef, useState } from "react";
@@ -18,7 +18,7 @@ function NotificationDropdown() {
 
     useEffect(() => {
         showLoading();
-        firebaseService.getSnapshot("notifications", (data) => {
+        FirebaseService.getSnapshot("notifications", (data) => {
             setNotifications(data);
             const unReadNoti = data.filter((item) => !item.isRead);
             setUnReadNotification(unReadNoti);
@@ -35,7 +35,7 @@ function NotificationDropdown() {
                 ...item,
                 isRead: true,
             }));
-            await NotificationService.updateMultiple(updatedData);
+            await NotificationsAPI.updateMultiple(updatedData);
         }
     };
 

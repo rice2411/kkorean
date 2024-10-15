@@ -4,7 +4,7 @@ import { CONFIG_CONSTANTS, MODAL_CONSTANTS } from "@/constants";
 import { FileHelpers } from "@/helpers";
 import { useLoading } from "@/hooks";
 import { useModal } from "@/hooks";
-import { UserService } from "@/services";
+import { UsersAPI } from "@/apis";
 import Toast from "@/utils/Toast";
 import { useEffect, useState } from "react";
 import { useRevalidator } from "react-router-dom";
@@ -79,8 +79,8 @@ function UsersModalCustom({ groups }) {
         const emailParam = user.email + CONFIG_CONSTANTS.EMAIL_DOMAIN;
         const response =
             action === MODAL_CONSTANTS.MODAL_TYPE.CREATE
-                ? await UserService.create({ ...user, email: emailParam })
-                : await UserService.update({ ...user, email: emailParam });
+                ? await UsersAPI.create({ ...user, email: emailParam })
+                : await UsersAPI.update({ ...user, email: emailParam });
 
         if (response.data) {
             action === MODAL_CONSTANTS.MODAL_TYPE.CREATE

@@ -9,7 +9,7 @@ import {
 import { CONFIG_CONSTANTS, NOTIFICATION_CONSTANTS } from "@/constants";
 import { FileHelpers } from "@/helpers/";
 import { useAuth, useClickOutside } from "@/hooks";
-import { NotificationService } from "@/services";
+import { NotificationsAPI } from "@/apis";
 import DateFNSUtils from "@/utils/DateFNS";
 import { useRef, useState } from "react";
 
@@ -127,7 +127,7 @@ function UserDropdown({ dropdownClass }) {
                     <Link
                         to={"/login"}
                         onClick={async () => {
-                            await NotificationService.createNotification({
+                            await NotificationsAPI.createNotification({
                                 type: NOTIFICATION_CONSTANTS.NOTIFICATION_TYPE
                                     .LOGOUT,
                                 message: `Người dùng <b>${
