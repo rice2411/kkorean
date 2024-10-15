@@ -43,70 +43,75 @@ Hướng dẫn cài đặt dự án ở máy local:
 
 1. Clone the repository:
 
-   ```bash
-   git clone https://github.com/rice2411/kkorean.git
+```bash
+git clone https://github.com/rice2411/kkorean.git
 
-   ```
+```
 
 2. Chuyển hướng tới thư mục dự án:
 
-   ```bash
-   cd kkorean
+```bash
+cd kkorean
 
-   ```
+```
 
 3. Cài đặt các package cần thiết:
 
-   ```bash
-   npm install
+```bash
+npm install
 
-   ```
+```
 
 4. Tạo file .env:
 
-   ```bash
-   touch .env
-   ```
+```bash
+touch .env
+```
 
-   Thêm các biến môi trường theo file `.env.sample`
+Thêm các biến môi trường theo file `.env.sample`
 
 5. Cài đặt vercel:
 
-   ```bash
-   npm i -g vercel
+```bash
+npm i -g vercel
 
-   ```
+```
 
 6. Xác thực vercel:
 
-   ```bash
-   vercel dev
-   ```
-
-   6.1 `Link to existing project`:
-
-   ```bash
-   Link to existing project? No
-   ```
-
-6.2 `What's your project name`:
-
 ```bash
-What's your project name? kkorean
+vercel dev
+
 ```
 
-6.3 `In which directory is your code located?`:
+7. `Link to existing project`:
+
+```bash
+Link to existing project? No
+
+```
+
+8.  `What's your project name`:
+
+```bash
+Link to existing project? No
+
+```
+
+
+9.  `In which directory is your code located?`:
 
 ```bash
 In which directory is your code located? ./api
+
 ```
 
 Hãy làm theo các chỉ dẫn ở trên terminal
 
-7. Khởi chạy dự án:
-   ```bash
-   npm run dev
-   ```
+10. Khởi chạy dự án:
+```bash
+npm run dev
+```
 
 ## Usage
 
