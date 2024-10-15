@@ -39,21 +39,25 @@ function TableExamsContainer({ exams }) {
             if (!files || files.length === 0) {
                 return;
             }
-
             const file = files[0];
             const fileExtension = file.name.split(".").pop()?.toLowerCase();
+            let fileName = file.name.split(".").shift()?.toLowerCase();
 
+            if (!fileName.includes(EXAM_CONSTANTS.AUDIO_KEY)) {
+                Toast.error("File không đúng tên");
+                return;
+            }
             if (
                 fileExtension &&
                 FILE_CONSTANTS.ALLOWED_EXTENSIONS.AUDIO.includes(fileExtension)
             ) {
-                const fileName = `${exam.id}_${file.name}`;
+                fileName = `${exam.id}_${file.name}`;
                 const res = await FilesAPI.upload(fileName, file, "video");
                 if (res) {
                     const newTest = { ...exam, isAudioUploaded: 1 };
                     await ExamsAPI.update(newTest);
                     revalidator.revalidate();
-                    Toast.success("Tải file nghe  lên thành công");
+                    Toast.success("Tải file nghe lên thành công");
                 }
             }
         } catch (err) {
@@ -73,7 +77,9 @@ function TableExamsContainer({ exams }) {
                 const fileName = `${exam.id}_${file.name}`;
                 await FilesAPI.upload(fileName, file);
                 count++;
-                setLoadingText(`Đã tải lên ${count}/${files.length}`);
+                setLoadingText(
+                    `Vui lòng không đóng tab. Đã tải lên ${count}/${files.length}`
+                );
             }
             return true;
         } catch (error) {
@@ -139,7 +145,7 @@ function TableExamsContainer({ exams }) {
             name: file.name.split(".")[0],
             level: EXAM_CONSTANTS.EXAM_LEVEL.EASY,
             type: EXAM_CONSTANTS.EXAM_LEVEL.LISTENING,
-            question: ``,
+            questions: ``,
             isImageUploaded: 0,
             plan: EXAM_CONSTANTS.EXAM_PLAN.FREE,
         };
@@ -259,7 +265,13 @@ function TableExamsContainer({ exams }) {
     };
 
     const handleOpenModalExamPrevier = (exam) => {
-        handleModiferModalBlank({ isOpen: true });
+        handleModiferModalBlank({
+            isOpen: true,
+            title:
+                exam.name +
+                ` - ${ExamUtils.getExamType(exam.type)}` +
+                " - Chế độ xem trước",
+        });
         setExam(exam);
     };
 

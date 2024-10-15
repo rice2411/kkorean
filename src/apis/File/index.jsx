@@ -33,10 +33,10 @@ const FilesAPI = {
             return error;
         }
     },
-    searchImageByPublicIdPrefix: async (examId) => {
+    searchAssetsByPublicIdPrefix: async (examId) => {
         try {
             const response =
-                await CloudinaryService.searchImageByPublicIdPrefix(examId);
+                await CloudinaryService.searchAssetsByPublicIdPrefix(examId);
             if (response.data) {
                 return response.data;
             }
