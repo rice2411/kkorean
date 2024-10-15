@@ -11,7 +11,6 @@ const ApiUtils = {
         isFormData = false
     ) => {
         try {
-            console.log(body);
             const response = await fetch(url, {
                 method: method,
                 header: header,

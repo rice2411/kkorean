@@ -33,7 +33,6 @@ const LoginFormContainer = () => {
         try {
             showLoading();
             const res = await FirebaseService.login(data);
-            console.log(res);
             if (res.data) {
                 handleLogin(res.data);
                 await NotificationsAPI.createNotification({

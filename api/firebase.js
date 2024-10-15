@@ -18,7 +18,7 @@ export default async function handler(req, res) {
   }
   if (req.method === "POST") {
     try {
-      const { id, disabled, email, newPassword, api } = req.body;
+      const { id, disabled, email, newPassword, api } = JSON.parse(req.body);
 
       switch (api) {
         case `updateAccountStatus`:

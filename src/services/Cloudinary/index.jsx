@@ -48,10 +48,10 @@ const CloudinaryService = {
             return HttpUtils.Response.error(error);
         }
     },
-    searchImageByPublicIdPrefix: async (examId) => {
+    searchAssetsByPublicIdPrefix: async (examId) => {
         try {
             const response = await ApiUtils.fetchAPI(route.adminApi, {
-                body: { examId, api: "searchImageByPublicIdPrefix" },
+                body: { examId, api: "searchAssetsByPublicIdPrefix" },
             });
             const data = response.json();
             if (response.ok) {

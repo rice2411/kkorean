@@ -42,15 +42,15 @@ const AuthService = {
                 data.password
             );
             const { user } = res;
-            const { fullName, role } = await FirebaseService.getDocumentById(
+            const userDoc = await FirebaseService.getDocumentById(
                 "users",
                 user.uid
             );
             const result = {
                 id: user.uid,
                 email: user.email,
-                role,
-                fullName,
+                role: userDoc.data.role,
+                fullName: userDoc.data.fullName,
             };
             return HttpUtils.Response.success(result, "Đăng nhập thành công");
         } catch (err) {
