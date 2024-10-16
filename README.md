@@ -4,15 +4,15 @@ KKorean là 1 trang web giúp bạn luyện đề thi TOPIK ở kĩ năng nghe v
 
 ## Table of Contents
 
-- [Introduction](#introduction)
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Development](#development)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
+-   [Introduction](#introduction)
+-   [Features](#features)
+-   [Tech Stack](#tech-stack)
+-   [Installation](#installation)
+-   [Usage](#usage)
+-   [Development](#development)
+-   [Contributing](#contributing)
+-   [License](#license)
+-   [Contact](#contact)
 
 ## Introduction
 
@@ -22,20 +22,20 @@ Dự án là trang web nơi để các bạn có thể luyện tập thêm về 
 
 Các chức năng chính:
 
-- Landing Page giới thiệu về trung tâm
-- Làm thử đề thi ( miễn phí và trả phí )
-- Quản lý bộ đề thi
-- Cung cấp tài khoản cho học viên
-- Thống kê điểm
+-   Landing Page giới thiệu về trung tâm
+-   Làm thử đề thi ( miễn phí và trả phí )
+-   Quản lý bộ đề thi
+-   Cung cấp tài khoản cho học viên
+-   Thống kê điểm
 
 ## Tech Stack
 
 Dự án sử dụng các công nghệ sau:
 
-- **Frontend:** React, Tailwind CSS, Vite
-- **Backend:** Firebase (Firestore, Authentication, Realtime Database )
-- **Other:** Cloudinary
-- **Deployment:** Vercel
+-   **Frontend:** React, Tailwind CSS, Vite
+-   **Backend:** Firebase (Firestore, Authentication, Realtime Database )
+-   **Other:** Cloudinary
+-   **Deployment:** Vercel
 
 ## Installation
 
@@ -98,7 +98,6 @@ Link to existing project? No
 
 ```
 
-
 9.  `In which directory is your code located?`:
 
 ```bash
@@ -109,6 +108,7 @@ In which directory is your code located? ./api
 Hãy làm theo các chỉ dẫn ở trên terminal
 
 10. Khởi chạy dự án:
+
 ```bash
 npm run dev
 ```
@@ -117,16 +117,16 @@ npm run dev
 
 Hướng dẫn sử dụng:
 
-- Dự án mặc định chạy ở `http://localhost:5317` port của Vite
-- Dự án có sử dụng `Serverless Function` được cấu hình bằng `vercel` chạy ở `http://localhost:3000`
-- Dự án dùng `BaaS Firebase` để thay thế Backend
-- Sử dụng `Cloudinary` để lưu trữ các file image, audio
+-   Dự án mặc định chạy ở `http://localhost:5317` port của Vite
+-   Dự án có sử dụng `Serverless Function` được cấu hình bằng `vercel` chạy ở `http://localhost:3000`
+-   Dự án dùng `BaaS Firebase` để thay thế Backend
+-   Sử dụng `Cloudinary` để lưu trữ các file image, audio
 
 ## Scripts
 
-- Development: npm run dev (khởi chạy Vite và Vercel dev functions cùng 1 lúc)
-- Build: npm run build (build cho production)
-- Vercel Functions: npm run vercel-function (khởi chạy server vercel)
+-   Development: npm run dev (khởi chạy Vite và Vercel dev functions cùng 1 lúc)
+-   Build: npm run build (build cho production)
+-   Vercel Functions: npm run vercel-function (khởi chạy server vercel)
 
 ## Folder Structure
 
