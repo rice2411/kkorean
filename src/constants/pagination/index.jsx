@@ -1,3 +1,0 @@
-const DEFAULT_PAGE_SIZE = 5;
-
-export { DEFAULT_PAGE_SIZE };
