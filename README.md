@@ -32,10 +32,17 @@ Các chức năng chính:
 
 Dự án sử dụng các công nghệ sau:
 
--   **Frontend:** React, Tailwind CSS, Vite
--   **Backend:** Firebase (Firestore, Authentication, Realtime Database )
--   **Other:** Cloudinary
--   **Deployment:** Vercel
+-   **Frontend:**
+[![](https://shields.io/badge/ReactJS-23272f?logo=react&logoColor=58c4dc&style=flat-square)](https://github.com/rice2411/kkorean)
+[![](https://shields.io/badge/TypeScript-3178C6?logo=TypeScript&logoColor=FFF&style=flat-square)](https://github.com/rice2411/kkorean)
+[![](https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwindcss&logoColor=FFFFFF&style=flat-square)](https://github.com/rice2411/kkorean)
+[![](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=FFFFFF&style=flat-square)](https://github.com/rice2411/kkorean)
+-   **Backend:**
+[![](https://img.shields.io/badge/Firebase-FFCA28?logo=firebase&logoColor=FFFFFF&style=flat-square)](https://github.com/rice2411/kkorean)
+-   **Other:** 
+[![](https://img.shields.io/badge/Cloudinary-3448C5?logo=cloudinary&logoColor=FFFFFF&style=flat-square)](https://github.com/rice2411/kkorean)
+-   **Deployment:** 
+[![](https://img.shields.io/badge/Vercel-000000?logo=vercel&logoColor=FFFFFF&style=flat-square)](https://github.com/rice2411/kkorean)
 
 ## Installation
 
