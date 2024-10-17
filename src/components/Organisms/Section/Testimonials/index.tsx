@@ -4,7 +4,7 @@ function TestimonialSection() {
     return (
         <>
             <section className="bg-white">
-                <Box className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
+                <Box className="py-8 px-4 mx-auto max-w-screen-2xl text-center lg:py-16 lg:px-6">
                     <Box className="mx-auto max-w-screen-sm">
                         <Heading className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900">
                             Testimonials

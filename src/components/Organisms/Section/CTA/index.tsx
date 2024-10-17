@@ -4,7 +4,7 @@ import { FileHelpers } from "@/helpers";
 function CTASection() {
     return (
         <section className="bg-white">
-            <Box className="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
+            <Box className="gap-8 items-center py-8 px-4 mx-auto max-w-screen-2xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
                 <Image
                     className="w-full"
                     src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/cta/cta-dashboard-mockup.svg"

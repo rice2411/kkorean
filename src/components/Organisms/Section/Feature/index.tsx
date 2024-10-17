@@ -4,7 +4,7 @@ import { FileHelpers } from "@/helpers";
 function FeatureSection() {
     return (
         <section className="bg-white">
-            <Box className="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+            <Box className="py-8 px-4 mx-auto max-w-screen-2xl sm:py-16 lg:px-6">
                 <Box className="max-w-screen-md mb-8 lg:mb-16">
                     <Heading className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900">
                         Designed for business teams like yours

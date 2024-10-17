@@ -3,7 +3,7 @@ import { Box, Heading, Image, Paragraph } from "@/components/Atoms";
 function ContentSection() {
     return (
         <section className="bg-white">
-            <Box className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
+            <Box className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-2xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
                 <Box className="font-light text-gray-500 sm:text-lg">
                     <Heading className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900">
                         We didn't reinvent the wheel

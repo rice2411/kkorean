@@ -3,7 +3,7 @@ import { Box, Heading, Paragraph } from "@/components/Atoms";
 function StatictisSection() {
     return (
         <section className="bg-white ">
-            <Box className="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-16 lg:px-6">
+            <Box className="max-w-screen-2xl px-4 py-8 mx-auto text-center lg:py-16 lg:px-6">
                 <Box className="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
                     <Heading className="mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900">
                         What a number

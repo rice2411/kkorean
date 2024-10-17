@@ -4,7 +4,7 @@ import { FileHelpers } from "@/helpers";
 function PricingSection() {
     return (
         <section className="bg-white">
-            <Box className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+            <Box className="py-8 px-4 mx-auto max-w-screen-2xl lg:py-16 lg:px-6">
                 <Box className="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
                     <Heading className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 ">
                         Designed for business teams like yours

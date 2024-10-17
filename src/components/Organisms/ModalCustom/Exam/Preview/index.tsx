@@ -32,6 +32,7 @@ const ExamPreviewerModal: React.FC<ExamPreviewerModalProps> = ({ exam }) => {
             const response = (await FilesAPI.searchAssetsByPublicIdPrefix(
                 exam.id
             )) as IFile.FileResponse;
+            console.log(response);
             if (response.resources) {
                 const { resources } = response;
                 const audioFile = resources.find((item: IFile.FileItem) =>
@@ -82,13 +83,17 @@ const ExamPreviewerModal: React.FC<ExamPreviewerModalProps> = ({ exam }) => {
                     classContent="h-[800px]"
                 >
                     <>
-                        <Heading level={3} className="font-bold my-3">
-                            File nghe
-                        </Heading>
-                        <HorizontalRule />
-                        <audio className="my-4" controls>
-                            <source src={audio} type="audio/mpeg" />
-                        </audio>
+                        {exam?.type === EXAM_CONSTANTS.EXAM_TYPE.LISTENING && (
+                            <>
+                                <Heading level={3} className="font-bold my-3">
+                                    File nghe
+                                </Heading>
+                                <HorizontalRule />
+                                <audio className="my-4" controls>
+                                    <source src={audio} type="audio/mpeg" />
+                                </audio>
+                            </>
+                        )}
                         <Heading level={3} className="font-bold my-3">
                             Câu hỏi
                         </Heading>

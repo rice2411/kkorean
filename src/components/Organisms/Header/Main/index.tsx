@@ -4,6 +4,7 @@ import { useAuth } from "@/hooks";
 import HeaderMobile from "./Mobile/mobile";
 import { Dropdown } from "@/components/Organisms";
 import { IContext } from "@/interface";
+import { FileHelpers } from "@/helpers";
 
 const MainHeader: React.FC = () => {
     const { user } =
@@ -22,12 +23,12 @@ const MainHeader: React.FC = () => {
     return (
         <header>
             <nav className="bg-white border-b border-stone-300 px-4 lg:px-6 py-2.5">
-                <Box className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
+                <Box className="flex flex-wrap justify-between items-center mx-auto max-w-screen-2xl">
                     <Box className="flex items-center">
                         <Image
-                            src="https://flowbite.com/docs/images/logo.svg"
+                            src={FileHelpers.getLocalFile("logo", "svg")}
                             className="mr-3 h-6 sm:h-9"
-                            alt="Flowbite Logo"
+                            alt="Kkorean Logo"
                         />
                         <Paragraph className="self-center text-xl font-semibold whitespace-nowrap">
                             KKorean
