@@ -1,19 +1,13 @@
-import { INotification } from "@/interface";
+import { IAPI, INotification } from "@/interface";
 import { FirebaseService } from "@/services";
 
 const key = "notifications";
 
 const NotificationsAPI = {
     createNotification: async (data: {
-        type: string;
+        type: number;
         message: string;
-    }): Promise<
-        | INotification.BaseNotification
-        | Omit<INotification.BaseNotification, "id">
-        | Error
-        | string
-        | undefined
-    > => {
+    }): Promise<IAPI.ApiResponse<INotification.BaseNotification> | unknown> => {
         try {
             const notificationData: Omit<INotification.BaseNotification, "id"> =
                 {
@@ -22,15 +16,11 @@ const NotificationsAPI = {
                     createdDate: Date.now(),
                     isRead: false,
                 };
-            const response = await FirebaseService.createDocument(
+            const response = (await FirebaseService.createDocument(
                 key,
                 notificationData
-            );
-            return (
-                response.data ||
-                response.error ||
-                new Error("Failed to create notification.")
-            );
+            )) as IAPI.ApiResponse<INotification.BaseNotification>;
+            return response.data || response.error;
         } catch (err) {
             console.error(err);
             return new Error(
@@ -42,19 +32,15 @@ const NotificationsAPI = {
     updateMultiple: async (
         data: INotification.BaseNotification[]
     ): Promise<
-        INotification.BaseNotification[] | Error | string | undefined
+        IAPI.ApiResponse<INotification.BaseNotification[]> | unknown
     > => {
         try {
             const response =
-                await FirebaseService.updateMultipleDocuments<INotification.BaseNotification>(
+                (await FirebaseService.updateMultipleDocuments<INotification.BaseNotification>(
                     key,
                     data
-                );
-            return (
-                response.data ||
-                response.error ||
-                new Error("Failed to update notifications.")
-            );
+                )) as IAPI.ApiResponse<INotification.BaseNotification[]>;
+            return response.data || response.error;
         } catch (err) {
             console.error(err);
             return new Error("An error occurred while updating notifications.");

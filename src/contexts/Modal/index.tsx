@@ -29,7 +29,7 @@ const defaultModalState: IContext.IModalContext.ModalState = {
         text: "",
     },
     confirmData: "",
-    type: "",
+    type: 0,
     defaultData: null,
 };
 

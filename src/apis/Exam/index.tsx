@@ -1,14 +1,17 @@
-import { IExam } from "@/interface";
+import { IAPI, IExam } from "@/interface";
 import { FirebaseService } from "@/services";
 
 const key = "exams";
 
 const ExamsAPI = {
-    getList: async (): Promise<IExam.BaseExam[]> => {
+    getList: async (): Promise<
+        IAPI.ApiResponse<IExam.BaseExam[]> | unknown
+    > => {
         try {
-            const response = await FirebaseService.getDocuments<IExam.BaseExam>(
-                key
-            );
+            const response =
+                (await FirebaseService.getDocuments<IExam.BaseExam>(
+                    key
+                )) as IAPI.ApiResponse<IExam.BaseExam[]>;
             return response.data || [];
         } catch (err) {
             console.log(err);
@@ -18,16 +21,14 @@ const ExamsAPI = {
 
     create: async (
         data: IExam.ExamRequest
-    ): Promise<IExam.BaseExam | Error | string | undefined> => {
+    ): Promise<IAPI.ApiResponse<IExam.BaseExam> | unknown> => {
         try {
             const response =
-                await FirebaseService.createDocument<IExam.BaseExam>(key, data);
-            if (response.data) {
-                return response.data;
-            }
-            if (response.error) {
-                return response.error;
-            }
+                (await FirebaseService.createDocument<IExam.BaseExam>(
+                    key,
+                    data
+                )) as IAPI.ApiResponse<IExam.BaseExam>;
+            return response.data || response.error;
         } catch (err) {
             console.log(err);
             return err as Error;
@@ -36,16 +37,14 @@ const ExamsAPI = {
 
     update: async (
         data: IExam.BaseExam
-    ): Promise<IExam.BaseExam | Error | string | undefined> => {
+    ): Promise<IAPI.ApiResponse<IExam.BaseExam> | unknown> => {
         try {
             const response =
-                await FirebaseService.updateDocument<IExam.BaseExam>(key, data);
-            if (response.data) {
-                return response.data;
-            }
-            if (response.error) {
-                return response.error;
-            }
+                (await FirebaseService.updateDocument<IExam.BaseExam>(
+                    key,
+                    data
+                )) as IAPI.ApiResponse<IExam.BaseExam>;
+            return response.data || response.error;
         } catch (err) {
             console.log(err);
             return err as Error;
@@ -54,17 +53,15 @@ const ExamsAPI = {
 
     delete: async (
         data: IExam.BaseExam
-    ): Promise<IExam.BaseExam | Error | string | undefined> => {
+    ): Promise<IAPI.ApiResponse<IExam.BaseExam> | unknown> => {
         try {
             const response =
-                await FirebaseService.deleteDocument<IExam.BaseExam>(key, data);
+                (await FirebaseService.deleteDocument<IExam.BaseExam>(
+                    key,
+                    data
+                )) as IAPI.ApiResponse<IExam.BaseExam>;
 
-            if (response.data) {
-                return response.data;
-            }
-            if (response.error) {
-                return response.error;
-            }
+            return response.data || response.error;
         } catch (err) {
             console.log(err);
             return err as Error;

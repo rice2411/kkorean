@@ -34,6 +34,7 @@ const LoginFormPresenter: React.FC<LoginFormPresenterProps> = ({
     handleSubmit,
     handleForgotPass,
 }) => {
+    // @ts-ignore
     const [isChecked, setIsChecked] = useState(false);
     const [togglePassword, setTogglePassword] = useState(false);
 
@@ -83,7 +84,6 @@ const LoginFormPresenter: React.FC<LoginFormPresenterProps> = ({
                             <Input
                                 type={togglePassword ? "text" : "password"}
                                 name="password"
-                                id="password"
                                 placeholder="••••••••"
                                 value={data.password}
                                 onChange={handleChange}

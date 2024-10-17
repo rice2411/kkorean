@@ -3,9 +3,11 @@ import { Button, Paragraph, Image, Box } from "@/components/Atoms";
 import { useAuth } from "@/hooks";
 import HeaderMobile from "./Mobile/mobile";
 import { Dropdown } from "@/components/Organisms";
+import { IContext } from "@/interface";
 
 const MainHeader: React.FC = () => {
-    const { user } = useAuth();
+    const { user } =
+        useAuth() as unknown as IContext.IAuthContenxt.UseAuthReturnType;
     const navigate = useNavigate();
 
     const links = [

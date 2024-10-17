@@ -7,8 +7,6 @@ interface LinkProps {
     to?: string;
     children: React.ReactNode;
     className?: string;
-    target?: string;
-    rel?: string;
     onClick?: () => void;
 }
 
@@ -16,8 +14,6 @@ const Link: React.FC<LinkProps> = ({
     to = "#",
     children,
     className = "",
-    target = "_self",
-    rel,
     onClick = null,
 }) => {
     const navigate = useNavigate();
@@ -31,8 +27,6 @@ const Link: React.FC<LinkProps> = ({
                 }
                 navigate(to);
             }}
-            target={target}
-            rel={rel}
         >
             {children}
         </Box>
