@@ -73,7 +73,9 @@ const NUMBER_OF_QUESTION: number = 50;
 
 const ERROR: number = 99999;
 
-const AUDIO_KEY: string = "track";
+const AUDIO_KEY: string = "audio";
+
+const IMAGE_KEY: string = "image";
 
 export {
     EXAM_PLAN,
@@ -83,4 +85,5 @@ export {
     NUMBER_OF_QUESTION,
     ERROR,
     AUDIO_KEY,
+    IMAGE_KEY,
 };

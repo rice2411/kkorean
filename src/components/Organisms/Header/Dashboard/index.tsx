@@ -30,9 +30,9 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
                                 Toggle sidebar
                             </Paragraph>
                         </Box>
-                        <Link to="https://flowbite.com" className="flex mr-4">
+                        <Link to="/dashboard" className="flex mr-4">
                             <Image
-                                src="https://flowbite.s3.amazonaws.com/logo.svg"
+                                src={FileHelpers.getLocalFile("logo", "svg")}
                                 className="mr-3 h-8"
                                 alt="FlowBite Logo"
                             />
@@ -42,9 +42,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
                         </Link>
                     </Box>
                     <Box className="flex items-center lg:order-2">
-                        {/* Notification Dropdown */}
                         <Dropdown.NotificationDropdown />
-                        {/* User Dropdown */}
                         <Dropdown.UserDropdown />
                     </Box>
                 </Box>

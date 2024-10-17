@@ -45,8 +45,12 @@ export default async function handler(
 
         try {
             switch (api) {
-                case "deleteImageByPublicId":
-                    result = await cloudinary.uploader.destroy(publicId);
+                case "deleteAssetByPublicId":
+                    result = await cloudinary.uploader.destroy(publicId, {
+                        resource_type: publicId.includes("image")
+                            ? "image"
+                            : "video",
+                    });
                     return res.status(200).json({
                         message: "Image deleted successfully",
                         result,
