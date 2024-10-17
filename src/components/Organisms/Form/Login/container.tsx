@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { FirebaseService } from "@/services";
 import Toast from "@/utils/Toast";
-import { useLoading, useAuth } from "@/hooks";
+import { useLoading, useAuth, useModal } from "@/hooks";
 import { NotificationsAPI } from "@/apis";
-import { NOTIFICATION_CONSTANTS } from "@/constants";
+import { MODAL_CONSTANTS, NOTIFICATION_CONSTANTS } from "@/constants";
 import DateFNSUtils from "@/utils/DateFNS";
 import LoginFormPresenter from "./presenter";
 import { IAPI, IContext, IUser } from "@/interface";
@@ -19,6 +19,7 @@ const LoginFormContainer: React.FC = () => {
         useLoading() as unknown as IContext.ILoadingContext.UseLoadingReturnType;
     const { handleLogin } =
         useAuth() as unknown as IContext.IAuthContenxt.UseAuthReturnType;
+    const { handleModiferModalBlank } = useModal() as unknown as IContext.IModalContext.UseModalReturnType;
     const [isChecked, setIsChecked] = useState<boolean>(false);
     const [data, setData] = useState<ILoginData>({
         email: "",
@@ -48,6 +49,7 @@ const LoginFormContainer: React.FC = () => {
             if (res.data) {
                 const user = res.data as IUser.BaseUser;
                 handleLogin(user);
+                if(res?.data?.isFirstTimeLogin) handleShowPopupResetPassword();
                 await NotificationsAPI.createNotification({
                     type: NOTIFICATION_CONSTANTS.NOTIFICATION_TYPE.LOGIN,
                     message: `Người dùng <b>${
@@ -77,6 +79,15 @@ const LoginFormContainer: React.FC = () => {
     const handleForgotPass = () => {
         Toast.warning("Vui lòng liên hệ admin để lấy lại mật khẩu");
     };
+    
+    const handleShowPopupResetPassword = () => {
+        handleModiferModalBlank({
+            isOpen: true,
+            title: "Thay đổi mật khẩu",
+            type: MODAL_CONSTANTS.MODAL_TYPE.UPDATE,
+            defaultData: null,
+        });
+    }
     //#endregion
 
     return (

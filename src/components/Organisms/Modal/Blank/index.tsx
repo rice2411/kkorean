@@ -28,7 +28,7 @@ const BlankModal: React.FC<BlankModalProps> = ({
         setData(modalBlank);
     }, [modalBlank]);
 
-    if (!data.isOpen) return null;
+    if (!data?.isOpen) return null;
 
     return (
         <div

@@ -22,7 +22,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const handleLogin = async (user: IUser.BaseUser) => {
         setUser(user);
         AuthUtils.login(user);
-        navigate("/");
+        if(!user?.isFirstTimeLogin) navigate("/");
     };
 
     const handleLogout = () => {

@@ -4,6 +4,7 @@ interface BaseUser extends IBase.BaseData {
     fullName: string;
     role: number;
     email: string;
+    isFirstTimeLogin: boolean;
 }
 
 interface DetailedUser extends BaseUser {
