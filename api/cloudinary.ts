@@ -1,5 +1,6 @@
 import { v2 as cloudinary } from "cloudinary";
 import dotenv from "dotenv";
+//@ts-ignore
 import { NextApiRequest, NextApiResponse } from "next";
 
 dotenv.config();

@@ -5,7 +5,7 @@
     "type": "module",
     "scripts": {
         "dev": "concurrently \"vite\" \"npm run vercel-function\"",
-        "vercel-function": "vercel dev",
+        "vercel-function": "vercel dev --listen 2411",
         "build": "tsc -b && vite build",
         "lint": "eslint .",
         "preview": "vite preview"

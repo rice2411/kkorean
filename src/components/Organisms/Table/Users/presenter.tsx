@@ -8,32 +8,10 @@ import {
 import { FileHelpers } from "@/helpers";
 import { useState } from "react";
 import { Empty } from "@/components/Molecules";
-import { ModalCustom } from "@/components/Organisms/";
+import { PresenterProps } from "./props";
+import { ModalCustom } from "../..";
 
-interface User {
-    id: string;
-    fullName: string;
-    email: string;
-    role: string;
-    group: string; // Change this to a specific type if you have predefined group types
-    isDisabled: boolean;
-}
-
-interface Group {
-    id: string;
-    name: string;
-}
-
-interface TableUsersPresenterProps {
-    users: User[];
-    groups: Group[];
-    handleConfirmUpdateAccountStatus: (user: User) => void;
-    handleImportantConfirm: (user: User) => void;
-    handleOpenModalUser: (modalType: string, user: User | null) => void;
-    handleConfirmResetPassword: (user: User) => void;
-}
-
-const TableUsersPresenter: React.FC<TableUsersPresenterProps> = ({
+const TableUsersPresenter: React.FC<PresenterProps> = ({
     users,
     groups,
     handleConfirmUpdateAccountStatus,
@@ -69,8 +47,7 @@ const TableUsersPresenter: React.FC<TableUsersPresenterProps> = ({
                         <Box
                             onClick={() => {
                                 handleOpenModalUser(
-                                    MODAL_CONSTANTS.MODAL_TYPE.CREATE,
-                                    null
+                                    MODAL_CONSTANTS.MODAL_TYPE.CREATE
                                 );
                             }}
                             className="cursor-pointer flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2"
@@ -141,18 +118,18 @@ const TableUsersPresenter: React.FC<TableUsersPresenterProps> = ({
                                         <tr
                                             className="bg-white border-b hover:bg-gray-50 cursor-pointer"
                                             key={user.id}
-                                            onClick={(e) => {
+                                            onClick={(e: React.MouseEvent) => {
+                                                const target =
+                                                    e.target as HTMLElement;
                                                 if (
-                                                    !e.currentTarget.id.includes(
-                                                        "delete"
-                                                    )
-                                                ) {
-                                                    handleOpenModalUser(
-                                                        MODAL_CONSTANTS
-                                                            .MODAL_TYPE.UPDATE,
-                                                        user
-                                                    );
-                                                }
+                                                    target.id.includes("action")
+                                                )
+                                                    return;
+                                                handleOpenModalUser(
+                                                    MODAL_CONSTANTS.MODAL_TYPE
+                                                        .UPDATE,
+                                                    user
+                                                );
                                             }}
                                         >
                                             <td className="w-4 p-4 text-center">
@@ -216,7 +193,7 @@ const TableUsersPresenter: React.FC<TableUsersPresenterProps> = ({
                                                 ) : (
                                                     <>
                                                         <Box
-                                                            id="deleteButton2"
+                                                            id="action-btn-1"
                                                             onClick={() =>
                                                                 handleConfirmUpdateAccountStatus(
                                                                     user
@@ -241,7 +218,7 @@ const TableUsersPresenter: React.FC<TableUsersPresenterProps> = ({
                                                                 : "  Vô hiệu hóa"}
                                                         </Box>
                                                         <Box
-                                                            id="deleteButton1"
+                                                            id="action-btn-2"
                                                             onClick={() =>
                                                                 handleImportantConfirm(
                                                                     user
@@ -260,7 +237,7 @@ const TableUsersPresenter: React.FC<TableUsersPresenterProps> = ({
                                                             Xóa vĩnh viễn
                                                         </Box>
                                                         <Box
-                                                            id="deleteButton3"
+                                                            id="action-btn-3"
                                                             onClick={() =>
                                                                 handleConfirmResetPassword(
                                                                     user
@@ -288,11 +265,12 @@ const TableUsersPresenter: React.FC<TableUsersPresenterProps> = ({
                     </table>
                 </Box>
                 <Pagination
-                    totalItems={users.length}
+                    length={users.length}
                     page={page}
-                    onPageChange={setPage}
+                    setPage={setPage}
                 />
             </Box>
+            <ModalCustom.UsersModalCustom groups={groups} />
         </section>
     );
 };

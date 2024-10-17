@@ -5,37 +5,10 @@ import Toast from "@/utils/Toast";
 import { useEffect, useState } from "react";
 import { useRevalidator } from "react-router-dom";
 import UsersUpsertFormPresenter from "./presenter";
+import { ContainerProps } from "./props";
+import { IBase, IContext, IUser } from "@/interface";
 
-interface User {
-    fullName: string;
-    email: string;
-    group: string;
-}
-
-interface Group {
-    id: string;
-    name: string;
-    members: number;
-}
-
-interface ModalBlank {
-    type: string;
-    defaultData: User;
-}
-
-interface UsersUpsertFormContainerProps {
-    groups: Group[];
-    handleModiferModalSuccess: (value: {
-        isOpen: boolean;
-        text?: string;
-        okButton?: any;
-        cancelButton?: any;
-    }) => void;
-    handleModiferModalBlank: (value: { isOpen: boolean }) => void;
-    modalBlank: ModalBlank;
-}
-
-const DEFAULT_USER_VALUE: User = {
+const DEFAULT_USER_VALUE: IUser.UserRequest = {
     fullName: "",
     email: "",
     group: "default",
@@ -46,13 +19,12 @@ function UsersUpsertFormContainer({
     handleModiferModalSuccess,
     handleModiferModalBlank,
     modalBlank,
-}: UsersUpsertFormContainerProps) {
+}: ContainerProps) {
     const revalidator = useRevalidator();
-    const { showLoading, hideLoading } = useLoading();
-    const [user, setUser] = useState<User>(DEFAULT_USER_VALUE);
-    const [groupOption, setGroupOption] = useState<
-        { label: string; value: string }[]
-    >([]);
+    const { showLoading, hideLoading } =
+        useLoading() as unknown as IContext.ILoadingContext.UseLoadingReturnType;
+    const [user, setUser] = useState<IUser.UserRequest>(DEFAULT_USER_VALUE);
+    const [groupOptions, setGroupOption] = useState<IBase.BaseOptions[]>([]);
 
     //#region LOGIC FUNCTION
     const onContinue = () => {
@@ -102,13 +74,20 @@ function UsersUpsertFormContainer({
         });
     };
 
-    const onUpsert = async (action: string) => {
+    const onUpsert = async (action: number) => {
         const emailParam = user.email + CONFIG_CONSTANTS.EMAIL_DOMAIN;
         const response =
             action === MODAL_CONSTANTS.MODAL_TYPE.CREATE
-                ? await UsersAPI.create({ ...user, email: emailParam })
-                : await UsersAPI.update({ ...user, email: emailParam });
-        if (response.data) {
+                ? ((await UsersAPI.create({
+                      ...user,
+                      email: emailParam,
+                  } as IUser.UserRequest)) as IUser.DetailedUser)
+                : ((await UsersAPI.update({
+                      ...user,
+                      email: emailParam,
+                  } as IUser.DetailedUser)) as IUser.DetailedUser);
+        console.log(response);
+        if (response.id) {
             if (action === MODAL_CONSTANTS.MODAL_TYPE.CREATE) {
                 const selectedGroup = groups.find(
                     (item) => item.id === user.group
@@ -149,11 +128,9 @@ function UsersUpsertFormContainer({
     const handleSubmit = async () => {
         try {
             showLoading();
-            const action =
-                modalBlank.type === MODAL_CONSTANTS.MODAL_TYPE.CREATE
-                    ? MODAL_CONSTANTS.MODAL_TYPE.CREATE
-                    : "update";
-            await onUpsert(action);
+            await onUpsert(
+                modalBlank.type || MODAL_CONSTANTS.MODAL_TYPE.CREATE
+            );
         } catch (err) {
             Toast.error("Có lỗi xảy ra vui lòng thử lại sau");
             console.error(err);
@@ -163,7 +140,9 @@ function UsersUpsertFormContainer({
         }
     };
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    ) => {
         const { name, value } = e.target;
         setUser((prevUser) => ({ ...prevUser, [name]: value }));
     };
@@ -174,7 +153,7 @@ function UsersUpsertFormContainer({
     }, [groups]);
 
     useEffect(() => {
-        const initialUserData: User =
+        const initialUserData: IUser.UserRequest =
             modalBlank.type === MODAL_CONSTANTS.MODAL_TYPE.CREATE
                 ? DEFAULT_USER_VALUE
                 : {
@@ -188,7 +167,7 @@ function UsersUpsertFormContainer({
         <UsersUpsertFormPresenter
             user={user}
             modalBlank={modalBlank}
-            groupOption={groupOption}
+            groupOptions={groupOptions}
             handleSubmit={handleSubmit}
             handleChange={handleChange}
         />
