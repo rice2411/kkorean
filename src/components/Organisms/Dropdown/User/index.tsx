@@ -12,20 +12,15 @@ import { useAuth, useClickOutside } from "@/hooks";
 import { NotificationsAPI } from "@/apis";
 import DateFNSUtils from "@/utils/DateFNS";
 import { useRef, useState } from "react";
+import { IContext } from "@/interface";
 
-// Define the User type based on your application's user structure
-interface User {
-    fullName: string;
-    email: string;
-    role: string;
+interface Props {
+    dropdownClass?: string;
 }
 
-interface UserDropdownProps {
-    dropdownClass?: string; // Optional prop
-}
-
-function UserDropdown({ dropdownClass }: UserDropdownProps) {
-    const { user, handleLogout } = useAuth();
+function UserDropdown({ dropdownClass }: Props) {
+    const { user, handleLogout } =
+        useAuth() as unknown as IContext.IAuthContenxt.UseAuthReturnType;
     const dropdownRef = useRef<HTMLDivElement>(null);
     const parentRef = useRef<HTMLDivElement>(null);
     const [isOpenUserMenu, setIsOpenUserMenu] = useState<boolean>(false);

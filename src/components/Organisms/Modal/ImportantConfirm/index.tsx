@@ -1,26 +1,19 @@
 import { Box, Button, Heading, Input, Label, Svg } from "@/components/Atoms";
 import { DOMHelpers, FileHelpers } from "@/helpers";
 import { useLoading, useModal } from "@/hooks";
+import { IContext } from "@/interface";
 import React, { useEffect, useState } from "react";
 
 // Define types for the modal button and confirm data
-interface ModalButton {
-    text: string;
-    onClick: () => void;
-}
-
-interface ModalData {
-    isOpen: boolean;
-    text?: string;
-    confirmData: string; // The text that needs to be confirmed
-    okButton: ModalButton;
-}
 
 const ImportantConfirmModal: React.FC = () => {
     const { modalImportantConfirm, handleModiferModalImportantConfirm } =
-        useModal();
-    const { showLoading } = useLoading();
-    const [data, setData] = useState<ModalData>(modalImportantConfirm);
+        useModal() as unknown as IContext.IModalContext.UseModalReturnType;
+    const { showLoading } =
+        useLoading() as unknown as IContext.ILoadingContext.UseLoadingReturnType;
+    const [data, setData] = useState<IContext.IModalContext.ModalState>(
+        modalImportantConfirm
+    );
     const [textConfirm, setTextConfirm] = useState<string>("");
     const [isSubmited, setIsSubmited] = useState<boolean>(false);
 
@@ -30,7 +23,9 @@ const ImportantConfirmModal: React.FC = () => {
 
     const handleSubmit = () => {
         showLoading();
-        data.okButton.onClick();
+        if (data.okButton?.onClick) {
+            data.okButton.onClick();
+        }
         setIsSubmited(true);
     };
 
@@ -84,7 +79,7 @@ const ImportantConfirmModal: React.FC = () => {
                                     text={`Vui lòng nhập `}
                                 />
                                 <Label
-                                    text={data.confirmData}
+                                    text={data.confirmData || ""}
                                     className="ml-1 !font-bold"
                                 />
                                 <Label

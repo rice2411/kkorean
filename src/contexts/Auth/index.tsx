@@ -2,15 +2,11 @@ import React, { createContext, useEffect, useState, ReactNode } from "react";
 import AuthUtils from "@/utils/Auth";
 import { useLocation, useNavigate } from "react-router-dom";
 import { CONFIG_CONSTANTS } from "@/constants/";
-
-interface User {
-    role: number;
-    // Add any other user properties as needed
-}
+import { IUser } from "@/interface";
 
 interface AuthContextType {
-    user: User | null;
-    handleLogin: (user: User) => Promise<void>;
+    user: IUser.BaseUser | null;
+    handleLogin: (user: IUser.BaseUser) => Promise<void>;
     handleLogout: () => void;
 }
 
@@ -19,9 +15,11 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const navigate = useNavigate();
     const { pathname } = useLocation();
-    const [user, setUser] = useState<User | null>(AuthUtils.getUser());
+    const [user, setUser] = useState<IUser.BaseUser | null>(
+        AuthUtils.getUser()
+    );
 
-    const handleLogin = async (user: User) => {
+    const handleLogin = async (user: IUser.BaseUser) => {
         setUser(user);
         AuthUtils.login(user);
         navigate("/");

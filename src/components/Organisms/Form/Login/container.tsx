@@ -6,6 +6,7 @@ import { NotificationsAPI } from "@/apis";
 import { NOTIFICATION_CONSTANTS } from "@/constants";
 import DateFNSUtils from "@/utils/DateFNS";
 import LoginFormPresenter from "./presenter";
+import { IAPI, IContext, IUser } from "@/interface";
 
 // Định nghĩa kiểu cho dữ liệu đăng nhập
 interface ILoginData {
@@ -14,8 +15,10 @@ interface ILoginData {
 }
 
 const LoginFormContainer: React.FC = () => {
-    const { showLoading, hideLoading } = useLoading();
-    const { handleLogin } = useAuth();
+    const { showLoading, hideLoading } =
+        useLoading() as unknown as IContext.ILoadingContext.UseLoadingReturnType;
+    const { handleLogin } =
+        useAuth() as unknown as IContext.IAuthContenxt.UseAuthReturnType;
     const [isChecked, setIsChecked] = useState<boolean>(false);
     const [data, setData] = useState<ILoginData>({
         email: "",
@@ -39,9 +42,12 @@ const LoginFormContainer: React.FC = () => {
 
         try {
             showLoading();
-            const res = await FirebaseService.login(data);
+            const res = (await FirebaseService.login(
+                data
+            )) as unknown as IAPI.ApiResponse<IUser.BaseUser>;
             if (res.data) {
-                handleLogin(res.data);
+                const user = res.data as IUser.BaseUser;
+                handleLogin(user);
                 await NotificationsAPI.createNotification({
                     type: NOTIFICATION_CONSTANTS.NOTIFICATION_TYPE.LOGIN,
                     message: `Người dùng <b>${
@@ -51,7 +57,8 @@ const LoginFormContainer: React.FC = () => {
                 return;
             }
             if (res.error) {
-                if (res.error.message.includes("user-disabled"))
+                //@ts-ignore
+                if (res?.error?.message?.includes("user-disabled"))
                     setError("Tài khoản bị khóa vui lòng liên hệ admin");
                 else {
                     setError("Thông tin đăng nhập không đúng");
