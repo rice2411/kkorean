@@ -1,39 +1,12 @@
 import UsersUpsertFormContainer from "./container";
-
-interface Group {
-    id: string;
-    name: string;
-    members: number;
-}
-interface User {
-    fullName: string;
-    email: string;
-    group: string;
-}
-
-interface ModalBlank {
-    type: string;
-    defaultData: User;
-}
-
-interface UsersUpsertFormProps {
-    groups: Group[];
-    handleModiferModalSuccess: (value: {
-        isOpen: boolean;
-        text?: string;
-        okButton?: any;
-        cancelButton?: any;
-    }) => void;
-    handleModiferModalBlank: (value: { isOpen: boolean }) => void;
-    modalBlank: ModalBlank;
-}
+import { ContainerProps } from "./props";
 
 function UsersUpsertForm({
     groups,
+    modalBlank,
     handleModiferModalSuccess,
     handleModiferModalBlank,
-    modalBlank,
-}: UsersUpsertFormProps) {
+}: ContainerProps) {
     return (
         <UsersUpsertFormContainer
             groups={groups}

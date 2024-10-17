@@ -2,4 +2,9 @@ interface BaseData {
     id: string;
 }
 
-export type { BaseData };
+interface BaseOptions {
+    label: string;
+    value: string;
+}
+
+export type { BaseData, BaseOptions };

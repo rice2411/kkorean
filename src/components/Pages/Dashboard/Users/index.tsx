@@ -1,7 +1,13 @@
 import { Heading } from "@/components/Atoms";
 import { Table } from "@/components/Organisms";
+import { IUser } from "@/interface";
+import React from "react";
 
-function UsersPage({ users }) {
+interface Props {
+    users: IUser.DetailedUser[];
+}
+
+const UsersPage: React.FC<Props> = ({ users }) => {
     return (
         <>
             <section className="antialiased mt-4">
@@ -10,6 +16,6 @@ function UsersPage({ users }) {
             </section>
         </>
     );
-}
+};
 
 export default UsersPage;

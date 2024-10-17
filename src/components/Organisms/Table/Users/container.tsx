@@ -6,22 +6,20 @@ import { GroupsAPI, UsersAPI } from "@/apis";
 import { useRevalidator } from "react-router-dom";
 import { useLoading } from "@/hooks";
 import TableUsersPresenter from "./presenter";
-import { IUser, IGroup } from "@/types"; // Adjust the path to your types accordingly
+import { IUser, IGroup, IContext } from "@/interface";
+import { ContainerProps } from "./props";
 
-interface TableUsersContainerProps {
-    users: IUser[];
-}
-
-const TableUsersContainer: React.FC<TableUsersContainerProps> = ({ users }) => {
+const TableUsersContainer: React.FC<ContainerProps> = ({ users }) => {
     const revalidator = useRevalidator();
-    const { showLoading, hideLoading } = useLoading();
+    const { showLoading, hideLoading } =
+        useLoading() as unknown as IContext.ILoadingContext.UseLoadingReturnType;
     const {
         handleModiferModalBlank,
         handleModiferModalConfirm,
         handleModiferModalImportantConfirm,
-    } = useModal();
+    } = useModal() as unknown as IContext.IModalContext.UseModalReturnType;
 
-    const [groups, setGroups] = useState<IGroup[]>([]);
+    const [groups, setGroups] = useState<IGroup.BaseGroup[]>([]);
 
     //#region LOGIC FUNCTION
 
@@ -29,11 +27,13 @@ const TableUsersContainer: React.FC<TableUsersContainerProps> = ({ users }) => {
         handleModiferModalConfirm({ isOpen: false });
     };
 
-    const onResetPassword = async (user: IUser) => {
+    const onResetPassword = async (user: IUser.DetailedUser) => {
         try {
             showLoading();
-            const response = await UsersAPI.resetAccountPassword(user);
-            if (response.data) {
+            const response = (await UsersAPI.resetAccountPassword(
+                user
+            )) as IUser.DetailedUser;
+            if (response.id) {
                 Toast.success(
                     `Đổi mật khẩu thành công, mật khẩu là ${CONFIG_CONSTANTS.DEFAULT_PASSWORD}`
                 );
@@ -47,7 +47,7 @@ const TableUsersContainer: React.FC<TableUsersContainerProps> = ({ users }) => {
         }
     };
 
-    const onUpdateAccountStatus = async (user: IUser) => {
+    const onUpdateAccountStatus = async (user: IUser.DetailedUser) => {
         try {
             showLoading();
             const userUpdated = {
@@ -77,7 +77,9 @@ const TableUsersContainer: React.FC<TableUsersContainerProps> = ({ users }) => {
     const onGetClassList = async (cache = true) => {
         showLoading();
         try {
-            const response = await GroupsAPI.getListCache(cache);
+            const response = (await GroupsAPI.getListCache(
+                cache
+            )) as IGroup.BaseGroup[];
             setGroups(response);
             return response;
         } catch (err) {
@@ -88,17 +90,17 @@ const TableUsersContainer: React.FC<TableUsersContainerProps> = ({ users }) => {
         }
     };
 
-    const onDeleteAccount = async (user: IUser) => {
+    const onDeleteAccount = async (user: IUser.DetailedUser) => {
         try {
-            const newGroups = await onGetClassList();
+            const newGroups = (await onGetClassList()) as IGroup.BaseGroup[];
             const selectedGroup = newGroups.find(
                 (item) => item.id === user.group
-            );
+            ) as IGroup.BaseGroup;
             await UsersAPI.delete(user);
             await GroupsAPI.update({
                 ...selectedGroup,
                 members: selectedGroup.members - 1,
-            });
+            } as IGroup.BaseGroup);
             Toast.success(`Đã xóa thành công tài khoản ${user.email}`);
         } catch (err) {
             Toast.error("Đã có lỗi xảy ra vui lòng thử lại sau");
@@ -116,7 +118,7 @@ const TableUsersContainer: React.FC<TableUsersContainerProps> = ({ users }) => {
     //#endregion
 
     //#region HANDLE FUNCTION
-    const handleConfirmUpdateAccountStatus = (user: IUser) => {
+    const handleConfirmUpdateAccountStatus = (user: IUser.DetailedUser) => {
         handleModiferModalConfirm({
             isOpen: true,
             text: `Bạn có muốn ${
@@ -135,7 +137,7 @@ const TableUsersContainer: React.FC<TableUsersContainerProps> = ({ users }) => {
         });
     };
 
-    const handleImportantConfirm = (user: IUser) => {
+    const handleImportantConfirm = (user: IUser.DetailedUser) => {
         handleModiferModalImportantConfirm({
             isOpen: true,
             text: `Bạn có muốn <b>xóa vĩnh viễn</b> tài khoản <b>${user.email}</b> <br/> <span class='text-sm'>Hành động này sẽ không khôi phục lại được</span>`,
@@ -149,7 +151,7 @@ const TableUsersContainer: React.FC<TableUsersContainerProps> = ({ users }) => {
         });
     };
 
-    const handleOpenModalUser = (type: string, data?: IUser) => {
+    const handleOpenModalUser = (type: number, data?: IUser.DetailedUser) => {
         handleModiferModalBlank({
             isOpen: true,
             title:
@@ -161,7 +163,7 @@ const TableUsersContainer: React.FC<TableUsersContainerProps> = ({ users }) => {
         });
     };
 
-    const handleConfirmResetPassword = (user: IUser) => {
+    const handleConfirmResetPassword = (user: IUser.DetailedUser) => {
         handleModiferModalConfirm({
             isOpen: true,
             text: `Bạn có muốn khôi phục mật khẩu cho tài khoản <b>${user.email}</b> không? Mật khẩu mặc định sẽ là <b>${CONFIG_CONSTANTS.DEFAULT_PASSWORD}<b>`,

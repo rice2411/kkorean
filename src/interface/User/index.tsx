@@ -13,4 +13,11 @@ interface DetailedUser extends BaseUser {
     isFirstTimeLogin: boolean;
 }
 
-export type { BaseUser, DetailedUser };
+interface UserRequest {
+    id?: string;
+    fullName: string;
+    group: string;
+    email: string;
+}
+
+export type { BaseUser, DetailedUser, UserRequest };

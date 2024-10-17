@@ -1,37 +1,15 @@
 import { Box, Input, Label, Select, Button, Svg } from "@/components/Atoms";
 import { MODAL_CONSTANTS } from "@/constants";
 import { FileHelpers } from "@/helpers";
-
-interface User {
-    fullName: string;
-    email: string;
-    group: string;
-}
-
-interface GroupOption {
-    label: string;
-    value: string;
-}
-
-interface UsersUpsertFormPresenterProps {
-    user: User;
-    modalBlank: {
-        type: string;
-    };
-    groupOption: GroupOption[];
-    handleChange: (
-        e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-    ) => void;
-    handleSubmit: () => Promise<void>; // Assuming handleSubmit returns a promise
-}
+import { PresenterProps } from "./props";
 
 function UsersUpsertFormPresenter({
     user,
     modalBlank,
-    groupOption,
+    groupOptions,
     handleChange,
     handleSubmit,
-}: UsersUpsertFormPresenterProps) {
+}: PresenterProps) {
     return (
         <>
             <Box className="grid gap-4 mb-4 sm:grid-cols-2">
@@ -66,8 +44,14 @@ function UsersUpsertFormPresenter({
                     <Select
                         name="group"
                         value={user.group}
-                        onChange={handleChange}
-                        options={groupOption}
+                        onChange={(
+                            e: React.ChangeEvent<
+                                HTMLInputElement | HTMLSelectElement
+                            >
+                        ) => {
+                            handleChange(e);
+                        }}
+                        options={groupOptions}
                         placeholder={"Vui lòng chọn"}
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5"
                     />
