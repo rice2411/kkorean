@@ -1,6 +1,6 @@
-const MODAL_TYPE = Object.freeze({
-    CREATE: 1111 as const,
-    UPDATE: 2222 as const,
-});
+enum EModalType {
+  CREATE = 1111,
+  UPDATE = 2222,
+}
 
-export { MODAL_TYPE };
+export { EModalType };
