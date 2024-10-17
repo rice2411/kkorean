@@ -46,7 +46,7 @@ const TableGroupsContainer: React.FC<Props> = ({ groups }) => {
     handleModiferModalBlank({
       isOpen: true,
       title:
-        type === MODAL_CONSTANTS.MODAL_TYPE.CREATE
+        type === MODAL_CONSTANTS.EModalType.CREATE
           ? "Thêm lớp"
           : "Chỉnh sửa lớp",
       type: type,
