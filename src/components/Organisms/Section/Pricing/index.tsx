@@ -108,7 +108,7 @@ function PricingSection() {
                         </Box>
                         <Link
                             to="#"
-                            className="text-white bg-primary-600 mt-auto hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+                            className="text-white bg-primary-400 mt-auto hover:bg-primary-500 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
                         >
                             Get started
                         </Link>
@@ -205,7 +205,7 @@ function PricingSection() {
                         </Box>
                         <Link
                             to="#"
-                            className="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+                            className="text-white bg-primary-400 hover:bg-primary-500 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
                         >
                             Get started
                         </Link>
@@ -302,7 +302,7 @@ function PricingSection() {
                         </Box>
                         <Link
                             to="#"
-                            className="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+                            className="text-white bg-primary-400 hover:bg-primary-500 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
                         >
                             Get started
                         </Link>

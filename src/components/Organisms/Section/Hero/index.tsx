@@ -12,7 +12,7 @@ function HeroSection() {
                     Thông qua các bài tập, bài giảng kĩ năng Tiếng Hàn của bạn
                     sẽ được cải thiện nhanh chóng
                 </Paragraph>
-                <Link className="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 ">
+                <Link className="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-400 hover:bg-primary-500 focus:ring-4 focus:ring-primary-300 ">
                     Bắt đầu
                     <Image
                         className="w-5 h-5 ml-2 -mr-1"
