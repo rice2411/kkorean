@@ -53,7 +53,7 @@ function BlogSection() {
                             </Box>
                             <Link
                                 to="#"
-                                className="inline-flex items-center font-medium text-primary-600 hover:underline"
+                                className="inline-flex items-center font-medium  hover:underline"
                             >
                                 Read more
                                 <Image
@@ -68,7 +68,7 @@ function BlogSection() {
                     </Box>
                     <Box className="p-6 bg-white rounded-lg border border-gray-200 shadow-md">
                         <Box className="flex justify-between items-center mb-5 text-gray-500">
-                            <Paragraph className="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded">
+                            <Paragraph className="bg-primary-100  text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded">
                                 <Image
                                     className="mr-1 w-3 h-3"
                                     src={FileHelpers.getLocalFile(
