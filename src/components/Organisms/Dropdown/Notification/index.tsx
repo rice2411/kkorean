@@ -35,10 +35,10 @@ function NotificationDropdown() {
                         (item: INotification.BaseNotification) => !item.isRead
                     );
                 setUnReadNotification(unReadNoti);
-                setCountUnReadNotifications(unReadNoti.length);
                 hideLoading();
             }
         );
+        setCountUnReadNotifications(unReadNotifications.length);
     }, []);
 
     const handleClickOutside = async () => {
@@ -74,7 +74,9 @@ function NotificationDropdown() {
                 {/* Notification badge */}
                 {countUnReadNotifications > 0 && (
                     <span className="absolute select-none top-0 right-0 bg-red-500 text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center">
-                        {countUnReadNotifications}
+                        {countUnReadNotifications > 9
+                            ? "9+"
+                            : countUnReadNotifications}
                     </span>
                 )}
             </Box>
