@@ -1,11 +1,7 @@
-import ScoreStatictis from "@/components/Organisms/Statictis/Score";
+import { DashboardPage } from "@/components/Pages";
 
-function OverviewPage() {
-    return (
-        <>
-            <ScoreStatictis />
-        </>
-    );
+function Overview() {
+    return <DashboardPage.OverviewPage />;
 }
 
-export default OverviewPage;
+export default Overview;

@@ -1,4 +1,4 @@
-import OverviewPage from "./Overview";
+import Overview from "./Overview";
 import Exams from "./Exams";
 import Users from "./Users";
 import Groups from "./Groups";
@@ -7,7 +7,7 @@ import { ExamsPageLoader } from "./Exams/loader";
 import { UsersPageLoader } from "./Users/loader";
 
 export {
-    OverviewPage,
+    Overview,
     Exams,
     ExamsPageLoader,
     Users,
