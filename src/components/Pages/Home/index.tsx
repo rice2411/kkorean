@@ -1,20 +1,46 @@
-import { Section } from "@/components/Organisms";
 import { Box, HorizontalRule } from "@/components/Atoms";
 import { FloatButton } from "@/components/Molecules";
-import { useRef } from "react";
+import { useRef, Suspense } from "react";
 import { useIsVisible } from "@/hooks";
+import React from "react";
+import { Section } from "@/components/Organisms";
+
+// Lazy load các section
+const FeatureSection = React.lazy(
+  () => import("@/components/Organisms/Section/Feature")
+);
+const CTASection = React.lazy(
+  () => import("@/components/Organisms/Section/CTA")
+);
+const PricingSection = React.lazy(
+  () => import("@/components/Organisms/Section/Pricing")
+);
+const AboutUSSection = React.lazy(
+  () => import("@/components/Organisms/Section/AboutUS")
+);
+const ContentSection = React.lazy(
+  () => import("@/components/Organisms/Section/Content")
+);
+const TestimonialSection = React.lazy(
+  () => import("@/components/Organisms/Section/Testimonials")
+);
+const StatictisSection = React.lazy(
+  () => import("@/components/Organisms/Section/Statictis")
+);
+const BlogSection = React.lazy(
+  () => import("@/components/Organisms/Section/Blog")
+);
 
 function HomePage() {
   const sections = [
-    { component: <Section.HeroSection />, key: "hero" },
-    { component: <Section.FeatureSection />, key: "feature" },
-    { component: <Section.CTASection />, key: "cta" },
-    { component: <Section.PricingSection />, key: "pricing" },
-    { component: <Section.AboutUSSection />, key: "about" },
-    { component: <Section.ContentSection />, key: "content" },
-    { component: <Section.TestimonialSection />, key: "testimonial" },
-    { component: <Section.StatictisSection />, key: "statistics" },
-    { component: <Section.BlogSection />, key: "blog" },
+    { component: <FeatureSection />, key: "feature" },
+    { component: <CTASection />, key: "cta" },
+    { component: <PricingSection />, key: "pricing" },
+    { component: <AboutUSSection />, key: "about" },
+    { component: <ContentSection />, key: "content" },
+    { component: <TestimonialSection />, key: "testimonial" },
+    { component: <StatictisSection />, key: "statistics" },
+    { component: <BlogSection />, key: "blog" },
   ];
 
   const refs = sections.map(() => useRef<HTMLDivElement>(null));
@@ -22,6 +48,8 @@ function HomePage() {
 
   return (
     <>
+      <Section.HeroSection />
+      <HorizontalRule />
       {sections.map((section, index) => (
         <Box
           key={section.key}
@@ -30,8 +58,13 @@ function HomePage() {
             visibility[index] ? "opacity-100" : "opacity-0"
           }`}
         >
-          {section.component}
-          {index < sections.length - 1 && <HorizontalRule />}
+          {/* Lazy load section chỉ khi nó được hiển thị */}
+          {visibility[index] && (
+            <Suspense fallback={<div>Loading...</div>}>
+              {section.component}
+              {index < sections.length - 1 && <HorizontalRule />}
+            </Suspense>
+          )}
         </Box>
       ))}
 
