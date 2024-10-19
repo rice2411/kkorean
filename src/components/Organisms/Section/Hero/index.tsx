@@ -4,7 +4,7 @@ import { FileHelpers } from "@/helpers";
 function HeroSection() {
   return (
     <Box className="grid max-w-screen-2xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-32 lg:grid-cols-12">
-      <Box className="mr-auto place-self-center lg:col-span-6">
+      <Box className="mr-auto place-self-center lg:col-span-7">
         <Heading className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl">
           Xin chào, Mình là Kkorean
         </Heading>
@@ -26,7 +26,7 @@ function HeroSection() {
           Tư vấn
         </a>
       </Box>
-      <Box className="hidden lg:mt-0 lg:col-span-6 lg:flex lg:justify-center">
+      <Box className="hidden lg:mt-0 lg:col-span-5 lg:flex lg:justify-center">
         <Image
           src={FileHelpers.getLocalFile("illustration", "svg")}
           alt="mockup"

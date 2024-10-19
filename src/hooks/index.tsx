@@ -3,7 +3,7 @@ import useLoading from "./useLoading";
 import useModal from "./useModal";
 import useClickOutside from "./useClickOutside";
 import useDocumentTitle from "./useDocumentTitle";
-import { useIsVisible } from "./useIsVisible";
+import useIsVisible from "./useIsVisible";
 
 export {
   useAuth,
