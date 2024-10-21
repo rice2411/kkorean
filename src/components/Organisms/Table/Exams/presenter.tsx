@@ -53,11 +53,11 @@ const TableExamsPresenter: React.FC<PresenterProps> = ({
                             onClick={() => {
                                 handleOpenWindowExplorer(
                                     null,
-                                    FILE_CONSTANTS.UPLOAD_TYPE.EXCEL
+                                    FILE_CONSTANTS.EUploadType.EXCEL
                                 );
                             }}
                             id="createProductBox"
-                            className="flex items-center justify-center cursor-pointer text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2  focus:outline-none "
+                            className="flex items-center justify-center cursor-pointer text-white bg-primary-400 hover:bg-primary-500 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2  focus:outline-none "
                         >
                             <Svg
                                 className="h-3.5 w-3.5 mr-1.5 -ml-1"
@@ -151,7 +151,7 @@ const TableExamsPresenter: React.FC<PresenterProps> = ({
                                                 <Paragraph
                                                     className={`${
                                                         exam.type ===
-                                                        EXAM_CONSTANTS.EXAM_TYPE
+                                                        EXAM_CONSTANTS.EExamType
                                                             .LISTENING
                                                             ? " bg-red-100 text-red-800"
                                                             : "bg-yellow-100 text-yellow-800"
@@ -167,7 +167,7 @@ const TableExamsPresenter: React.FC<PresenterProps> = ({
                                                 <Paragraph
                                                     className={`${
                                                         exam.plan ===
-                                                        EXAM_CONSTANTS.EXAM_PLAN
+                                                        EXAM_CONSTANTS.EExamPlan
                                                             .FREE
                                                             ? " bg-green-100 text-green-800"
                                                             : "bg-primary-100 text-primary-800"
@@ -191,7 +191,7 @@ const TableExamsPresenter: React.FC<PresenterProps> = ({
                                                         : "Chưa cập nhật hình ảnh"}
                                                 </Paragraph>
                                                 {exam.type ===
-                                                    EXAM_CONSTANTS.EXAM_TYPE
+                                                    EXAM_CONSTANTS.EExamType
                                                         .LISTENING && (
                                                     <Paragraph
                                                         className={`${
@@ -212,11 +212,11 @@ const TableExamsPresenter: React.FC<PresenterProps> = ({
                                                         className={`${
                                                             exam.level ===
                                                             EXAM_CONSTANTS
-                                                                .EXAM_LEVEL.EASY
+                                                                .EExamLevel.EASY
                                                                 ? "bg-green-500"
                                                                 : exam.level ===
                                                                   EXAM_CONSTANTS
-                                                                      .EXAM_LEVEL
+                                                                      .EExamLevel
                                                                       .MEDIUM
                                                                 ? "bg-yellow-500"
                                                                 : "bg-red-500"
@@ -234,11 +234,11 @@ const TableExamsPresenter: React.FC<PresenterProps> = ({
                                                             handleOpenWindowExplorer(
                                                                 exam,
                                                                 FILE_CONSTANTS
-                                                                    .UPLOAD_TYPE
+                                                                    .EUploadType
                                                                     .IMAGE
                                                             );
                                                         }}
-                                                        className="cursor-pointer py-2 px-3 flex items-center text-sm font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 "
+                                                        className="cursor-pointer py-2 px-3 flex items-center text-sm font-medium text-center text-white bg-primary-400 rounded-lg hover:bg-primary-500 focus:ring-4 focus:outline-none focus:ring-primary-300 "
                                                     >
                                                         <Svg
                                                             className="h-3.5 w-3.5 mr-1.5 -ml-1"
@@ -252,14 +252,14 @@ const TableExamsPresenter: React.FC<PresenterProps> = ({
                                                         Tải ảnh lên
                                                     </Box>
                                                     {exam.type ===
-                                                        EXAM_CONSTANTS.EXAM_TYPE
+                                                        EXAM_CONSTANTS.EExamType
                                                             .LISTENING && (
                                                         <Box
                                                             onClick={() => {
                                                                 handleOpenWindowExplorer(
                                                                     exam,
                                                                     FILE_CONSTANTS
-                                                                        .UPLOAD_TYPE
+                                                                        .EUploadType
                                                                         .AUDIO
                                                                 );
                                                             }}

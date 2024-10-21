@@ -22,7 +22,7 @@ const BackToTopButton: React.FC = () => {
             {isVisible && (
                 <Box
                     onClick={scrollToTop}
-                    className="cursor-pointer fixed flex justify-center items-center text-3xl bottom-5 w-14 h-14 right-5 bg-blue-500 text-white p-3 rounded-full shadow-lg hover:bg-blue-600 transition"
+                    className="cursor-pointer fixed flex justify-center items-center text-3xl bottom-5 w-14 h-14 right-5 bg-primary-500 text-white p-3 rounded-full shadow-lg hover:bg-primary-600 transition"
                     aria-label="Back to top"
                 >
                     ↑

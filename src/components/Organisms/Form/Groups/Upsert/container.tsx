@@ -76,7 +76,7 @@ const GroupsUpsertFormContainer: React.FC<Props> = ({
   const handleSubmit = async () => {
     try {
       showLoading();
-      modalBlank.type === MODAL_CONSTANTS.MODAL_TYPE.CREATE
+      modalBlank.type === MODAL_CONSTANTS.EModalType.CREATE
         ? await onCreate()
         : await onUpdate();
     } catch (err) {
@@ -90,7 +90,7 @@ const GroupsUpsertFormContainer: React.FC<Props> = ({
 
   useEffect(() => {
     setGroupName(
-      modalBlank.type === MODAL_CONSTANTS.MODAL_TYPE.CREATE
+      modalBlank.type === MODAL_CONSTANTS.EModalType.CREATE
         ? ""
         : modalBlank?.defaultData?.name || ""
     );

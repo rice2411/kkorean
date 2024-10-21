@@ -34,9 +34,9 @@ const GroupsUpsertFormPresenter: React.FC<PresenterProps> = ({
             <Button
                 onClick={handleSubmit}
                 disabled={!groupName}
-                className="w-full text-white inline-flex items-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+                className="w-full text-white inline-flex items-center bg-primary-400 hover:bg-primary-500 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
             >
-                {modalBlank.type === MODAL_CONSTANTS.MODAL_TYPE.CREATE ? (
+                {modalBlank.type === MODAL_CONSTANTS.EModalType.CREATE ? (
                     <>
                         <Svg
                             className="mr-1 -ml-1 w-6 h-6"

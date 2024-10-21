@@ -56,102 +56,99 @@ function UserDropdown({ dropdownClass }: Props) {
     if (!user) return null;
 
     return (
-        <>
+        <Box className="relative">
             <Box
                 ref={parentRef}
                 onClick={() => {
                     setIsOpenUserMenu((state) => !state);
                 }}
-                className="flex mx-3 text-sm rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 cursor-pointer relative"
+                className="flex mx-3 text-sm rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 cursor-pointer "
             >
                 <Image
                     className="w-8 h-8 rounded-full"
                     src={FileHelpers.getLocalFile("user-none", "jpg")}
                     alt="user photo"
                 />
-                <Box
-                    ref={dropdownRef}
-                    className={`${
-                        !isOpenUserMenu && "hidden"
-                    } absolute z-50 mt-4 mr-28 w-56 text-base list-none bg-white rounded Boxide-y Boxide-gray-100 shadow top-7 left-[-187px] ${dropdownClass}`}
-                    id="dropdown"
-                >
-                    <Box className="py-3 px-4">
-                        <Paragraph className="block text-sm font-semibold text-gray-900 ">
-                            Xin chào, {user.fullName}
+            </Box>
+            <Box
+                ref={dropdownRef}
+                className={`${
+                    !isOpenUserMenu && "hidden"
+                } absolute z-50 mt-4 mr-28 w-56 text-base list-none bg-white rounded Boxide-y Boxide-gray-100 shadow top-7 left-[-187px] ${dropdownClass}`}
+                id="dropdown"
+            >
+                <Box className="py-3 px-4">
+                    <Paragraph className="block text-sm font-semibold text-gray-900 ">
+                        Xin chào, {user.fullName}
+                    </Paragraph>
+                    <Paragraph className="block text-sm text-gray-500 truncate ">
+                        {user.email}
+                    </Paragraph>
+                </Box>
+                {user.role === CONFIG_CONSTANTS.EUserRole.ADMIN && (
+                    <Box>
+                        <Paragraph className="text-xs font-bold ml-3 mb-3">
+                            Quản trị
                         </Paragraph>
-                        <Paragraph className="block text-sm text-gray-500 truncate ">
-                            {user.email}
-                        </Paragraph>
-                    </Box>
-                    {user.role === CONFIG_CONSTANTS.USER_ROLE.ADMIN && (
-                        <Box>
-                            <Paragraph className="text-xs font-bold ml-3 mb-3">
-                                Quản trị
-                            </Paragraph>
-                            <HorizontalRule />
-                            <Box
-                                className="py-1 text-gray-500"
-                                aria-labelledby="dropdown"
+                        <HorizontalRule />
+                        <Box
+                            className="py-1 text-gray-500"
+                            aria-labelledby="dropdown"
+                        >
+                            <Link
+                                onClick={() => {
+                                    setIsOpenUserMenu(false);
+                                }}
+                                to={"/dashboard"}
+                                className="block py-2 px-4 text-sm hover:bg-gray-100"
                             >
+                                Quản lý
+                            </Link>
+                        </Box>
+                        <Paragraph className="text-xs font-bold ml-3 mb-3">
+                            Phím tắt
+                        </Paragraph>
+                        <HorizontalRule />
+                        <Box
+                            className="py-1 text-gray-500"
+                            aria-labelledby="dropdown"
+                        >
+                            {links.map((item, index) => (
                                 <Link
                                     onClick={() => {
                                         setIsOpenUserMenu(false);
                                     }}
-                                    to={"/dashboard"}
-                                    className="block py-2 px-4 text-sm hover:bg-gray-100"
+                                    key={index}
+                                    to={item.href}
+                                    className="flex items-center py-2 px-4 text-sm hover:bg-gray-100"
                                 >
-                                    Quản lý
+                                    {item.icon}
+                                    {item.text}
                                 </Link>
-                            </Box>
-                            <Paragraph className="text-xs font-bold ml-3 mb-3">
-                                Phím tắt
-                            </Paragraph>
-                            <HorizontalRule />
-                            <Box
-                                className="py-1 text-gray-500"
-                                aria-labelledby="dropdown"
-                            >
-                                {links.map((item, index) => (
-                                    <Link
-                                        onClick={() => {
-                                            setIsOpenUserMenu(false);
-                                        }}
-                                        key={index}
-                                        to={item.href}
-                                        className="flex items-center py-2 px-4 text-sm hover:bg-gray-100"
-                                    >
-                                        {item.icon}
-                                        {item.text}
-                                    </Link>
-                                ))}
-                            </Box>
+                            ))}
                         </Box>
-                    )}
-                    <Box
-                        className="py-1 text-gray-500"
-                        aria-labelledby="dropdown"
-                    >
-                        <Link
-                            to={"/login"}
-                            onClick={async () => {
-                                await NotificationsAPI.createNotification({
-                                    type: NOTIFICATION_CONSTANTS
-                                        .NOTIFICATION_TYPE.LOGOUT,
-                                    message: `Người dùng <b>${
-                                        user.email
-                                    }</b> đã <b>đăng xuất</b> khỏi hệ thống vào lúc ${DateFNSUtils.now()}`,
-                                });
-                                handleLogout();
-                            }}
-                            className="block py-2 px-4 text-sm hover:bg-gray-100"
-                        >
-                            Đăng xuất
-                        </Link>
                     </Box>
+                )}
+                <Box className="py-1 text-gray-500" aria-labelledby="dropdown">
+                    <Link
+                        to={"/login"}
+                        onClick={async () => {
+                            await NotificationsAPI.createNotification({
+                                type: NOTIFICATION_CONSTANTS.ENotificationType
+                                    .LOGOUT,
+                                message: `Người dùng <b>${
+                                    user.email
+                                }</b> đã <b>đăng xuất</b> khỏi hệ thống vào lúc ${DateFNSUtils.now()}`,
+                            });
+                            handleLogout();
+                        }}
+                        className="block py-2 px-4 text-sm hover:bg-gray-100"
+                    >
+                        Đăng xuất
+                    </Link>
                 </Box>
             </Box>
-        </>
+        </Box>
     );
 }
 

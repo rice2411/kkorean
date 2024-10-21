@@ -8,7 +8,7 @@ const DashboardRouter: RouteObject = {
     children: [
         {
             path: "",
-            element: <Dashboard.OverviewPage />,
+            element: <Dashboard.Overview />,
         },
         {
             path: "users",

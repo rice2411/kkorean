@@ -32,16 +32,13 @@ const ExamPreviewerModal: React.FC<ExamPreviewerModalProps> = ({ exam }) => {
             const response = (await FilesAPI.searchAssetsByPublicIdPrefix(
                 exam.id
             )) as IFile.FileResponse;
-            console.log(response);
             if (response.resources) {
                 const { resources } = response;
                 const audioFile = resources.find((item: IFile.FileItem) =>
                     item.public_id.includes(EXAM_CONSTANTS.AUDIO_KEY)
                 ) as IFile.FileItem | undefined;
 
-                if (!audioFile) return;
-
-                setAudio(audioFile.url || "");
+                if (audioFile) setAudio(audioFile.url || "");
 
                 setImages(
                     resources.filter(
@@ -83,7 +80,7 @@ const ExamPreviewerModal: React.FC<ExamPreviewerModalProps> = ({ exam }) => {
                     classContent="h-[800px]"
                 >
                     <>
-                        {exam?.type === EXAM_CONSTANTS.EXAM_TYPE.LISTENING && (
+                        {exam?.type === EXAM_CONSTANTS.EExamType.LISTENING && (
                             <>
                                 <Heading level={3} className="font-bold my-3">
                                     File nghe

@@ -144,6 +144,7 @@ const TableUsersContainer: React.FC<ContainerProps> = ({ users }) => {
             okButton: {
                 text: "Xóa",
                 onClick: () => {
+                    showLoading();
                     onDeleteAccount(user);
                 },
             },
@@ -155,7 +156,7 @@ const TableUsersContainer: React.FC<ContainerProps> = ({ users }) => {
         handleModiferModalBlank({
             isOpen: true,
             title:
-                type === MODAL_CONSTANTS.MODAL_TYPE.CREATE
+                type === MODAL_CONSTANTS.EModalType.CREATE
                     ? "Thêm tài khoản"
                     : "Chỉnh sửa tài khoản",
             type,

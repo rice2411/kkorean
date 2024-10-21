@@ -47,10 +47,10 @@ const TableUsersPresenter: React.FC<PresenterProps> = ({
                         <Box
                             onClick={() => {
                                 handleOpenModalUser(
-                                    MODAL_CONSTANTS.MODAL_TYPE.CREATE
+                                    MODAL_CONSTANTS.EModalType.CREATE
                                 );
                             }}
-                            className="cursor-pointer flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2"
+                            className="cursor-pointer flex items-center justify-center text-white bg-primary-400 hover:bg-primary-500 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2"
                         >
                             <Svg
                                 className="mr-1 -ml-1 w-6 h-6"
@@ -126,7 +126,7 @@ const TableUsersPresenter: React.FC<PresenterProps> = ({
                                                 )
                                                     return;
                                                 handleOpenModalUser(
-                                                    MODAL_CONSTANTS.MODAL_TYPE
+                                                    MODAL_CONSTANTS.EModalType
                                                         .UPDATE,
                                                     user
                                                 );
@@ -161,7 +161,7 @@ const TableUsersPresenter: React.FC<PresenterProps> = ({
                                             </th>
                                             <td className="px-6 py-4">
                                                 {user.role ===
-                                                CONFIG_CONSTANTS.USER_ROLE.ADMIN
+                                                CONFIG_CONSTANTS.EUserRole.ADMIN
                                                     ? user.group
                                                     : groups.find(
                                                           (item) =>
@@ -185,7 +185,7 @@ const TableUsersPresenter: React.FC<PresenterProps> = ({
                                             </td>
                                             <td className="px-6 py-4 flex">
                                                 {user.role ===
-                                                CONFIG_CONSTANTS.USER_ROLE
+                                                CONFIG_CONSTANTS.EUserRole
                                                     .ADMIN ? (
                                                     <Paragraph className="italic">
                                                         Không thể xóa

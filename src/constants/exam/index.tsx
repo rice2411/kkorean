@@ -1,22 +1,25 @@
-const EXAM_PLAN = Object.freeze({
-    FREE: 11 as const,
-    PAID: 13 as const,
-});
+export const ERROR = 99999;
 
-const EXAM_TYPE = Object.freeze({
-    LISTENING: 2001 as const,
-    READING: 2002 as const,
-    UNKNOWN: 999 as const, // Fixed typo from UNKNOW to UNKNOWN
-});
+export enum EExamPlan {
+    FREE = 11,
+    PAID = 13,
+    ERROR = 99999,
+}
 
-const EXAM_LEVEL = Object.freeze({
-    EASY: 0 as const,
-    MEDIUM: 1 as const,
-    HARD: 2 as const,
-    UNKNOWN: 999 as const, // Fixed typo from UNKNOW to UNKNOWN
-});
+export enum EExamType {
+    LISTENING = 2001,
+    READING = 2002,
+    ERROR = 99999,
+}
 
-const DEFAULT_FORMAT_QUESTION: string[] = [
+export enum EExamLevel {
+    EASY = 0,
+    MEDIUM = 1,
+    HARD = 2,
+    ERROR = 99999,
+}
+
+export const DEFAULT_FORMAT_QUESTION = [
     "1.1",
     "1.2",
     "1.3",
@@ -69,21 +72,6 @@ const DEFAULT_FORMAT_QUESTION: string[] = [
     "20.50",
 ];
 
-const NUMBER_OF_QUESTION: number = 50;
-
-const ERROR: number = 99999;
-
-const AUDIO_KEY: string = "audio";
-
-const IMAGE_KEY: string = "image";
-
-export {
-    EXAM_PLAN,
-    EXAM_TYPE,
-    EXAM_LEVEL,
-    DEFAULT_FORMAT_QUESTION,
-    NUMBER_OF_QUESTION,
-    ERROR,
-    AUDIO_KEY,
-    IMAGE_KEY,
-};
+export const NUMBER_OF_QUESTION = 50;
+export const AUDIO_KEY = "audio";
+export const IMAGE_KEY = "image";

@@ -10,8 +10,8 @@ import { IAPI, IContext, IUser } from "@/interface";
 
 // Định nghĩa kiểu cho dữ liệu đăng nhập
 interface ILoginData {
-    email: string;
-    password: string;
+  email: string;
+  password: string;
 }
 
 const LoginFormContainer: React.FC = () => {
@@ -27,19 +27,19 @@ const LoginFormContainer: React.FC = () => {
     });
     const [error, setError] = useState<string>("");
 
-    //#region HANDLE FUNCTION
-    const handleCheck = () => {
-        setIsChecked(!isChecked);
-    };
+  //#region HANDLE FUNCTION
+  const handleCheck = () => {
+    setIsChecked(!isChecked);
+  };
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setError("");
-        const { name, value } = e.target;
-        setData({ ...data, [name]: value });
-    };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setError("");
+    const { name, value } = e.target;
+    setData({ ...data, [name]: value });
+  };
 
-    const handleSubmit = async () => {
-        if (!data.email || !data.password) return;
+  const handleSubmit = async () => {
+    if (!data.email || !data.password) return;
 
         try {
             showLoading();
@@ -90,16 +90,16 @@ const LoginFormContainer: React.FC = () => {
     }
     //#endregion
 
-    return (
-        <LoginFormPresenter
-            data={data}
-            error={error}
-            handleChange={handleChange}
-            handleCheck={handleCheck}
-            handleSubmit={handleSubmit}
-            handleForgotPass={handleForgotPass}
-        />
-    );
+  return (
+    <LoginFormPresenter
+      data={data}
+      error={error}
+      handleChange={handleChange}
+      handleCheck={handleCheck}
+      handleSubmit={handleSubmit}
+      handleForgotPass={handleForgotPass}
+    />
+  );
 };
 
 export default LoginFormContainer;

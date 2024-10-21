@@ -20,7 +20,7 @@ const Link: React.FC<LinkProps> = ({
 
     return (
         <Box
-            className={`${className} text-blue-600 cursor-pointer`}
+            className={`${className} text-primary-500 hover:text-primary-400 cursor-pointer`}
             onClick={() => {
                 if (onClick) {
                     onClick();

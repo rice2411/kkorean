@@ -29,7 +29,7 @@ function UsersUpsertFormPresenter({
                     <Input
                         disabled={
                             modalBlank.type ===
-                            MODAL_CONSTANTS.MODAL_TYPE.UPDATE
+                            MODAL_CONSTANTS.EModalType.UPDATE
                         }
                         type="text"
                         name="email"
@@ -62,9 +62,9 @@ function UsersUpsertFormPresenter({
                 disabled={
                     !user.email || !user.fullName || user.group === "default"
                 }
-                className="w-full text-white bg-primary-700 hover:bg-primary-800 rounded-lg text-sm px-5 py-2.5"
+                className="w-full text-white bg-primary-400 hover:bg-primary-500 rounded-lg text-sm px-5 py-2.5"
             >
-                {modalBlank.type === MODAL_CONSTANTS.MODAL_TYPE.CREATE ? (
+                {modalBlank.type === MODAL_CONSTANTS.EModalType.CREATE ? (
                     <>
                         <Svg
                             className="mr-1 -ml-1 w-6 h-6"

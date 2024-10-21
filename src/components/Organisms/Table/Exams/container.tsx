@@ -62,7 +62,7 @@ const TableExamsContainer: React.FC<Props> = ({ exams }) => {
             if (
                 exam &&
                 fileExtension &&
-                FILE_CONSTANTS.ALLOWED_EXTENSIONS.AUDIO.includes(fileExtension)
+                FILE_CONSTANTS.EAllowedExtensions.AUDIO.includes(fileExtension)
             ) {
                 setLoadingText(`Đang tải file ${file.name}`);
                 fileName = `${exam.id}.${AUDIO_KEY}`;
@@ -121,7 +121,7 @@ const TableExamsContainer: React.FC<Props> = ({ exams }) => {
             const invalidFiles = selectedFiles.filter((file: File) => {
                 const fileExtension =
                     file.name.split(".").pop()?.toLowerCase() || "";
-                return !FILE_CONSTANTS.ALLOWED_EXTENSIONS.IMAGE.includes(
+                return !FILE_CONSTANTS.EAllowedExtensions.IMAGE.includes(
                     fileExtension
                 );
             });
@@ -175,11 +175,11 @@ const TableExamsContainer: React.FC<Props> = ({ exams }) => {
 
         const payload: IExam.ExamRequest = {
             name: file.name.split(".")[0],
-            level: 0,
-            type: 0,
+            level: EXAM_CONSTANTS.EExamLevel.EASY,
+            type: EXAM_CONSTANTS.EExamType.LISTENING,
             questions: "",
             isImageUploaded: 0,
-            plan: 0,
+            plan: EXAM_CONSTANTS.EExamPlan.FREE,
         };
 
         const fileExtension = file?.name.split(".").pop()?.toLowerCase();
@@ -271,7 +271,7 @@ const TableExamsContainer: React.FC<Props> = ({ exams }) => {
                     request.push(FilesAPI.deleteAssetByPublicId(publicId));
             });
             if (
-                data.type === EXAM_CONSTANTS.EXAM_TYPE.LISTENING &&
+                data.type === EXAM_CONSTANTS.EExamType.LISTENING &&
                 data.isAudioUploaded
             ) {
                 const audioID = `${data.id}.${EXAM_CONSTANTS.AUDIO_KEY}`;
@@ -299,18 +299,18 @@ const TableExamsContainer: React.FC<Props> = ({ exams }) => {
     ) => {
         if (uploadRef.current) {
             switch (type) {
-                case FILE_CONSTANTS.UPLOAD_TYPE.IMAGE:
+                case FILE_CONSTANTS.EUploadType.IMAGE:
                     uploadRef.current.multiple = true;
                     uploadRef.current.accept =
-                        FILE_CONSTANTS.ALLOWED_EXTENSIONS.IMAGE;
+                        FILE_CONSTANTS.EAllowedExtensions.IMAGE;
                     break;
-                case FILE_CONSTANTS.UPLOAD_TYPE.AUDIO:
+                case FILE_CONSTANTS.EUploadType.AUDIO:
                     uploadRef.current.accept =
-                        FILE_CONSTANTS.ALLOWED_EXTENSIONS.AUDIO;
+                        FILE_CONSTANTS.EAllowedExtensions.AUDIO;
                     break;
-                case FILE_CONSTANTS.UPLOAD_TYPE.EXCEL:
+                case FILE_CONSTANTS.EUploadType.EXCEL:
                     uploadRef.current.accept =
-                        FILE_CONSTANTS.ALLOWED_EXTENSIONS.EXCEL;
+                        FILE_CONSTANTS.EAllowedExtensions.EXCEL;
                     break;
             }
             setExam(exam);
@@ -321,13 +321,13 @@ const TableExamsContainer: React.FC<Props> = ({ exams }) => {
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (uploadRef.current) {
             switch (uploadRef.current.accept) {
-                case FILE_CONSTANTS.ALLOWED_EXTENSIONS.IMAGE:
+                case FILE_CONSTANTS.EAllowedExtensions.IMAGE:
                     onUploadImages(event);
                     break;
-                case FILE_CONSTANTS.ALLOWED_EXTENSIONS.AUDIO:
+                case FILE_CONSTANTS.EAllowedExtensions.AUDIO:
                     onUploadAudio(event);
                     break;
-                case FILE_CONSTANTS.ALLOWED_EXTENSIONS.EXCEL:
+                case FILE_CONSTANTS.EAllowedExtensions.EXCEL:
                     onUploadExcel(event);
                     break;
             }

@@ -1,23 +1,8 @@
-const DEFAULT_PASSWORD: string = "123456";
+export const DEFAULT_PASSWORD: string = "123456";
+export const EMAIL_DOMAIN: string = "@kkorean.rice";
+export const WEB_TITLE: string = "KKorean";
 
-const EMAIL_DOMAIN: string = "@kkorean.rice";
-
-const USER_ROLE = Object.freeze({
-    ADMIN: 2411 as const,
-    USER: 1308 as const,
-});
-
-const PROTECTED_ROUTE: string[] = [];
-
-const ADMIN_ROUTE: string[] = ["/dashboard"];
-
-const WEB_TITLE = "KKorean";
-
-export {
-    PROTECTED_ROUTE,
-    ADMIN_ROUTE,
-    DEFAULT_PASSWORD,
-    EMAIL_DOMAIN,
-    USER_ROLE,
-    WEB_TITLE,
-};
+export enum EUserRole {
+  ADMIN = 2411,
+  USER = 1308,
+}

@@ -41,10 +41,10 @@ const TableGroupsPresenter: React.FC<PresenterProps> = ({
                             <Box
                                 onClick={() => {
                                     handleOpenModalModifier(
-                                        MODAL_CONSTANTS.MODAL_TYPE.CREATE
+                                        MODAL_CONSTANTS.EModalType.CREATE
                                     );
                                 }}
-                                className="cursor-pointer flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 focus:outline-none"
+                                className="cursor-pointer flex items-center justify-center text-white bg-primary-400 hover:bg-primary-500 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 focus:outline-none"
                             >
                                 <Svg
                                     className="mr-1 -ml-1 w-6 h-6"
@@ -121,7 +121,7 @@ const TableGroupsPresenter: React.FC<PresenterProps> = ({
                                                     }
                                                     handleOpenModalModifier(
                                                         MODAL_CONSTANTS
-                                                            .MODAL_TYPE.UPDATE,
+                                                            .EModalType.UPDATE,
                                                         group
                                                     );
                                                 }}
