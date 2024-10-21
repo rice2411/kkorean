@@ -51,7 +51,7 @@ const LoginFormContainer: React.FC = () => {
                 handleLogin(user);
                 if(res?.data?.isFirstTimeLogin) handleShowPopupResetPassword();
                 await NotificationsAPI.createNotification({
-                    type: NOTIFICATION_CONSTANTS.NOTIFICATION_TYPE.LOGIN,
+                    type: NOTIFICATION_CONSTANTS.ENotificationType.LOGIN,
                     message: `Người dùng <b>${
                         res.data.email
                     }</b> đã <b>đăng nhập</b> vào hệ thống vào lúc ${DateFNSUtils.now()}`,
@@ -84,7 +84,7 @@ const LoginFormContainer: React.FC = () => {
         handleModiferModalBlank({
             isOpen: true,
             title: "Thay đổi mật khẩu",
-            type: MODAL_CONSTANTS.MODAL_TYPE.UPDATE,
+            type: MODAL_CONSTANTS.EModalType.UPDATE,
             defaultData: null,
         });
     }
