@@ -13,9 +13,6 @@ export default defineConfig(({ mode }) => {
     plugins: [
       react(),
       VitePWA({
-        devOptions: {
-          enabled: isDevelopment, // Chỉ bật dev PWA trong chế độ phát triển
-        },
         registerType: "autoUpdate",
         manifest: {
           name: "Kkorean PWA",
