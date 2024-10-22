@@ -32,9 +32,6 @@ export default defineConfig(({ mode }) => {
             },
           ],
         },
-        workbox: {
-          importScripts: ["/sw.js"],
-        },
       }),
     ],
     resolve: {
