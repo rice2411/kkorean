@@ -22,11 +22,11 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<IUser.BaseUser | null>(null);
   const [isInitializing, setIsInitializing] = useState(true); // Trạng thái để quản lý việc khởi tạo
 
-  const handleLogin = async (user: IUser.BaseUser) => {
-    setUser(user);
-    AuthUtils.login(user);
-    navigate("/");
-  };
+    const handleLogin = async (user: IUser.BaseUser) => {
+        setUser(user);
+        AuthUtils.login(user);
+        if(!user?.isFirstTimeLogin) navigate("/");
+    };
 
   const handleLogout = async () => {
     showLoading();

@@ -86,7 +86,6 @@ function UsersUpsertFormContainer({
             ...user,
             email: emailParam,
           } as IUser.DetailedUser)) as IUser.DetailedUser);
-    console.log(response);
     if (response.id) {
       if (action === MODAL_CONSTANTS.EModalType.CREATE) {
         const selectedGroup = groups.find((item) => item.id === user.group);

@@ -4,6 +4,7 @@ import { Image } from "@/components/Atoms";
 import Box from "../Box";
 
 interface InputProps {
+    id?:string;
     name?: string;
     type?: string;
     placeholder?: string;
@@ -23,7 +24,8 @@ interface InputProps {
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
     (
-        {
+        {   
+            id = "",
             name = "",
             type = "text",
             placeholder = "",
@@ -81,6 +83,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                                     : "pr-10"
                                 : ""
                         } ${className}`}
+                        id={id}
                         type={type}
                         placeholder={placeholder}
                         value={type === "file" ? undefined : value}
