@@ -37,26 +37,6 @@ export default defineConfig(({ mode }) => {
         },
         workbox: {
           importScripts: ["/sw.js"],
-          runtimeCaching: [
-            {
-              urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
-              handler: "CacheFirst", // Ưu tiên từ cache nếu có
-              options: {
-                cacheName: "image-cache",
-                expiration: {
-                  maxEntries: 10, // Giữ tối đa 10 hình ảnh
-                  maxAgeSeconds: 30 * 24 * 60 * 60, // Cache trong 30 ngày
-                },
-              },
-            },
-            {
-              urlPattern: /\.(?:css|js)$/,
-              handler: "StaleWhileRevalidate", // Lấy từ cache và kiểm tra bản mới trên mạng
-              options: {
-                cacheName: "static-resources",
-              },
-            },
-          ],
         },
       }),
     ],
