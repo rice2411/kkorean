@@ -131,6 +131,12 @@ function UserDropdown({ dropdownClass }: Props) {
                 )}
                 <Box className="py-1 text-gray-500" aria-labelledby="dropdown">
                     <Link
+                        to={"/user/profile"}
+                        className="block py-2 px-4 text-sm hover:bg-gray-100"
+                    >
+                        Profile
+                    </Link>
+                    <Link
                         to={"/login"}
                         onClick={async () => {
                             await NotificationsAPI.createNotification({

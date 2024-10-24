@@ -7,6 +7,7 @@ import * as IGroup from "./Group";
 import * as INotification from "./Notification";
 import * as IBase from "./Base";
 import * as IContext from "./Context";
+import * as IUI from "./UI";
 
 export type {
     IAPI,
@@ -18,4 +19,5 @@ export type {
     INotification,
     IBase,
     IContext,
+    IUI
 };

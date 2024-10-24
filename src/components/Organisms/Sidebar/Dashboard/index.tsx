@@ -1,15 +1,11 @@
 import { Box, Paragraph, Link, Svg } from "@/components/Atoms";
 import { FileHelpers } from "@/helpers";
+import { IUI } from "@/interface";
 import { useId } from "react";
 
 // Define the structure of the items
-interface SidebarItem {
-    href: string;
-    icon: JSX.Element;
-    text: string;
-}
 
-const items: SidebarItem[] = [
+const items: IUI.SidebarItem[] = [
     {
         href: "/dashboard",
         icon: (

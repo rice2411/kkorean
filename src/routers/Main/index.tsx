@@ -10,7 +10,7 @@ const MainRouter: RouteObject = {
             path: "/",
             element: <Home />,
             // loader: homeLoader,
-        },
+        }
     ],
 };
 
