@@ -1,3 +1,7 @@
 {
-    "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+    "rewrites": [
+        { "source": "/offline.html", "destination": "/offline.html" },
+        { "source": "/svg/:file", "destination": "/svg/:file" },
+        { "source": "/(.*)", "destination": "/index.html" }
+    ]
 }

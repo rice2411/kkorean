@@ -6,6 +6,7 @@ export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, process.cwd());
     const SERVERLESS_FUNCTION_API_URL = env.VITE_SERVERLESS_FUNCTION_API_URL;
     return {
+        base: "/",
         plugins: [react()],
         resolve: {
             alias: {
