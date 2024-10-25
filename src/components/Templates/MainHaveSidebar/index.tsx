@@ -12,14 +12,14 @@ const MainHaveSidebarTemplate: React.FC<IProps> = ({ listSidebar }) => {
     <>
       <Header.MainHeader />
       <Box className="flex relative min-h-screen">
-        <Box className="max-w-[260px] w-full absolute z-10 h-full border-r">
+        <Box className="max-w-[260px] w-full fixed z-10 h-full border-r">
           <Sidebar.MainSidebar list={listSidebar} />
         </Box>
         <Box className="flex flex-col w-full ml-[260px]">
-          <Box className="flex-grow h-full">
+          <Box className="flex-grow min-h-screen">
             <Outlet />
           </Box>
-          <Footer /> {/* Đặt Footer ngay sau phần nội dung chính */}
+          <Footer />
         </Box>
       </Box>
       <ToastContainer />

@@ -7,6 +7,7 @@ import HeroSection from "./Hero";
 import PricingSection from "./Pricing";
 import StatictisSection from "./Statictis";
 import TestimonialSection from "./Testimonials";
+import * as UserSection from "./User";
 
 export {
     AboutUSSection,
@@ -18,4 +19,5 @@ export {
     PricingSection,
     StatictisSection,
     TestimonialSection,
+    UserSection
 };
