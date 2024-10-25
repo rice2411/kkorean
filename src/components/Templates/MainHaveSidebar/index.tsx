@@ -11,8 +11,8 @@ const MainHaveSidebarTemplate: React.FC<IProps> = ({ listSidebar }) => {
   return (
     <>
       <Header.MainHeader />
-      <Box className="flex relative">
-        <Box className="max-w-[260px] border-r w-full absolute z-10 h-full">
+      <Box className="flex relative min-h-screen">
+        <Box className="max-w-[260px] w-full absolute z-10 h-full border-r">
           <Sidebar.MainSidebar list={listSidebar} />
         </Box>
         <Box className="flex flex-col w-full ml-[260px]">

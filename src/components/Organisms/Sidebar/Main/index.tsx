@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Link } from "@/components/Atoms";
 import { IUI } from "@/interface";
+import { useLocation } from "react-router-dom";
 
 interface SidebarProps {
   list: IUI.SidebarItem[];
@@ -13,16 +14,19 @@ const MainSidebar: React.FC<SidebarProps> = ({
   blockClass,
   itemClass,
 }) => {
+  const location = useLocation();
   return (
-    <Box className={`w-64 bg-white border-r h-screen p-4 ${blockClass || ""}`}>
+    <Box className={`w-64 bg-white h-screen p-4 ${blockClass || ""}`}>
       <ul className="space-y-2">
         {list.map((item, index) => (
           <li
             key={index}
-            className={`flex items-center text-white hover:bg-gray-700 rounded-lg px-3 py-2 ${itemClass}`}
+            className={`flex items-center gap-2 text-white hover:bg-gray-300 rounded-lg px-3 py-2 ${
+              itemClass || ""
+            } ${location.pathname === item.href ? "bg-gray-300" : ""}`}
           >
             {item?.icon && <>{item?.icon}</>}
-            <Link to={item?.url} className="flex-grow">
+            <Link to={item?.href} className="flex-grow">
               {item?.text}
             </Link>
           </li>
