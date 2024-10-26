@@ -1,22 +1,16 @@
-import { AuthProvider } from "@/contexts/Auth";
-import { LoadingProvider } from "@/contexts/LoadingOverlay";
 import { DashboardTemplate } from "@/components/Templates";
-import { ModalProvider } from "@/contexts/Modal";
 import { useDocumentTitle } from "@/hooks";
+import AppProvider from "../provider";
 function DashboardLayout() {
-    useDocumentTitle("Quản lý");
+  useDocumentTitle("Quản lý");
 
-    return (
-        <>
-            <LoadingProvider>
-                <AuthProvider>
-                    <ModalProvider>
-                        <DashboardTemplate />
-                    </ModalProvider>
-                </AuthProvider>
-            </LoadingProvider>
-        </>
-    );
+  return (
+    <>
+      <AppProvider>
+        <DashboardTemplate />
+      </AppProvider>
+    </>
+  );
 }
 
 export default DashboardLayout;
