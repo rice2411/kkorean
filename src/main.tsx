@@ -7,8 +7,6 @@ import { ServiceWorker } from "./config";
 
 ServiceWorker.register();
 
-console.log(123);
-
 createRoot(document.getElementById("root")!).render(
   <RouterProvider router={routers} />
 );

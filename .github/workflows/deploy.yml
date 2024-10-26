@@ -3,7 +3,7 @@ name: Deploy to Vercel
 on:
   push:
     branches:
-      - main # Thay đổi tên nhánh nếu cần
+      - main1 # Thay đổi tên nhánh nếu cần
   pull_request:
     branches:
       - main1 # Tự động triển khai khi có pull request vào nhánh chính
