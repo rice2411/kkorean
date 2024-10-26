@@ -5,4 +5,14 @@
 
 body {
     font-family: "Roboto", sans-serif;
+    background-color: #f8f9fa;
+}
+
+@layer utilities {
+    .animation-deplay-2000 {
+        animation-delay: 2s;
+    }
+    .animation-deplay-4000 {
+        animation-delay: 4s;
+    }
 }

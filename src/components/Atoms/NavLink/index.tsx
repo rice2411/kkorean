@@ -1,16 +1,16 @@
-// Link.tsx
+// NavLink.tsx
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Box } from "@/components/Atoms";
 
-interface LinkProps {
+interface NavLinkProps {
     to?: string;
     children: React.ReactNode;
     className?: string;
     onClick?: () => void;
 }
 
-const Link: React.FC<LinkProps> = ({
+const NavLink: React.FC<NavLinkProps> = ({
     to = "#",
     children,
     className = "",
@@ -20,7 +20,7 @@ const Link: React.FC<LinkProps> = ({
 
     return (
         <Box
-            className={`${className} text-primary-700 hover:text-primary-500 cursor-pointer transition duration-300`}
+            className={`${className} flex items-center border-b-2 border-transparent hover:border-primary-500 text-gray-500 hover:text-gray-700 cursor-pointer transition-all`}
             onClick={() => {
                 if (onClick) {
                     onClick();
@@ -33,4 +33,4 @@ const Link: React.FC<LinkProps> = ({
     );
 };
 
-export default Link;
+export default NavLink;

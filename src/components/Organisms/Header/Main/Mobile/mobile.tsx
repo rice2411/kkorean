@@ -1,6 +1,7 @@
 import { useId, useState } from "react";
 import { Box, Paragraph, Link, Image } from "@/components/Atoms";
 import { FileHelpers } from "@/helpers";
+import NavLink from "@/components/Atoms/NavLink";
 
 // Define the type for each link in the links array
 interface LinkItem {
@@ -39,29 +40,25 @@ const HeaderMobile: React.FC<HeaderMobileProps> = ({ links }) => {
             >
                 <Box className="flex flex-col font-medium">
                     {links.map((link) => (
-                        <Link
+                        <NavLink
                             key={useId()}
                             to={link.to}
                             className="text-secondary hover:text-blue-500 py-2 px-4 border-b"
                         >
                             {link.text}
-                        </Link>
+                        </NavLink>
                     ))}
                 </Box>
             </Box>
             <Box
-                className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
+                className="hidden justify-between w-full lg:flex lg:w-auto lg:order-1"
                 id="mobile-menu-2"
             >
-                <Box className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
+                <Box className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-12 lg:mt-0">
                     {links.map((link) => (
-                        <Link
-                            key={useId()}
-                            to={link.to}
-                            className="text-secondary hover:text-blue-500"
-                        >
+                        <NavLink key={useId()} to={link.to}>
                             {link.text}
-                        </Link>
+                        </NavLink>
                     ))}
                 </Box>
             </Box>
