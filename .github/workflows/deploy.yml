@@ -28,7 +28,7 @@ jobs:
         run: npm run build
 
       - name: Deploy to Vercel
-        uses: amondnet/vercel-action@latest
+        uses: amondnet/vercel-action@v25.2.0
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }} # Thêm token Vercel vào Secrets
           vercel-args: "--prod" # Triển khai lên môi trường sản xuất
