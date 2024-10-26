@@ -4,6 +4,7 @@ import useModal from "./useModal";
 import useClickOutside from "./useClickOutside";
 import useDocumentTitle from "./useDocumentTitle";
 import useIsVisible from "./useIsVisible";
+import useOffline from "./useOffline";
 
 export {
   useAuth,
@@ -12,4 +13,5 @@ export {
   useClickOutside,
   useDocumentTitle,
   useIsVisible,
+  useOffline,
 };
