@@ -15,29 +15,29 @@ import { ModalCustom } from "@/components/Organisms/";
 
 // Định nghĩa kiểu cho props của LoginFormPresenter
 interface LoginFormPresenterProps {
-    data: {
-        email: string;
-        password: string;
-    };
-    error: string;
-    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    handleCheck: () => void;
-    handleSubmit: () => void;
-    handleForgotPass: () => void;
+  data: {
+    email: string;
+    password: string;
+  };
+  error: string;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleCheck: () => void;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  handleForgotPass: () => void;
 }
 
 // Định nghĩa component LoginFormPresenter
 const LoginFormPresenter: React.FC<LoginFormPresenterProps> = ({
-    data,
-    error,
-    handleChange,
-    handleCheck,
-    handleSubmit,
-    handleForgotPass,
+  data,
+  error,
+  handleChange,
+  handleCheck,
+  handleSubmit,
+  handleForgotPass,
 }) => {
-    // @ts-ignore
-    const [isChecked, setIsChecked] = useState(false);
-    const [togglePassword, setTogglePassword] = useState(false);
+  // @ts-ignore
+  const [isChecked, setIsChecked] = useState(false);
+  const [togglePassword, setTogglePassword] = useState(false);
 
   return (
     <>
@@ -53,7 +53,10 @@ const LoginFormPresenter: React.FC<LoginFormPresenterProps> = ({
           />
           KKorean
         </Link>
-        <Box className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
+        <form
+          className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0"
+          onSubmit={handleSubmit}
+        >
           <Box className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <Heading level={3} className="font-bold">
               Đăng nhập
@@ -66,7 +69,7 @@ const LoginFormPresenter: React.FC<LoginFormPresenterProps> = ({
                   type="text"
                   name="email"
                   id="email"
-                  placeholder="admin@kkorean.com"
+                  placeholder="admin"
                   value={data.email}
                   onChange={handleChange}
                   status={error ? "error" : "default"}
@@ -98,6 +101,7 @@ const LoginFormPresenter: React.FC<LoginFormPresenterProps> = ({
                   label="Ghi nhớ đăng nhập"
                   checked={isChecked}
                   onChange={handleCheck}
+                  value={1}
                 />
                 <Paragraph
                   onClick={handleForgotPass}
@@ -109,7 +113,7 @@ const LoginFormPresenter: React.FC<LoginFormPresenterProps> = ({
               <Button
                 variant={"primary"}
                 className="w-full"
-                onClick={handleSubmit}
+                onClick={() => {}}
                 disabled={!data.email || !data.password}
                 hover={!!data.email && !!data.password}
               >
@@ -125,7 +129,7 @@ const LoginFormPresenter: React.FC<LoginFormPresenterProps> = ({
               </Box>
             </Box>
           </Box>
-        </Box>
+        </form>
       </Box>
       <ModalCustom.UpdatePasswordModalCustom />
     </>

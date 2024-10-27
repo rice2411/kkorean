@@ -10,6 +10,8 @@ interface BaseExam extends IBase.BaseData {
   type?: EXAM_CONSTANTS.EExamType;
   isAudioUploaded?: number;
   isImageUploaded?: number;
+  description: string;
+  completedTime: number;
 }
 
 type ExamRequest = Omit<BaseExam, "id">;
