@@ -13,7 +13,7 @@ const MainHeader: React.FC = () => {
 
   const links = [
     { to: "/", text: "Trang chủ" },
-    { to: "/", text: "Thi thử" },
+    { to: "/exam", text: "Thi thử" },
     { to: "/", text: "Ngữ pháp" },
     { to: "/", text: "Blog" },
     { to: "/", text: "Giới thiệu" },

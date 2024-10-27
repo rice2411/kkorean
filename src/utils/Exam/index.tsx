@@ -2,6 +2,41 @@ import { EXAM_CONSTANTS } from "@/constants";
 import { IExam } from "@/interface";
 
 const ExamUtils = {
+  getListOptions: (
+    enumObject: object,
+    errorValue: number,
+    labelFunction: (value: number) => string | number
+  ): { value: number; label: string }[] => {
+    return Object.values(enumObject)
+      .filter(
+        (value): value is number =>
+          typeof value === "number" && value !== errorValue
+      )
+      .map((value) => ({
+        value,
+        label: labelFunction(value) as string,
+      }));
+  },
+
+  getListOptionsType: () =>
+    ExamUtils.getListOptions(
+      EXAM_CONSTANTS.EExamType,
+      EXAM_CONSTANTS.ERROR,
+      ExamUtils.getExamType
+    ),
+  getListOptionsPlan: () =>
+    ExamUtils.getListOptions(
+      EXAM_CONSTANTS.EExamPlan,
+      EXAM_CONSTANTS.ERROR,
+      ExamUtils.getExamPlan
+    ),
+  getListOptionsLevel: () =>
+    ExamUtils.getListOptions(
+      EXAM_CONSTANTS.EExamLevel,
+      EXAM_CONSTANTS.ERROR,
+      ExamUtils.getExamLevel
+    ),
+
   getExamPlan: (plan: number): string | number => {
     switch (plan) {
       case EXAM_CONSTANTS.EExamPlan.FREE:
@@ -73,17 +108,10 @@ const ExamUtils = {
   },
 
   handleValidateExamInfo: (examInfo: IExam.ExamRequest): boolean => {
-    //  type, level, plan
     if (Object.keys(examInfo).length < 3) return false;
-
-    if (
-      examInfo.type === EXAM_CONSTANTS.ERROR ||
-      examInfo.level === EXAM_CONSTANTS.ERROR ||
-      examInfo.plan === EXAM_CONSTANTS.ERROR
-    )
-      return false;
-
-    return true;
+    return ![examInfo.type, examInfo.level, examInfo.plan].includes(
+      EXAM_CONSTANTS.ERROR
+    );
   },
 };
 
