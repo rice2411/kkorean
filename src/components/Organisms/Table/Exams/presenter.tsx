@@ -1,4 +1,4 @@
-import { Box, Image, Input, Paragraph, Svg } from "@/components/Atoms";
+import { Box, Image, Input, Svg } from "@/components/Atoms";
 import { Badge, Empty } from "@/components/Molecules";
 import Pagination from "@/components/Molecules/Pagination";
 import { FILE_CONSTANTS, PAGINATION_CONSTANTS } from "@/constants";

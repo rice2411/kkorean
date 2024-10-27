@@ -15,29 +15,29 @@ import { ModalCustom } from "@/components/Organisms/";
 
 // Định nghĩa kiểu cho props của LoginFormPresenter
 interface LoginFormPresenterProps {
-    data: {
-        email: string;
-        password: string;
-    };
-    error: string;
-    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    handleCheck: () => void;
-    handleSubmit: () => void;
-    handleForgotPass: () => void;
+  data: {
+    email: string;
+    password: string;
+  };
+  error: string;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleCheck: () => void;
+  handleSubmit: () => void;
+  handleForgotPass: () => void;
 }
 
 // Định nghĩa component LoginFormPresenter
 const LoginFormPresenter: React.FC<LoginFormPresenterProps> = ({
-    data,
-    error,
-    handleChange,
-    handleCheck,
-    handleSubmit,
-    handleForgotPass,
+  data,
+  error,
+  handleChange,
+  handleCheck,
+  handleSubmit,
+  handleForgotPass,
 }) => {
-    // @ts-ignore
-    const [isChecked, setIsChecked] = useState(false);
-    const [togglePassword, setTogglePassword] = useState(false);
+  // @ts-ignore
+  const [isChecked, setIsChecked] = useState(false);
+  const [togglePassword, setTogglePassword] = useState(false);
 
   return (
     <>
@@ -98,6 +98,7 @@ const LoginFormPresenter: React.FC<LoginFormPresenterProps> = ({
                   label="Ghi nhớ đăng nhập"
                   checked={isChecked}
                   onChange={handleCheck}
+                  value="tmep"
                 />
                 <Paragraph
                   onClick={handleForgotPass}

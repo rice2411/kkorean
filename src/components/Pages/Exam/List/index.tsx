@@ -1,4 +1,4 @@
-import { Box, Heading, Image, Input, Paragraph, Svg } from "@/components/Atoms";
+import { Box, Heading, Image, Input, Paragraph } from "@/components/Atoms";
 import { Badge, ProgressBar } from "@/components/Molecules";
 import { DropdownCheckbox } from "@/components/Organisms/Dropdown";
 import { FileHelpers } from "@/helpers";
