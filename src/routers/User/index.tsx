@@ -9,6 +9,7 @@ const MainRouter: RouteObject = {
       {
           path: "profile",
           element: <User.Profile />,
+          loader: User.UsersProfilePageLoader
       }
   ]
 };

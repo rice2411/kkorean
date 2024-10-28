@@ -23,10 +23,10 @@ const MainSidebar: React.FC<SidebarProps> = ({
             key={index}
             className={`flex items-center gap-2 text-white hover:bg-gray-300 rounded-lg px-3 py-2 ${
               itemClass || ""
-            } ${location.pathname === item.href ? "bg-gray-300" : ""}`}
+            } ${location.pathname === item.href ? "bg-gray-300 " : ""}`}
           >
             {item?.icon && <>{item?.icon}</>}
-            <Link to={item?.href} className="flex-grow">
+            <Link to={item?.href} className={`flex-grow ${location.pathname === item.href ? "!text-neutral-900 font-semibold" : ""}`}>
               {item?.text}
             </Link>
           </li>
