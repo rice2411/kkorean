@@ -1,3 +1,4 @@
 import StatictisCard from "./Statictis";
+import ExamCard from "./Exam";
 
-export { StatictisCard };
+export { StatictisCard, ExamCard };
