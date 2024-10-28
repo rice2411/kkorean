@@ -1,3 +1,3 @@
 import ExamListPage from "./List";
-
-export { ExamListPage };
+import ExamDoingPage from "./Doing";
+export { ExamListPage, ExamDoingPage };

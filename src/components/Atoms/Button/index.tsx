@@ -49,7 +49,7 @@ const Button: React.FC<ButtonProps> = ({
         "flex items-center justify-center font-semibold focus:outline-none transition duration-200";
 
     const variantClass: Record<Variant, string> = {
-        primary: "bg-primary-500 text-white",
+        primary: "bg-primary-400 text-white",
         "primary-outline": "border border-primary-500 text-primary-500",
         secondary: "bg-secondary text-white",
         "secondary-outline": "border border-secondary text-secondary",
@@ -62,7 +62,7 @@ const Button: React.FC<ButtonProps> = ({
     };
 
     const hoverClass: Record<Variant, string> = {
-        primary: "hover:bg-primary-400",
+        primary: "hover:bg-primary-500",
         "primary-outline": "hover:bg-primary-400 hover:text-white",
         secondary: "hover:bg-secondary-dark",
         "secondary-outline": "hover:bg-secondary hover:text-white",

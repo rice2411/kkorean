@@ -1,3 +1,4 @@
 import ExamList from "./List";
+import ExamDoing from "./Doing";
 
-export { ExamList };
+export { ExamList, ExamDoing };
