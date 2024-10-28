@@ -8,11 +8,8 @@ import { useRevalidator } from "react-router-dom";
 import TableGroupsPresenter from "./presenter";
 import { IContext, IGroup } from "@/interface";
 
-interface Props {
-  groups: IGroup.BaseGroup[];
-}
 
-const TableGroupsContainer: React.FC<Props> = ({ groups }) => {
+const TableGroupsContainer = () => {
   const revalidator = useRevalidator();
   const { showLoading, hideLoading } =
     useLoading() as IContext.ILoadingContext.UseLoadingReturnType;
@@ -74,7 +71,6 @@ const TableGroupsContainer: React.FC<Props> = ({ groups }) => {
 
   return (
     <TableGroupsPresenter
-      groups={groups}
       handleOpenModalModifier={handleOpenModalModifier}
       handleDeleteGroup={handleDeleteGroup}
     />
