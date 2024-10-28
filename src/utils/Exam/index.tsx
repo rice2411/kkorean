@@ -59,6 +59,16 @@ const ExamUtils = {
         }
     },
 
+    getPlanColor: (plan: number) => {
+        switch (plan) {
+            case EXAM_CONSTANTS.EExamPlan.FREE:
+                return "green";
+            case EXAM_CONSTANTS.EExamPlan.PAID:
+            default:
+                return "blue";
+        }
+    },
+
     getExamPlan: (plan: number): string | number => {
         switch (plan) {
             case EXAM_CONSTANTS.EExamPlan.FREE:
@@ -84,9 +94,9 @@ const ExamUtils = {
     getExamType: (type: number): string | number => {
         switch (type) {
             case EXAM_CONSTANTS.EExamType.LISTENING:
-                return "Listening";
+                return "Nghe";
             case EXAM_CONSTANTS.EExamType.READING:
-                return "Reading";
+                return "Đọc";
             default:
                 return EXAM_CONSTANTS.ERROR;
         }

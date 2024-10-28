@@ -8,13 +8,19 @@ import { ExamUtils } from "@/utils";
 
 interface Props {
     exam: IExam.BaseExam;
+    onClick: (data: IExam.BaseExam) => void;
 }
 
-const ExamCard: React.FC<Props> = ({ exam }) => {
+const ExamCard: React.FC<Props> = ({ exam, onClick }) => {
     const { user } =
         useAuth() as unknown as IContext.IAuthContenxt.UseAuthReturnType;
     return (
-        <Box className="grid grid-cols-12 gap-4 p-3 border-b border-stone-300 hover:bg-gray-100 cursor-pointer">
+        <Box
+            onClick={() => {
+                onClick(exam);
+            }}
+            className="grid grid-cols-12 gap-4 p-3 border-b border-stone-300 hover:bg-gray-100 cursor-pointer"
+        >
             <Box className="col-span-1 flex items-center justify-center">
                 {JSON.stringify(user?.completedExams)?.includes(exam.id) && (
                     <Image
