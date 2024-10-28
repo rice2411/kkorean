@@ -11,11 +11,9 @@ import TableExamsPresenter from "./presenter";
 import { FilesAPI } from "@/apis/";
 import { IContext, IExam } from "@/interface";
 import { AUDIO_KEY } from "@/constants/exam";
-interface Props {
-  exams: IExam.BaseExam[];
-}
 
-const TableExamsContainer: React.FC<Props> = ({ exams }) => {
+
+const TableExamsContainer= () => {
   // Custom Hooks
   const { showLoading, hideLoading, setLoadingText } =
     useLoading() as unknown as IContext.ILoadingContext.UseLoadingReturnType;
@@ -364,7 +362,6 @@ const TableExamsContainer: React.FC<Props> = ({ exams }) => {
   return (
     <TableExamsPresenter
       // data
-      exams={exams}
       exam={exam}
       // upload file properties
       uploadRef={uploadRef}

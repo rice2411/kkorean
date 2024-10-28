@@ -8,17 +8,27 @@ import {
 import { FileHelpers } from "@/helpers";
 import { useState } from "react";
 import { Empty } from "@/components/Molecules";
-import { PresenterProps } from "./props";
 import { ModalCustom } from "../..";
+import { useLoaderData } from "react-router-dom";
+import { IGroup, IUser } from "@/interface";
+
+interface PresenterProps {
+    groups: IGroup.BaseGroup[];
+    handleConfirmUpdateAccountStatus: (user: IUser.DetailedUser) => void;
+    handleImportantConfirm: (user: IUser.DetailedUser) => void;
+    handleOpenModalUser: (type: number, user?: IUser.DetailedUser) => void;
+    handleConfirmResetPassword: (user: IUser.DetailedUser) => void;
+}
 
 const TableUsersPresenter: React.FC<PresenterProps> = ({
-    users,
     groups,
     handleConfirmUpdateAccountStatus,
     handleImportantConfirm,
     handleOpenModalUser,
     handleConfirmResetPassword,
 }) => {
+    const users = useLoaderData() as unknown as IUser.DetailedUser[];
+
     const [searchContent, setSearchContent] = useState<string>("");
     const [page, setPage] = useState<number>(1);
 

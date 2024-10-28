@@ -7,9 +7,8 @@ import { useRevalidator } from "react-router-dom";
 import { useLoading } from "@/hooks";
 import TableUsersPresenter from "./presenter";
 import { IUser, IGroup, IContext } from "@/interface";
-import { ContainerProps } from "./props";
 
-const TableUsersContainer: React.FC<ContainerProps> = ({ users }) => {
+const TableUsersContainer = () => {
     const revalidator = useRevalidator();
     const { showLoading, hideLoading } =
         useLoading() as unknown as IContext.ILoadingContext.UseLoadingReturnType;
@@ -188,7 +187,6 @@ const TableUsersContainer: React.FC<ContainerProps> = ({ users }) => {
 
     return (
         <TableUsersPresenter
-            users={users}
             groups={groups}
             handleConfirmUpdateAccountStatus={handleConfirmUpdateAccountStatus}
             handleImportantConfirm={handleImportantConfirm}

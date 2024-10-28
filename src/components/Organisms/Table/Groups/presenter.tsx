@@ -5,13 +5,20 @@ import { PAGINATION_CONSTANTS, MODAL_CONSTANTS } from "@/constants";
 import { ModalCustom } from "@/components/Organisms/";
 import { Empty } from "@/components/Molecules";
 import { FileHelpers } from "@/helpers";
-import { PresenterProps } from "./props";
+import { IGroup } from "@/interface";
+import { useLoaderData } from "react-router-dom";
+
+interface PresenterProps {
+    handleOpenModalModifier: (type: number, data?: IGroup.BaseGroup) => void;
+    handleDeleteGroup: (group: IGroup.BaseGroup) => void;
+}
 
 const TableGroupsPresenter: React.FC<PresenterProps> = ({
-    groups,
     handleOpenModalModifier,
     handleDeleteGroup,
 }) => {
+    const groups = useLoaderData() as IGroup.BaseGroup[];
+
     const [searchContent, setSearchContent] = useState<string>("");
     const [page, setPage] = useState<number>(1);
 
