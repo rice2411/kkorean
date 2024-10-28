@@ -1,8 +1,7 @@
-import { IExam } from "@/interface";
 import TableExamsContainer from "./container";
 
 const TableExams = () => {
-  return <TableExamsContainer  />;
+    return <TableExamsContainer />;
 };
 
 export default TableExams;
