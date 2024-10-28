@@ -37,6 +37,27 @@ const ExamUtils = {
       ExamUtils.getExamLevel
     ),
 
+  getLevelColor: (level: number) => {
+    switch (level) {
+      case EXAM_CONSTANTS.EExamLevel.EASY:
+        return "green";
+      case EXAM_CONSTANTS.EExamLevel.MEDIUM:
+        return "primary";
+      case EXAM_CONSTANTS.EExamLevel.HARD:
+        return "red";
+    }
+  },
+
+  getTypeColor: (type: number) => {
+    switch (type) {
+      case EXAM_CONSTANTS.EExamType.LISTENING:
+        return "red";
+      case EXAM_CONSTANTS.EExamType.READING:
+      default:
+        return "primary";
+    }
+  },
+
   getExamPlan: (plan: number): string | number => {
     switch (plan) {
       case EXAM_CONSTANTS.EExamPlan.FREE:

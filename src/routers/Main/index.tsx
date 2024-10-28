@@ -1,5 +1,6 @@
 import { MainLayout } from "@/layouts";
 import { Exam, Landing } from "@/pages";
+import { ExamListPageLoader } from "@/pages/Exam/List/loader";
 import { RouteObject } from "react-router-dom";
 
 const MainRouter: RouteObject = {
@@ -13,6 +14,7 @@ const MainRouter: RouteObject = {
     {
       path: "/exam",
       element: <Exam.ExamList />,
+      loader: ExamListPageLoader,
     },
   ],
 };
