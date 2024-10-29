@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState, ReactNode } from "react";
-import AuthUtils from "@/utils/Auth";
+import UserUtils from "@/utils/User";
 import { useLocation, useNavigate } from "react-router-dom";
 import { CONFIG_CONSTANTS } from "@/constants/";
 import { IContext, IUser } from "@/interface";
@@ -24,7 +24,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   const handleLogin = async (user: IUser.BaseUser) => {
     setUser(user);
-    AuthUtils.login(user);
+    UserUtils.setUser(user);
     if (!user?.isFirstTimeLogin) navigate("/");
   };
 
@@ -32,7 +32,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     showLoading();
     setUser(null);
     navigate("/login");
-    AuthUtils.logout();
+    UserUtils.removeUser();
     await FirebaseService.logout();
     hideLoading();
   };

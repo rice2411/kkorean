@@ -4,5 +4,15 @@
 @tailwind utilities;
 
 body {
-    font-family: "Roboto", sans-serif;
+  font-family: "Roboto", sans-serif;
+}
+
+/* Hide scrollbar but keep scroll functionality */
+.scrollbar-hidden {
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+  scrollbar-width: none; /* For Firefox */
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
 }

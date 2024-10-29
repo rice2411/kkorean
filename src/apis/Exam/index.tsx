@@ -19,6 +19,20 @@ const ExamsAPI = {
       return [];
     }
   },
+  get: async (
+    id: string
+  ): Promise<IAPI.ApiResponse<IExam.BaseExam> | unknown> => {
+    try {
+      const response = (await FirebaseService.getDocumentById<IExam.BaseExam>(
+        key,
+        id
+      )) as IAPI.ApiResponse<IExam.BaseExam>;
+      return response.data || null;
+    } catch (err) {
+      console.log(err);
+      return [];
+    }
+  },
 
   create: async (
     data: IExam.ExamRequest

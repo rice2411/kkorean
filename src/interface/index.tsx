@@ -7,15 +7,17 @@ import * as IGroup from "./Group";
 import * as INotification from "./Notification";
 import * as IBase from "./Base";
 import * as IContext from "./Context";
+import * as IResult from "./Result";
 
 export type {
-    IAPI,
-    IFile,
-    IFirebase,
-    IUser,
-    IExam,
-    IGroup,
-    INotification,
-    IBase,
-    IContext,
+  IAPI,
+  IFile,
+  IFirebase,
+  IUser,
+  IExam,
+  IGroup,
+  INotification,
+  IBase,
+  IContext,
+  IResult,
 };

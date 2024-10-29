@@ -12,7 +12,10 @@ interface DetailedUser extends BaseUser {
   group: string;
   isDeleted?: number;
   isDisabled?: number;
-  completedExams: string;
+  completedExams: {
+    examId: string;
+    resultId: string;
+  }[];
 }
 
 interface UserRequest {
