@@ -31,7 +31,7 @@ const BlogSection = React.lazy(
   () => import("@/components/Organisms/Section/Blog")
 );
 
-function HomePage() {
+function LandingPage() {
   const sections = [
     { component: <FeatureSection />, key: "feature" },
     { component: <CTASection />, key: "cta" },
@@ -74,4 +74,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default LandingPage;

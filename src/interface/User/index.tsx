@@ -10,9 +10,9 @@ interface BaseUser extends IBase.BaseData {
 
 interface DetailedUser extends BaseUser {
   group: string;
-  isDeleted: number;
-  isDisabled: number;
-  isFirstTimeLogin: boolean;
+  isDeleted?: number;
+  isDisabled?: number;
+  completedExams: string;
 }
 
 interface UserRequest {

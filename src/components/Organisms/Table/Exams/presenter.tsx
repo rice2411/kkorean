@@ -1,16 +1,28 @@
-import { Box, Image, Input, Paragraph, Svg } from "@/components/Atoms";
-import { Empty } from "@/components/Molecules";
+import { Box, Image, Input, Svg } from "@/components/Atoms";
+import { Badge, Empty } from "@/components/Molecules";
 import Pagination from "@/components/Molecules/Pagination";
 import { FILE_CONSTANTS, PAGINATION_CONSTANTS } from "@/constants";
 import { EXAM_CONSTANTS } from "@/constants";
 import { ExamUtils } from "@/utils";
-import { useState } from "react";
+import { RefObject, useState } from "react";
 import { FileHelpers } from "@/helpers";
-import { PresenterProps } from "./props";
 import { ModalCustom } from "@/components/Organisms";
+import { IExam } from "@/interface";
+import { useLoaderData } from "react-router-dom";
+
+interface PresenterProps {
+    exam: IExam.BaseExam | null;
+    uploadRef: RefObject<HTMLInputElement>;
+    handleOpenWindowExplorer: (
+        exam: IExam.BaseExam | null,
+        type: string
+    ) => void;
+    handleFileChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    handleOpenModalExamPrevier: (exam: IExam.BaseExam | null) => void;
+    handleDeleteExam: (data: IExam.BaseExam) => void;
+}
 
 const TableExamsPresenter: React.FC<PresenterProps> = ({
-    exams,
     exam,
     uploadRef,
     handleFileChange,
@@ -18,6 +30,8 @@ const TableExamsPresenter: React.FC<PresenterProps> = ({
     handleOpenModalExamPrevier,
     handleDeleteExam,
 }) => {
+    const exams = useLoaderData() as IExam.BaseExam[];
+
     const [page, setPage] = useState(1);
     const [searchContent, setSearchContent] = useState("");
     return (
@@ -148,83 +162,77 @@ const TableExamsPresenter: React.FC<PresenterProps> = ({
                                                 </Box>
                                             </td>
                                             <td className="px-4 py-3">
-                                                <Paragraph
-                                                    className={`${
-                                                        exam.type ===
-                                                        EXAM_CONSTANTS.EExamType
-                                                            .LISTENING
-                                                            ? " bg-red-100 text-red-800"
-                                                            : "bg-yellow-100 text-yellow-800"
-                                                    } text-xs font-medium px-2 py-0.5 rounded w-max`}
-                                                >
-                                                    {ExamUtils.getExamType(
+                                                <Badge
+                                                    text={
+                                                        ExamUtils.getExamType(
+                                                            exam.type || 0
+                                                        ) as string
+                                                    }
+                                                    color={ExamUtils.getTypeColor(
                                                         exam.type || 0
                                                     )}
-                                                </Paragraph>
+                                                />
                                             </td>
 
                                             <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap ">
-                                                <Paragraph
-                                                    className={`${
+                                                <Badge
+                                                    text={
+                                                        ExamUtils.getExamPlan(
+                                                            exam.plan || 0
+                                                        ) as string
+                                                    }
+                                                    color={
                                                         exam.plan ===
                                                         EXAM_CONSTANTS.EExamPlan
                                                             .FREE
-                                                            ? " bg-green-100 text-green-800"
-                                                            : "bg-primary-100 text-primary-800"
-                                                    } text-xs font-medium px-2 py-0.5 rounded w-max`}
-                                                >
-                                                    {ExamUtils.getExamPlan(
-                                                        exam.plan || 0
-                                                    )}
-                                                </Paragraph>
+                                                            ? "green"
+                                                            : "primary"
+                                                    }
+                                                />
                                             </td>
                                             <td className="px-4 py-3">
-                                                <Paragraph
-                                                    className={`${
+                                                <Badge
+                                                    text={
+                                                        exam.isImageUploaded
+                                                            ? "Đã cập nhật hình ảnh"
+                                                            : "Chưa cập nhật hình ảnh"
+                                                    }
+                                                    color={
                                                         !exam.isImageUploaded
-                                                            ? " bg-purple-100 text-purple-800"
-                                                            : "bg-cyan-100 text-cyan-800"
-                                                    } text-xs font-medium px-2 py-0.5 rounded w-max`}
-                                                >
-                                                    {exam.isImageUploaded
-                                                        ? "Đã cập nhật hình ảnh"
-                                                        : "Chưa cập nhật hình ảnh"}
-                                                </Paragraph>
+                                                            ? "purple"
+                                                            : "cyan"
+                                                    }
+                                                />
+
                                                 {exam.type ===
                                                     EXAM_CONSTANTS.EExamType
                                                         .LISTENING && (
-                                                    <Paragraph
-                                                        className={`${
+                                                    <Badge
+                                                        text={
+                                                            exam.isAudioUploaded
+                                                                ? "Đã cập nhật file nghe"
+                                                                : "Chưa cập nhật file nghe"
+                                                        }
+                                                        color={
                                                             !exam.isAudioUploaded
-                                                                ? " bg-purple-100 text-purple-800"
-                                                                : "bg-cyan-100 text-cyan-800"
-                                                        } text-xs font-medium px-2 py-0.5 rounded w-max mt-2`}
-                                                    >
-                                                        {exam.isAudioUploaded
-                                                            ? "Đã cập nhật file nghe"
-                                                            : "Chưa cập nhật file nghe"}
-                                                    </Paragraph>
+                                                                ? "purple"
+                                                                : "cyan"
+                                                        }
+                                                    />
                                                 )}
                                             </td>
                                             <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap ">
                                                 <Box className="flex items-center">
-                                                    <Box
-                                                        className={`${
-                                                            exam.level ===
-                                                            EXAM_CONSTANTS
-                                                                .EExamLevel.EASY
-                                                                ? "bg-green-500"
-                                                                : exam.level ===
-                                                                  EXAM_CONSTANTS
-                                                                      .EExamLevel
-                                                                      .MEDIUM
-                                                                ? "bg-yellow-500"
-                                                                : "bg-red-500"
-                                                        } h-4 w-4 rounded-full inline-block mr-2 `}
+                                                    <Badge
+                                                        text={
+                                                            ExamUtils.getExamLevel(
+                                                                exam.level || 0
+                                                            ) as string
+                                                        }
+                                                        color={ExamUtils.getLevelColor(
+                                                            exam.level || 0
+                                                        )}
                                                     />
-                                                    {ExamUtils.getExamLevel(
-                                                        exam.level || 0
-                                                    )}
                                                 </Box>
                                             </td>
                                             <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap ">

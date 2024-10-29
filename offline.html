@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KKorean | Offline</title>
+    <link rel="icon" type="image/svg+xml" href="/svg/logo.svg" />
+    <style>
+      body {
+        background-color: #f9fafb; /* bg-gray-50 */
+        color: #111827; /* text-gray-900 */
+        font-family: Arial, sans-serif;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .dark body {
+        background-color: #1f2937; /* dark:bg-gray-900 */
+        color: #ffffff; /* dark:text-white */
+      }
+
+      .container {
+        text-align: center;
+        max-width: 800px; /* md:max-w-lg and xl:max-w-4xl */
+        margin: 0 auto;
+        padding: 0 24px; /* px-6 */
+      }
+
+      h1 {
+        margin-bottom: 1rem; /* mb-3 */
+        font-size: 2rem; /* text-2xl */
+        font-weight: bold;
+        line-height: 1.5; /* leading-tight */
+      }
+
+      p {
+        margin-bottom: 1.25rem; /* mb-5 */
+        font-size: 1rem; /* text-base */
+        color: #6b7280; /* text-gray-500 */
+      }
+
+      .button {
+        background-color: #fbbf24; /* bg-yellow-400 */
+        color: white;
+        padding: 0.625rem 1.25rem; /* px-5 py-2.5 */
+        border: none;
+        border-radius: 0.375rem; /* rounded-lg */
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .button:hover {
+        background-color: #f59e0b; /* hover:bg-yellow-500 */
+      }
+
+      .button:focus {
+        outline: none;
+        box-shadow: 0 0 0 4px rgba(250, 204, 21, 0.5); /* focus:ring-4 focus:ring-yellow-300 */
+      }
+
+      img {
+        max-width: 60%; /* Responsive */
+        height: auto;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <div class="container">
+        <div>
+          <img
+            src="/svg/500.svg"
+            alt="Illustration of an astronaut indicating offline status"
+          />
+        </div>
+        <div>
+          <h1>Bạn đang ngoại tuyến</h1>
+          <p>Vui lòng kiểm tra lại đường truyền</p>
+          <div>
+            <button class="button" onclick="location.replace('/')">
+              Thử lại
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

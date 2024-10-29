@@ -1,10 +1,10 @@
 interface BaseData {
-    id: string;
+  id: string;
 }
 
 interface BaseOptions {
-    label: string;
-    value: string;
+  label: string;
+  value: string | number;
 }
 
 export type { BaseData, BaseOptions };

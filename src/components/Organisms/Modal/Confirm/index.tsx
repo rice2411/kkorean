@@ -22,11 +22,11 @@ const ConfirmModal = () => {
     return (
         <Box
             id="modal-success"
-            className="absolute inset-0 bg-gray-300 bg-opacity-50 h-full flex items-center justify-center z-50 overflow-y-auto"
+            className="fixed inset-0 bg-gray-300 bg-opacity-50 h-full z-50 "
         >
-            <Box className="relative p-4 w-full max-w-2xl h-full md:h-auto">
+            <Box className=" p-4 w-full max-w-2xl h-full md:h-auto  mx-auto mt-14">
                 {/* Modal Content */}
-                <Box className="relative p-4 bg-white rounded-lg shadow sm:p-5">
+                <Box className=" p-4 bg-white rounded-lg shadow sm:p-5">
                     {/* Modal header */}
                     <Box
                         onClick={handlelose}

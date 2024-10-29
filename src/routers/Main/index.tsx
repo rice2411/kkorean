@@ -1,5 +1,6 @@
 import { MainLayout } from "@/layouts";
-import { Home } from "@/pages";
+import { Exam, Landing } from "@/pages";
+import { ExamListPageLoader } from "@/pages/Exam/List/loader";
 import { RouteObject } from "react-router-dom";
 
 const MainRouter: RouteObject = {
@@ -8,8 +9,12 @@ const MainRouter: RouteObject = {
     children: [
         {
             path: "/",
-            element: <Home />,
-            // loader: homeLoader,
+            element: <Landing />,
+        },
+        {
+            path: "/exam",
+            element: <Exam.ExamList />,
+            loader: ExamListPageLoader,
         }
     ],
 };

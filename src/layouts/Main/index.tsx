@@ -1,19 +1,16 @@
-import { AuthProvider } from "@/contexts/Auth";
-import { LoadingProvider } from "@/contexts/LoadingOverlay";
 import { MainTemplate } from "@/components/Templates";
 import { useDocumentTitle } from "@/hooks";
+import AppProvider from "../provider";
 
 function MainLayout() {
-    useDocumentTitle("Trang chủ");
-    return (
-        <>
-            <LoadingProvider>
-                <AuthProvider>
-                    <MainTemplate />
-                </AuthProvider>
-            </LoadingProvider>
-        </>
-    );
+  useDocumentTitle("Trang chủ");
+  return (
+    <>
+      <AppProvider>
+        <MainTemplate />
+      </AppProvider>
+    </>
+  );
 }
 
 export default MainLayout;

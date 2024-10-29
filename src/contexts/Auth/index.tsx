@@ -16,17 +16,17 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const navigate = useNavigate();
-  const { loading, showLoading, hideLoading } =
+  const { showLoading, hideLoading } =
     useLoading() as unknown as IContext.ILoadingContext.UseLoadingReturnType;
   const { pathname } = useLocation();
   const [user, setUser] = useState<IUser.BaseUser | null>(null);
   const [isInitializing, setIsInitializing] = useState(true); // Trạng thái để quản lý việc khởi tạo
 
-    const handleLogin = async (user: IUser.BaseUser) => {
-        setUser(user);
-        AuthUtils.login(user);
-        if(!user?.isFirstTimeLogin) navigate("/");
-    };
+  const handleLogin = async (user: IUser.BaseUser) => {
+    setUser(user);
+    AuthUtils.login(user);
+    if (!user?.isFirstTimeLogin) navigate("/");
+  };
 
   const handleLogout = async () => {
     showLoading();
@@ -47,20 +47,17 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (!loading) {
-      if (!isInitializing && !user) {
-        navigate("/login");
-      }
+    if (!pathname.includes("dashboard")) return;
 
-      if (
-        user &&
-        user?.role !== CONFIG_CONSTANTS.EUserRole.ADMIN &&
-        pathname.includes("dashboard")
-      ) {
-        navigate("/");
-      }
+    if (
+      !isInitializing &&
+      (!user || user.role !== CONFIG_CONSTANTS.EUserRole.ADMIN)
+    ) {
+      navigate("/login");
     }
-  }, [pathname, user, isInitializing]);
+  }, [pathname]);
+
+  if (isInitializing) return null;
 
   return (
     <AuthContext.Provider value={{ user, handleLogin, handleLogout }}>

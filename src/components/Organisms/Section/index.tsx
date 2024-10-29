@@ -8,6 +8,7 @@ import PricingSection from "./Pricing";
 import StatictisSection from "./Statictis";
 import TestimonialSection from "./Testimonials";
 import * as UserSection from "./User";
+import * as Progress from "./Progress";
 
 export {
     AboutUSSection,
@@ -19,5 +20,6 @@ export {
     PricingSection,
     StatictisSection,
     TestimonialSection,
-    UserSection
+    UserSection,
+    Progress,
 };

@@ -5,6 +5,8 @@ import {
   doc,
   getDoc,
   getDocs,
+  orderBy,
+  query,
   setDoc,
   updateDoc,
 } from "firebase/firestore";
@@ -16,14 +18,24 @@ import { ApiUtils } from "@/utils";
 
 const FireStoreService = {
   getDocuments: async <T = IAPI.ResponseData,>(
-    documentName: string
+    documentName: string,
+    orderByFields: { field: string; direction: "asc" | "desc" }[] = []
   ): Promise<IAPI.ApiResponse<T[]> | unknown> => {
     try {
-      const querySnapshot = await getDocs(collection(db, documentName));
+      const collectionRef = collection(db, documentName);
+
+      // Thêm `orderBy` nhiều trường vào truy vấn
+      let queryRef: any = collectionRef;
+      orderByFields.forEach(({ field, direction }) => {
+        queryRef = query(queryRef, orderBy(field, direction));
+      });
+
+      const querySnapshot = await getDocs(queryRef);
       const docsData = querySnapshot.docs.map((doc) => ({
         id: doc.id,
-        ...doc.data(),
+        ...(doc.data() as T),
       })) as T[];
+
       return ApiUtils.Response.success(docsData);
     } catch (err) {
       return ApiUtils.Response.error(err);
