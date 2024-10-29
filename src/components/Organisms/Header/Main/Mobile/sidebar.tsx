@@ -17,7 +17,7 @@ const SidebarMobile: React.FC<IProps> = ({ links }) => {
 
     return (
         <>
-            {/* Button to toggle sidebar */}
+            {/* Nút mở Sidebar */}
             <Box
                 className="cursor-pointer inline-flex items-center p-2 mr-2 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2"
                 onClick={toggleMobileMenu}
@@ -32,18 +32,18 @@ const SidebarMobile: React.FC<IProps> = ({ links }) => {
             {/* Overlay */}
             {isOpenSidebarMobile && (
                 <Box
-                    className="fixed inset-0 bg-black bg-opacity-50 z-10 lg:hidden"
-                    onClick={toggleMobileMenu}
+                    className="fixed inset-0 bg-black bg-opacity-50 z-20 lg:hidden"
+                    onClick={toggleMobileMenu} // Đóng sidebar khi click vào overlay
                 />
             )}
 
             {/* Sidebar */}
             <Box
-                className={`fixed top-0 left-0 max-w-[260px] w-full h-full z-20 bg-white border-r transform transition-transform duration-300 ease-in-out ${
+                className={`fixed top-0 left-0 max-w-[260px] w-full h-full z-30 bg-white border-r transform transition-transform duration-300 ease-in-out ${
                     isOpenSidebarMobile ? "translate-x-0" : "-translate-x-full"
                 }`}
-            > 
-                <Box className="flex items-center p-5">
+            >
+                <Box className="flex items-center p-5 border-b">
                     <Image
                         src={FileHelpers.getLocalFile("logo", "svg")}
                         className="mr-3 h-6 sm:h-9"

@@ -25,8 +25,8 @@ const MainHeader: React.FC<IProps> = ({sidebarItems = []}) => {
   ];
 
   return (
-    <header className="sticky top-0 z-10 w-full backdrop-blur-3xl ">
-      <nav className="bg-transparent border-b border-stone-300 px-4 lg:px-6 py-2.5">
+    <header className="sticky top-0 z-10 ">
+      <nav className="bg-white border-b border-stone-300 px-4 lg:px-6 py-2.5">
         <Box className="flex flex-wrap justify-between items-center mx-auto max-w-screen-2xl">
           <Box className="flex items-center">
             {!!sidebarItems?.length && <SidebarMobile links={sidebarItems} />}
