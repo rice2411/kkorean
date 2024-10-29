@@ -10,15 +10,15 @@ interface IProps {
 const MainHaveSidebarTemplate: React.FC<IProps> = ({ listSidebar }) => {
   return (
     <>
-      <Header.MainHeader />
+      <Header.MainHeader sidebarItems={listSidebar} />
       <Box className="flex relative min-h-screen">
         <Box>
           <Sidebar.MainSidebar
             list={listSidebar}
-            blockClass={"max-w-[260px] w-full fixed z-10 h-full border-r"}
+            blockClass={"max-w-[260px] w-full fixed z-10 h-full border-r lg:block hidden"}
           />
         </Box>
-        <Box className="flex flex-col w-full ml-[260px]">
+        <Box className="flex flex-col w-full lg:ml-[260px]">
           <Box className="flex-grow min-h-screen">
             <Outlet />
           </Box>
