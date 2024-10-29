@@ -8,9 +8,9 @@ interface Props {
 const ProgressBar: React.FC<Props> = ({ percentage, color }) => {
   return (
     <Box className="flex items-center">
-      <Box className=" w-full bg-gray-200 rounded-full h-2.5">
+      <Box className="w-full bg-gray-200 rounded-full h-2.5">
         <Box
-          className={`bg-blue-600 h-2.5 rounded-full ${color}`}
+          className={`bg-blue-600 h-2.5 rounded-full ${color} transition-all duration-300`}
           style={{ width: percentage + "%" }}
         ></Box>
       </Box>

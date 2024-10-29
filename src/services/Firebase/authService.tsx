@@ -13,7 +13,7 @@ import { auth, route } from "./config";
 import { FirebaseService } from "..";
 import { IAPI, IFirebase, IUser } from "@/interface";
 import { ApiUtils } from "@/utils";
-import AuthUtils from "@/utils/Auth";
+import UserUtils from "@/utils/User";
 
 // Define the AuthService
 const AuthService = {
@@ -62,7 +62,7 @@ const AuthService = {
         role: userDoc?.data?.role || CONFIG_CONSTANTS.EUserRole.USER,
         fullName: userDoc?.data?.fullName || "",
         isFirstTimeLogin: userDoc?.data?.isFirstTimeLogin || false,
-        completedExams: userDoc?.data?.completedExams || "[]",
+        completedExams: userDoc?.data?.completedExams || [],
         group: "",
       };
       return ApiUtils.Response.success(result, "Đăng nhập thành công");
@@ -159,7 +159,7 @@ const AuthService = {
   onAuthStateChanged: (setUser: (user: IUser.BaseUser | null) => void) => {
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
       if (firebaseUser) {
-        const baseUser = AuthUtils.getUser();
+        const baseUser = UserUtils.getUser();
         if (baseUser) {
           setUser(baseUser);
         } else {
