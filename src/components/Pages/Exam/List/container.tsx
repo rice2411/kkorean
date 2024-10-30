@@ -6,6 +6,8 @@ import ExamListPagePresenter from "./presenter";
 import { useAuth, useLoading, useModal } from "@/hooks";
 import { useNavigate } from "react-router-dom";
 import ResultsAPI from "@/apis/Result";
+import { EExamPlan, EExamType } from "@/constants/exam";
+import { ToastUtils } from "@/utils";
 
 function ExamListPageContainer() {
   const navigate = useNavigate();
@@ -57,6 +59,10 @@ function ExamListPageContainer() {
   };
 
   const handleStartExam = async (exam: IExam.BaseExam) => {
+    if (!user && exam.plan === EExamPlan.PAID) {
+      ToastUtils.warning("Đề này chỉ dành cho học viên");
+      return;
+    }
     if (!exam.completedUser.includes(user.id)) {
       handleModiferModalConfirm({
         isOpen: true,
@@ -80,6 +86,10 @@ function ExamListPageContainer() {
 
   useEffect(() => {
     const filtered = exams.filter((exam) => {
+      const isValidExam =
+        exam.type === EExamType.LISTENING
+          ? exam.isAudioUploaded && exam.isImageUploaded
+          : exam.isImageUploaded;
       const matchesSearch = exam.name.toLowerCase().includes(searchContent);
       const matchesType = filterOptions.find((option) => option.id === "type")
         ?.data.length
@@ -100,7 +110,13 @@ function ExamListPageContainer() {
             .data.includes(exam.level.toString())
         : true;
 
-      return matchesSearch && matchesType && matchesPlan && matchesLevel;
+      return (
+        matchesSearch &&
+        matchesType &&
+        matchesPlan &&
+        matchesLevel &&
+        isValidExam
+      );
     });
     setFilteredExams(filtered);
   }, [searchContent, filterOptions, exams]);
