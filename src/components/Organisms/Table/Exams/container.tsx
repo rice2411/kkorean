@@ -12,8 +12,7 @@ import { FilesAPI } from "@/apis/";
 import { IContext, IExam } from "@/interface";
 import { AUDIO_KEY } from "@/constants/exam";
 
-
-const TableExamsContainer= () => {
+const TableExamsContainer = () => {
   // Custom Hooks
   const { showLoading, hideLoading, setLoadingText } =
     useLoading() as unknown as IContext.ILoadingContext.UseLoadingReturnType;
@@ -172,7 +171,7 @@ const TableExamsContainer= () => {
       isImageUploaded: 0,
       plan: EXAM_CONSTANTS.EExamPlan.FREE,
       description: "",
-      completedTime: 0,
+      completedUser: [],
     };
 
     const fileExtension = file?.name.split(".").pop()?.toLowerCase();
