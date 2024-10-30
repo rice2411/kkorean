@@ -58,7 +58,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <>
-        <Box className="relative w-full -z-10">
+        <Box className="relative w-full ">
           {icon && (
             <span
               className={`absolute inset-y-0 ${
