@@ -15,6 +15,7 @@ interface DetailedUser extends BaseUser {
   completedExams: {
     examId: string;
     resultId: string;
+    score: number;
   }[];
 }
 

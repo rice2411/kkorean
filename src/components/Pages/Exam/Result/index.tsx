@@ -4,7 +4,6 @@ import { EExamMode } from "@/constants/exam";
 import { ExamTemplate } from "@/components/Templates";
 import { useEffect, useState } from "react";
 import { ExamsAPI } from "@/apis";
-import { emit } from "process";
 
 function ExamResultPage() {
   const location = useLocation();
