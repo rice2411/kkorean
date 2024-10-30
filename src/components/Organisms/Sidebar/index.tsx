@@ -1,3 +1,4 @@
 import DocumentUISidebar from "./DocumentUI";
 import DashboardSidebar from "./Dashboard";
-export { DocumentUISidebar, DashboardSidebar };
+import MainSidebar from "./Main";
+export { DocumentUISidebar, DashboardSidebar, MainSidebar };

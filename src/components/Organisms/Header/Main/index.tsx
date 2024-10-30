@@ -3,13 +3,17 @@ import { Button, Paragraph, Image, Box } from "@/components/Atoms";
 import { useAuth } from "@/hooks";
 import HeaderMobile from "./Mobile/mobile";
 import { Dropdown } from "@/components/Organisms";
-import { IContext } from "@/interface";
+import { IContext, IUI } from "@/interface";
 import { FileHelpers } from "@/helpers";
+import SidebarMobile from "./Mobile/sidebar";
 
-const MainHeader: React.FC = () => {
-  const { user } =
-    useAuth() as unknown as IContext.IAuthContenxt.UseAuthReturnType;
-  const navigate = useNavigate();
+interface IProps {
+    sidebarItems?: IUI.SidebarItem[];
+}
+const MainHeader: React.FC<IProps> = ({sidebarItems = []}) => {
+    const { user } =
+        useAuth() as unknown as IContext.IAuthContenxt.UseAuthReturnType;
+    const navigate = useNavigate();
 
   const links = [
     { to: "/", text: "Trang chủ" },
@@ -21,10 +25,11 @@ const MainHeader: React.FC = () => {
   ];
 
   return (
-    <header className="fixed w-full backdrop-blur-3xl ">
-      <nav className="bg-transparent border-b border-stone-300 px-4 lg:px-6 py-2.5">
+    <header className="sticky top-0 z-10 ">
+      <nav className="bg-white border-b border-stone-300 px-4 lg:px-6 py-2.5">
         <Box className="flex flex-wrap justify-between items-center mx-auto max-w-screen-2xl">
           <Box className="flex items-center">
+            {!!sidebarItems?.length && <SidebarMobile links={sidebarItems} />}
             <Image
               src={FileHelpers.getLocalFile("logo", "svg")}
               className="mr-3 h-6 sm:h-9"

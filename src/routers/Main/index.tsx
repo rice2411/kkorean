@@ -15,7 +15,7 @@ const MainRouter: RouteObject = {
             path: "/exam",
             element: <Exam.ExamList />,
             loader: ExamListPageLoader,
-        },
+        }
     ],
 };
 

@@ -7,6 +7,7 @@ import * as IGroup from "./Group";
 import * as INotification from "./Notification";
 import * as IBase from "./Base";
 import * as IContext from "./Context";
+import * as IUI from "./UI";
 import * as IResult from "./Result";
 
 export type {
@@ -20,4 +21,5 @@ export type {
   IBase,
   IContext,
   IResult,
+  IUI,
 };
