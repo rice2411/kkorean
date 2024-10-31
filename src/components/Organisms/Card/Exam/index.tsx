@@ -29,7 +29,7 @@ const ExamCard: React.FC<Props> = ({ exam, onClick }) => {
               src={FileHelpers.getLocalFile("lock", "svg")}
             />
           </Box>
-        ) : exam.completedUser?.includes(user.id) ? (
+        ) : exam.completedUser?.includes(user?.id) ? (
           <Image
             className="h-9 w-9 "
             src={FileHelpers.getLocalFile("complete-green", "svg")}
