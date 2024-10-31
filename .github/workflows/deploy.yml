@@ -3,13 +3,14 @@ name: Deploy to Vercel
 on:
   push:
     branches:
-      - main # Thay đổi tên nhánh nếu cần
+      - main # Chỉ deploy khi có push lên nhánh chính
   pull_request:
-    branches:
-      - main # Tự động triển khai khi có pull request vào nhánh chính
+    branches-ignore:
+      - '*' # Bỏ qua deploy khi có pull request
 
 jobs:
   build:
+    if: github.ref == 'refs/heads/main' # Chỉ chạy job khi trên nhánh main
     runs-on: ubuntu-latest
 
     steps:
@@ -28,6 +29,7 @@ jobs:
         run: npm run build
 
       - name: Deploy to Vercel
+        if: github.ref == 'refs/heads/main' # Đảm bảo chỉ deploy trên nhánh main
         uses: amondnet/vercel-action@v25.2.0
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }} # Thêm token Vercel vào Secrets
