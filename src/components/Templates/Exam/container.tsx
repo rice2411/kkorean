@@ -82,6 +82,9 @@ const ExamTemplateContainer: React.FC<Props> = ({ mode, exam, result }) => {
       ToastUtils.error("Đã có lỗi xảy ra vui lòng thử lại");
       console.error(err);
     } finally {
+      if (mode === EExamMode.DOING) {
+        startCountdown();
+      }
       hideLoading();
       setLoadingText("");
     }
