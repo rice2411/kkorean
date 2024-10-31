@@ -7,7 +7,7 @@ import { IContext, IExam, IFile, IResult } from "@/interface";
 import { FileItem } from "@/interface/File";
 import { ToastUtils } from "@/utils";
 import ResultsAPI from "@/apis/Result";
-import { EExamMode } from "@/constants/exam";
+import { EExamMode, EExamType } from "@/constants/exam";
 import UserUtils from "@/utils/User";
 import ExamTemplatePresenter from "./presenter";
 
@@ -52,16 +52,18 @@ const ExamTemplateContainer: React.FC<Props> = ({ mode, exam, result }) => {
       )) as IFile.FileResponse;
       if (response.resources) {
         const { resources } = response;
-        const audioFile = resources.find((item: IFile.FileItem) =>
-          item.public_id.includes(EXAM_CONSTANTS.AUDIO_KEY)
-        ) as IFile.FileItem | undefined;
-
-        if (audioFile) setAudio(audioFile.url || "");
-
         const imageFiles = resources.filter(
           (item: IFile.FileItem) =>
             !item.public_id.includes(EXAM_CONSTANTS.AUDIO_KEY)
         );
+
+        if (exam.type === EExamType.LISTENING) {
+          const audioFile = resources.find((item: IFile.FileItem) =>
+            item.public_id.includes(EXAM_CONSTANTS.AUDIO_KEY)
+          ) as IFile.FileItem | undefined;
+
+          if (audioFile) setAudio(audioFile.url || "");
+        }
 
         setOptions(
           imageFiles.reduce((acc, item: IFile.FileItem) => {
@@ -80,11 +82,6 @@ const ExamTemplateContainer: React.FC<Props> = ({ mode, exam, result }) => {
       ToastUtils.error("Đã có lỗi xảy ra vui lòng thử lại");
       console.error(err);
     } finally {
-      if (mode === EExamMode.DOING) {
-        startCountdown();
-        const track = new Audio(audio);
-        track.play();
-      }
       hideLoading();
       setLoadingText("");
     }
@@ -234,7 +231,11 @@ const ExamTemplateContainer: React.FC<Props> = ({ mode, exam, result }) => {
   }, []);
 
   useEffect(() => {
-    if (audio) {
+    if (
+      exam.type === EExamType.LISTENING &&
+      audio &&
+      mode === EExamMode.DOING
+    ) {
       const track = new Audio(audio);
       track.play();
 

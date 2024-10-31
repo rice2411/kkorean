@@ -63,7 +63,7 @@ function ExamListPageContainer() {
       ToastUtils.warning("Đề này chỉ dành cho học viên");
       return;
     }
-    if (!exam.completedUser.includes(user.id)) {
+    if (!exam.completedUser.includes(user?.id)) {
       handleModiferModalConfirm({
         isOpen: true,
         text: `Bạn có muốn bắt đầu làm <b>${exam.name}</b> với thời gian <b>60 phút</b>`,
