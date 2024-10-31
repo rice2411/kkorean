@@ -47,13 +47,12 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (!pathname.includes("dashboard")) return;
-
-    if (
-      !isInitializing &&
-      (!user || user.role !== CONFIG_CONSTANTS.EUserRole.ADMIN)
-    ) {
-      navigate("/login");
+    if (isInitializing) {
+      if (
+        pathname.includes("dashboard") &&
+        (!user || user.role !== CONFIG_CONSTANTS.EUserRole.ADMIN)
+      )
+        navigate("/");
     }
   }, [pathname]);
 
