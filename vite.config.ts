@@ -12,7 +12,8 @@ export default defineConfig(({ mode }) => {
       react(),
       viteStaticCopy({
         targets: [
-          { src: "offline.html", dest: "" }, // Sao chép tệp offline.html vào thư mục dist
+          { src: "offline.html", dest: "" },
+          { src: "google9d8532a0f9321004.html", dest: "" },
         ],
       }),
     ],
