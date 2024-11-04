@@ -81,3 +81,4 @@ export const SCORE = 2;
 export const NUMBER_OF_QUESTION = 50;
 export const AUDIO_KEY = "audio";
 export const IMAGE_KEY = "image";
+export const TIME_OUT_STRING = "00:00";

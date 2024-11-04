@@ -14,22 +14,24 @@ import Toggle from "./Toggle";
 import Input from "./Input";
 import Tooltip from "./Tooltip";
 import Svg from "./Svg";
+import BlurryBubble from "./BlurryBubble";
 
 export {
-    Box,
-    Button,
-    Checkbox,
-    Heading,
-    HorizontalRule,
-    Image,
-    Link,
-    Label,
-    Spinner,
-    Paragraph,
-    RadioButton,
-    Select,
-    Toggle,
-    Input,
-    Tooltip,
-    Svg,
+  Box,
+  Button,
+  Checkbox,
+  Heading,
+  HorizontalRule,
+  Image,
+  Link,
+  Label,
+  Spinner,
+  Paragraph,
+  RadioButton,
+  Select,
+  Toggle,
+  Input,
+  Tooltip,
+  Svg,
+  BlurryBubble,
 };

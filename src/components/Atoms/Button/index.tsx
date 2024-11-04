@@ -85,9 +85,9 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
-      className={`${className} ${baseClass} ${variantClass[variant]} ${
+      className={` ${baseClass} ${variantClass[variant]} ${
         sizeClass[size]
-      } ${loadingClass} ${hover ? hoverClass[variant] : ""}`}
+      } ${loadingClass} ${hover ? hoverClass[variant] : ""} ${className}`}
       onClick={onClick}
       disabled={disabled || loading}
     >
