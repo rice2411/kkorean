@@ -51,5 +51,10 @@ export default defineConfig(({ mode }) => {
         },
       },
     },
+    css: {
+      modules: {
+        generateScopedName: "[hash:base64:5]", // Tên lớp CSS được mã hóa
+      },
+    },
   };
 });
