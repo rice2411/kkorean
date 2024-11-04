@@ -49,7 +49,9 @@ const ExamTemplatePresenter: React.FC<Props> = ({
               {mode === EExamMode.DOING ? "Chế độ làm bài" : "Xem kết quả"} -{" "}
               {exam.name} -{" "}
               {mode === EExamMode.DOING
-                ? time
+                ? time === EXAM_CONSTANTS.TIME_OUT_STRING
+                  ? "Hết giờ"
+                  : time
                 : DateFNSUtils.itTake(result?.time || "")}
             </Heading>
             <Box className="flex justify-between items-center">
@@ -137,8 +139,8 @@ const ExamTemplatePresenter: React.FC<Props> = ({
                     hover={true}
                     onClick={handleSubmit}
                     disabled={
-                      counterAnswer !== EXAM_CONSTANTS.NUMBER_OF_QUESTION ||
-                      false
+                      counterAnswer !== EXAM_CONSTANTS.NUMBER_OF_QUESTION &&
+                      time !== EXAM_CONSTANTS.TIME_OUT_STRING
                     }
                   >
                     Nộp bài
@@ -175,7 +177,11 @@ const ExamTemplatePresenter: React.FC<Props> = ({
                             <Box
                               key={item.public_id + answerOption}
                               onClick={() => {
-                                if (mode === EExamMode.RESULT) return;
+                                if (
+                                  mode === EExamMode.RESULT ||
+                                  time === EXAM_CONSTANTS.TIME_OUT_STRING
+                                )
+                                  return;
                                 const cloneData = {
                                   ...options,
                                 };

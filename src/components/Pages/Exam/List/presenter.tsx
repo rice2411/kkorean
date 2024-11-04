@@ -26,7 +26,7 @@ const ExamListPagePresenter: React.FC<Props> = ({
   const { user } =
     useAuth() as unknown as IContext.IAuthContenxt.UseAuthReturnType;
   return (
-    <section className="py-20 px-4 mx-auto max-w-screen-xl  lg:px-12">
+    <section className="py-10 px-4 mx-auto w-screen lg:px-12">
       <Heading level={2}>Chào bạn!</Heading>
       {!user && (
         <Paragraph className="text-xs italic">

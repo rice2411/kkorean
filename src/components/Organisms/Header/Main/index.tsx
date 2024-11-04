@@ -8,20 +8,16 @@ import { FileHelpers } from "@/helpers";
 import SidebarMobile from "./Mobile/sidebar";
 
 interface IProps {
-    sidebarItems?: IUI.SidebarItem[];
+  sidebarItems?: IUI.SidebarItem[];
 }
-const MainHeader: React.FC<IProps> = ({sidebarItems = []}) => {
-    const { user } =
-        useAuth() as unknown as IContext.IAuthContenxt.UseAuthReturnType;
-    const navigate = useNavigate();
+const MainHeader: React.FC<IProps> = ({ sidebarItems = [] }) => {
+  const { user } =
+    useAuth() as unknown as IContext.IAuthContenxt.UseAuthReturnType;
+  const navigate = useNavigate();
 
   const links = [
     { to: "/", text: "Trang chủ" },
     { to: "/exam", text: "Thi thử" },
-    { to: "/", text: "Ngữ pháp" },
-    { to: "/", text: "Blog" },
-    { to: "/", text: "Giới thiệu" },
-    { to: "/DocumentUI", text: "Tài liệu" },
   ];
 
   return (
@@ -31,13 +27,10 @@ const MainHeader: React.FC<IProps> = ({sidebarItems = []}) => {
           <Box className="flex items-center">
             {!!sidebarItems?.length && <SidebarMobile links={sidebarItems} />}
             <Image
-              src={FileHelpers.getLocalFile("logo", "svg")}
-              className="mr-3 h-6 sm:h-9"
+              src={FileHelpers.getLocalFile("logo", "png")}
+              className="h-6 sm:h-12"
               alt="Kkorean Logo"
             />
-            <Paragraph className="self-center text-xl font-semibold whitespace-nowrap">
-              KKorean
-            </Paragraph>
           </Box>
           <Box className="flex lg:flex-row-reverse">
             <Box className="flex items-center lg:ml-10">

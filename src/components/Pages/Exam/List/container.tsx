@@ -7,7 +7,9 @@ import { useAuth, useLoading, useModal } from "@/hooks";
 import { useNavigate } from "react-router-dom";
 import ResultsAPI from "@/apis/Result";
 import { EExamPlan, EExamType } from "@/constants/exam";
-import { ToastUtils } from "@/utils";
+import { DateFNSUtils, ToastUtils } from "@/utils";
+import { NotificationsAPI } from "@/apis";
+import { NOTIFICATION_CONSTANTS } from "@/constants";
 
 function ExamListPageContainer() {
   const navigate = useNavigate();
@@ -58,6 +60,18 @@ function ExamListPageContainer() {
     }
   };
 
+  const onStartExam = async (exam: IExam.BaseExam) => {
+    onCloseModalConfirm();
+    await NotificationsAPI.createNotification({
+      type: NOTIFICATION_CONSTANTS.ENotificationType.DOING,
+      message: `Người dùng <b>${
+        user ? user.email : "khách"
+      }</b> đã tham bắt đầu làm ${
+        exam.name
+      }</b> vào vào lúc ${DateFNSUtils.now()}`,
+    });
+    navigate("doing", { state: exam });
+  };
   const handleStartExam = async (exam: IExam.BaseExam) => {
     if (!user && exam.plan === EExamPlan.PAID) {
       ToastUtils.warning("Đề này chỉ dành cho học viên");
@@ -69,9 +83,9 @@ function ExamListPageContainer() {
         text: `Bạn có muốn bắt đầu làm <b>${exam.name}</b> với thời gian <b>60 phút</b>`,
         okButton: {
           text: "Bắt đầu",
-          onClick: () => {
-            onCloseModalConfirm();
-            navigate("doing", { state: exam });
+          onClick: async () => {
+            await onStartExam(exam);
+            return;
           },
         },
         cancelButton: {

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ExamsAPI, FilesAPI, UsersAPI } from "@/apis";
-import { EXAM_CONSTANTS } from "@/constants";
+import { ExamsAPI, FilesAPI, NotificationsAPI, UsersAPI } from "@/apis";
+import { EXAM_CONSTANTS, NOTIFICATION_CONSTANTS } from "@/constants";
 import { useAuth, useCountdown, useLoading, useModal } from "@/hooks";
 import { IContext, IExam, IFile, IResult } from "@/interface";
 import { FileItem } from "@/interface/File";
-import { ToastUtils } from "@/utils";
+import { DateFNSUtils, ToastUtils } from "@/utils";
 import ResultsAPI from "@/apis/Result";
 import { EExamMode, EExamType } from "@/constants/exam";
 import UserUtils from "@/utils/User";
@@ -26,7 +26,7 @@ const ExamTemplateContainer: React.FC<Props> = ({ mode, exam, result }) => {
   const { handleModiferModalConfirm } =
     useModal() as unknown as IContext.IModalContext.UseModalReturnType;
 
-  const { time, startCountdown } = useCountdown(3600);
+  const { time, startCountdown } = useCountdown(5);
 
   const [questions, setQuestions] = useState<string[]>([]);
   const [options, setOptions] = useState<Record<string, string>>({});
@@ -71,7 +71,7 @@ const ExamTemplateContainer: React.FC<Props> = ({ mode, exam, result }) => {
               (mode === EExamMode.RESULT &&
                 result &&
                 result.data[item.public_id].options) ||
-              "A";
+              "";
             return acc;
           }, {} as Record<string, string>)
         );
@@ -123,6 +123,7 @@ const ExamTemplateContainer: React.FC<Props> = ({ mode, exam, result }) => {
     setLoadingText("Đang tiến hành ghi nhận đáp án ...");
     showLoading();
     onCloseModalConfirm();
+
     try {
       const finalResult = Object.fromEntries(
         Object.entries(options)
@@ -147,20 +148,29 @@ const ExamTemplateContainer: React.FC<Props> = ({ mode, exam, result }) => {
       ];
       const response = (await Promise.all(request)) as [IResult.BaseResult];
       if (response[0].id) {
+        const score =
+          Object.entries(payload.data).filter(
+            (item) => item[1].answers === item[1].options
+          ).length * EXAM_CONSTANTS.SCORE;
         user.completedExams.push({
           examId: exam.id,
           resultId: response[0].id,
-          score:
-            Object.entries(payload.data).filter(
-              (item) => item[1].answers === item[1].options
-            ).length * EXAM_CONSTANTS.SCORE,
+          score: score,
         });
         UserUtils.setUser(user);
-        await UsersAPI.update(user),
-          navigate("/exam/result", {
-            state: response[0],
-            replace: true,
-          });
+        await UsersAPI.update(user);
+        navigate("/exam/result", {
+          state: response[0],
+          replace: true,
+        });
+        await NotificationsAPI.createNotification({
+          type: NOTIFICATION_CONSTANTS.ENotificationType.SCORING,
+          message: `Người dùng <b>${
+            user ? user.email : "khách"
+          }</b> đã đạt được ${score} điểm ở ${
+            exam.name
+          }</b> vào vào lúc ${DateFNSUtils.now()}`,
+        });
       }
     } catch (err) {
       console.log(err);
