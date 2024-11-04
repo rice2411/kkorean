@@ -25,7 +25,7 @@ type Size = keyof ButtonSizes;
 interface ButtonProps {
   variant?: Variant;
   size?: Size;
-  onClick?: () => void | null;
+  onClick?: () => any;
   children: React.ReactNode;
   disabled?: boolean;
   loading?: boolean;

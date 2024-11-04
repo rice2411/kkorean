@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Button, Paragraph, Image, Box } from "@/components/Atoms";
+import { Button, Image, Box } from "@/components/Atoms";
 import { useAuth } from "@/hooks";
 import HeaderMobile from "./Mobile/mobile";
 import { Dropdown } from "@/components/Organisms";
