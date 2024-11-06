@@ -5,4 +5,16 @@ interface SidebarItem {
   isActive?: boolean;
 }
 
-export type { SidebarItem }
+interface Column<T> {
+  header: string;
+  accessor: keyof T | string;
+  render?: (value: unknown | string | number | Date, row: T) => JSX.Element;
+};
+interface TableGlobal<T> {
+  data: T[];
+  columns: Column<T>[];
+  page: number,
+  setPage: (value: number) => void
+}
+
+export type { SidebarItem, TableGlobal, Column }
