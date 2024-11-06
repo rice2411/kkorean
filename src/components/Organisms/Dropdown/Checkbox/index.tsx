@@ -8,6 +8,7 @@ interface Props {
   id: string;
   options: { value: number; label: string }[];
   onChangeValue: (data: { id: string; data: string[] }) => void;
+  className?: string;
 }
 
 const DropdownCheckbox: React.FC<Props> = ({
@@ -15,6 +16,7 @@ const DropdownCheckbox: React.FC<Props> = ({
   label,
   options,
   onChangeValue,
+  className,
 }) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const parentRef = useRef<HTMLDivElement>(null);
@@ -46,7 +48,7 @@ const DropdownCheckbox: React.FC<Props> = ({
           ${
             selectedData.length > 0 &&
             "bg-primary-50 text-primary-600 border-primary-400"
-          }`}
+          } ${className}`}
       >
         <Box
           ref={parentRef}

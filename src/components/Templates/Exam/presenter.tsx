@@ -4,6 +4,7 @@ import { EXAM_CONSTANTS } from "@/constants";
 import { IExam, IFile, IResult } from "@/interface";
 import { DateFNSUtils, ExamUtils } from "@/utils";
 import { EExamMode } from "@/constants/exam";
+import { FileHelpers } from "@/helpers";
 
 interface Props {
   mode: EExamMode;
@@ -85,7 +86,15 @@ const ExamTemplatePresenter: React.FC<Props> = ({
           <Box className="lg:grid lg:grid-cols-12 gap-4 mt-2 flex-1 lg:overflow-hidden">
             {/* Sidebar with questions */}
             <Box className="lg:col-span-2 text-center bg-white p-5 rounded-md overflow-y-auto scrollbar-hidden">
-              <Heading level={5}> Câu hỏi:</Heading>
+              <Image
+                src={FileHelpers.getLocalFile("logo", "png")}
+                className=""
+                alt="Kkorean Logo"
+              />
+              <Heading level={5} className="!font-bold">
+                {" "}
+                Câu hỏi:
+              </Heading>
               <Box className="gap-2 flex items-center justify-center flex-wrap mt-4">
                 {images.map((item, index) => (
                   <Box

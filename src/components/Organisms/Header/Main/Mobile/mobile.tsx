@@ -1,7 +1,6 @@
 import { useId, useState } from "react";
-import { Box, Paragraph, Image } from "@/components/Atoms";
+import { Box, Paragraph, Image, Link } from "@/components/Atoms";
 import { FileHelpers } from "@/helpers";
-import { useNavigate } from "react-router-dom";
 
 // Define the type for each link in the links array
 interface LinkItem {
@@ -13,35 +12,6 @@ interface LinkItem {
 interface HeaderMobileProps {
   links: LinkItem[];
 }
-
-interface NavLinkProps {
-  to?: string;
-  children: React.ReactNode;
-  className?: string;
-  onClick?: () => void;
-}
-const NavLink: React.FC<NavLinkProps> = ({
-  to = "#",
-  children,
-  className = "",
-  onClick = null,
-}) => {
-  const navigate = useNavigate();
-  return (
-    <Box
-      className={`${className} flex items-center border-b-2 border-transparent hover:border-primary-500 text-gray-500 hover:text-gray-700 cursor-pointer transition-all`}
-      onClick={() => {
-        if (onClick) {
-          onClick();
-        }
-        navigate(to);
-      }}
-    >
-      {children}
-    </Box>
-  );
-};
-
 const HeaderMobile: React.FC<HeaderMobileProps> = ({ links }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -68,13 +38,14 @@ const HeaderMobile: React.FC<HeaderMobileProps> = ({ links }) => {
       >
         <Box className="flex flex-col font-medium">
           {links.map((link) => (
-            <NavLink
+            <Link
               key={useId()}
+              onClick={() => setIsMobileMenuOpen(false)}
               to={link.to}
               className="text-secondary hover:text-blue-500 py-2 px-4 border-b"
             >
               {link.text}
-            </NavLink>
+            </Link>
           ))}
         </Box>
       </Box>
@@ -84,13 +55,14 @@ const HeaderMobile: React.FC<HeaderMobileProps> = ({ links }) => {
       >
         <Box className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
           {links.map((link) => (
-            <NavLink
+            <Link
               key={useId()}
+              onClick={() => setIsMobileMenuOpen(false)}
               to={link.to}
               className="text-secondary hover:text-blue-500"
             >
               {link.text}
-            </NavLink>
+            </Link>
           ))}
         </Box>
       </Box>
