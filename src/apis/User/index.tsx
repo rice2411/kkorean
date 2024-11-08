@@ -1,6 +1,6 @@
 import { IAPI, IUser } from "@/interface";
 import { FirebaseService } from "@/services";
-import { ApiUtils } from "@/utils"; // Assuming you have a utils file for common utilities
+import { ApiUtils } from "@/utils";
 
 const key = "users";
 
@@ -112,18 +112,31 @@ const UsersAPI = {
   },
 
   updateUserAttribute: async <T extends object>(
-    dataUpdate: T & { id: string; }
-  ) : Promise<IAPI.ApiResponse<IAPI.BaseResponse> | unknown> => {
+    dataUpdate: T & { id: string }
+  ): Promise<IAPI.ApiResponse<IAPI.BaseResponse> | unknown> => {
     try {
-        const response = (await FirebaseService.updateDocument(
-            "users", dataUpdate
-        )) as IAPI.ApiResponse;
-        return response;
+      const response = (await FirebaseService.updateDocument(
+        "users",
+        dataUpdate
+      )) as IAPI.ApiResponse;
+      return response;
     } catch (err) {
-    console.error(err);
-    throw new Error("An error occurred while updating the account status.");
+      console.error(err);
+      throw new Error("An error occurred while updating the account status.");
     }
-  }
+  },
+
+  countDocuments: async (): Promise<IAPI.ApiResponse<number> | unknown> => {
+    try {
+      const response = (await FirebaseService.countDocuments(
+        key
+      )) as IAPI.ApiResponse;
+      return response;
+    } catch (err) {
+      console.error(err);
+      throw new Error("An error occurred while updating the account status.");
+    }
+  },
 };
 
 export default UsersAPI;

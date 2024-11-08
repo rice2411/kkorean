@@ -17,6 +17,7 @@
         "firebase": "^10.14.1",
         "firebase-admin": "^12.6.0",
         "next": "^14.2.15",
+        "nprogress": "^0.2.0",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
         "react-router-dom": "^6.27.0",
@@ -27,6 +28,7 @@
     "devDependencies": {
         "@eslint/js": "^9.11.1",
         "@types/node": "^22.7.5",
+        "@types/nprogress": "^0.2.3",
         "@types/react": "^18.3.10",
         "@types/react-dom": "^18.3.0",
         "@vitejs/plugin-react": "^4.3.2",

@@ -15,6 +15,7 @@ import Input from "./Input";
 import Tooltip from "./Tooltip";
 import Svg from "./Svg";
 import BlurryBubble from "./BlurryBubble";
+import AvatarName from "./AvatarName";
 
 export {
   Box,
@@ -34,4 +35,5 @@ export {
   Tooltip,
   Svg,
   BlurryBubble,
+  AvatarName,
 };

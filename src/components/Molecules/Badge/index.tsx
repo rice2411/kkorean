@@ -12,6 +12,7 @@ interface Props {
     | "pink"
     | "cyan";
   text: string;
+  className?: string;
 }
 
 const colorClasses: { [key in Props["color"]]: string } = {
@@ -26,10 +27,10 @@ const colorClasses: { [key in Props["color"]]: string } = {
   cyan: "bg-cyan-100 text-cyan-800",
 };
 
-const Badge: React.FC<Props> = ({ color, text }) => {
+const Badge: React.FC<Props> = ({ color, text, className }) => {
   return (
     <Paragraph
-      className={`${colorClasses[color]} text-xs font-medium px-2 py-0.5 rounded w-max`}
+      className={`${colorClasses[color]} text-xs font-medium px-2 py-0.5 rounded w-max ${className}`}
     >
       {text}
     </Paragraph>
