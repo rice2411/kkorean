@@ -1,5 +1,5 @@
 import { NotificationsAPI } from "@/apis";
-import { AvatarName, Box, Image, Link, Svg } from "@/components/Atoms";
+import { AvatarName, Box, Link, Svg } from "@/components/Atoms";
 import { DOMHelpers, FileHelpers } from "@/helpers";
 import { useClickOutside, useLoading } from "@/hooks";
 import { IContext, INotification } from "@/interface";
