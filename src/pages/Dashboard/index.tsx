@@ -5,13 +5,15 @@ import Groups from "./Groups";
 import { GroupsPageLoader } from "./Groups/loader";
 import { ExamsPageLoader } from "./Exams/loader";
 import { UsersPageLoader } from "./Users/loader";
+import { OverviewPageLoader } from "./Overview/loader";
 
 export {
-    Overview,
-    Exams,
-    ExamsPageLoader,
-    Users,
-    UsersPageLoader,
-    Groups,
-    GroupsPageLoader,
+  Overview,
+  OverviewPageLoader,
+  Exams,
+  ExamsPageLoader,
+  Users,
+  UsersPageLoader,
+  Groups,
+  GroupsPageLoader,
 };

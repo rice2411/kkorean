@@ -5,6 +5,7 @@ import Pagination from "./Pagination";
 import Empty from "./Empty";
 import ProgressBar from "./ProgressBar";
 import Badge from "./Badge";
+import TypingAnimation from "./TypingAnimation";
 export {
   BreadCrumb,
   FloatButton,
@@ -13,4 +14,5 @@ export {
   Empty,
   ProgressBar,
   Badge,
+  TypingAnimation,
 };

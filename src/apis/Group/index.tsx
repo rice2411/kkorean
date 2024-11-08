@@ -93,6 +93,17 @@ const GroupsAPI = {
       return new Error("An error occurred while deleting the group.");
     }
   },
+  countDocuments: async (): Promise<IAPI.ApiResponse<number> | unknown> => {
+    try {
+      const response = (await FirebaseService.countDocuments(
+        key
+      )) as IAPI.ApiResponse;
+      return response;
+    } catch (err) {
+      console.error(err);
+      throw new Error("An error occurred while updating the account status.");
+    }
+  },
 };
 
 export default GroupsAPI;

@@ -6,8 +6,9 @@ import React, { useRef, useState } from "react";
 interface Props {
   label: string;
   id: string;
-  options: { value: number; label: string }[];
+  options: { value: number | string; label: string }[];
   onChangeValue: (data: { id: string; data: string[] }) => void;
+  className?: string;
 }
 
 const DropdownCheckbox: React.FC<Props> = ({
@@ -15,6 +16,7 @@ const DropdownCheckbox: React.FC<Props> = ({
   label,
   options,
   onChangeValue,
+  className,
 }) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const parentRef = useRef<HTMLDivElement>(null);
@@ -46,7 +48,7 @@ const DropdownCheckbox: React.FC<Props> = ({
           ${
             selectedData.length > 0 &&
             "bg-primary-50 text-primary-600 border-primary-400"
-          }`}
+          } ${className}`}
       >
         <Box
           ref={parentRef}
@@ -67,12 +69,12 @@ const DropdownCheckbox: React.FC<Props> = ({
           ref={dropdownRef}
           className={`${
             !isOpenUserMenu && "hidden"
-          } absolute z-50 mt-4 w-max   text-base list-none bg-white rounded Boxide-y Boxide-gray-100 shadow top-7 p-2 `}
+          } absolute mt-4 w-max max-h-[200px] overflow-auto z-50  text-base list-none bg-white rounded Boxide-y Boxide-gray-100 shadow top-7 p-2 `}
           id="dropdown"
         >
           {options.map((options) => (
             <Checkbox
-              className="p-1 text-black"
+              className="p-1 text-black col-span-6"
               key={options.value + label}
               label={options.label}
               value={options.value.toString()}

@@ -7,6 +7,7 @@ import {
   Link,
   Paragraph,
 } from "@/components/Atoms";
+import { TypingAnimation } from "@/components/Molecules";
 import { FileHelpers } from "@/helpers";
 import { useNavigate } from "react-router-dom";
 
@@ -22,9 +23,7 @@ function HeroSection() {
               <Paragraph className="text-sm bg-primary-400 rounded-full text-white px-6 py-1.5 mr-6">
                 Go
               </Paragraph>
-              <Paragraph className="text-lg font-medium text-gray-700">
-                Học tiếng Hàn thôi
-              </Paragraph>
+              <TypingAnimation></TypingAnimation>
               <svg
                 className="ml-2 w-5 h-5"
                 fill="currentColor"

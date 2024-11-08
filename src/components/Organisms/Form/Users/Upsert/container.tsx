@@ -76,6 +76,7 @@ function UsersUpsertFormContainer({
 
   const onUpsert = async (action: number) => {
     const emailParam = user.email + CONFIG_CONSTANTS.EMAIL_DOMAIN;
+    console.log(user);
     const response =
       action === MODAL_CONSTANTS.EModalType.CREATE
         ? ((await UsersAPI.create({

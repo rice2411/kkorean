@@ -3,6 +3,7 @@ import {
   collection,
   deleteDoc,
   doc,
+  getCountFromServer,
   getDoc,
   getDocs,
   orderBy,
@@ -114,6 +115,18 @@ const FireStoreService = {
         await updateDoc(docRef, docData);
       }
       return ApiUtils.Response.success(data);
+    } catch (error) {
+      return ApiUtils.Response.error(error);
+    }
+  },
+
+  countDocuments: async <T = IAPI.ResponseData,>(
+    collectionName: string
+  ): Promise<IAPI.ApiResponse<T[]> | unknown> => {
+    try {
+      const coll = collection(db, collectionName);
+      const snapshot = await getCountFromServer(coll);
+      return ApiUtils.Response.success(snapshot.data().count);
     } catch (error) {
       return ApiUtils.Response.error(error);
     }

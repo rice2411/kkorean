@@ -26,3 +26,16 @@ body {
     animation-delay: 4s;
   }
 }
+
+#nprogress .bar {
+  background: linear-gradient(to right, #ff0000, #ffff00);
+  height: 3px;
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px #ff0000, 0 0 5px #ffff00;
+}
+
+#nprogress .spinner {
+  display: none;
+}

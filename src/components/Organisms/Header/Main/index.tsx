@@ -27,8 +27,11 @@ const MainHeader: React.FC<IProps> = ({ sidebarItems = [] }) => {
           <Box className="flex items-center">
             {!!sidebarItems?.length && <SidebarMobile links={sidebarItems} />}
             <Image
+              onClick={() => {
+                navigate("/");
+              }}
               src={FileHelpers.getLocalFile("logo", "png")}
-              className="h-6 sm:h-12"
+              className="h-6 sm:h-12 cursor-pointer"
               alt="Kkorean Logo"
             />
           </Box>

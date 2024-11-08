@@ -4,19 +4,31 @@ import { FirebaseService } from "@/services";
 const key = "exams";
 
 const ExamsAPI = {
+  getListCache: async (
+    cache: boolean = true
+  ): Promise<IAPI.ApiResponse<IExam.BaseExam[]> | unknown> => {
+    const list: IExam.BaseExam[] = JSON.parse(
+      localStorage.getItem(key) || "[]"
+    );
+    if (!list.length || !cache) {
+      return await ExamsAPI.getList();
+    }
+    return list;
+  },
+
   getList: async (): Promise<IAPI.ApiResponse<IExam.BaseExam[]> | unknown> => {
     try {
-      const response = (await FirebaseService.getDocuments<IExam.BaseExam>(
-        key,
-        [
-          { field: "plan", direction: "asc" },
-          { field: "name", direction: "asc" },
-        ]
+      const response = (await FirebaseService.getDocuments(
+        key
       )) as IAPI.ApiResponse<IExam.BaseExam[]>;
-      return response.data || [];
+      if (response.data) {
+        localStorage.setItem(key, JSON.stringify(response.data));
+        return response.data;
+      }
+      return response.error || new Error("Failed to fetch the group list.");
     } catch (err) {
-      console.log(err);
-      return [];
+      console.error(err);
+      return new Error("An error occurred while fetching the group list.");
     }
   },
   get: async (
@@ -77,6 +89,17 @@ const ExamsAPI = {
     } catch (err) {
       console.log(err);
       return err as Error;
+    }
+  },
+  countDocuments: async (): Promise<IAPI.ApiResponse<number> | unknown> => {
+    try {
+      const response = (await FirebaseService.countDocuments(
+        key
+      )) as IAPI.ApiResponse;
+      return response;
+    } catch (err) {
+      console.error(err);
+      throw new Error("An error occurred while updating the account status.");
     }
   },
 };
