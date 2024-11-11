@@ -1,5 +1,4 @@
 import { Paragraph } from "@/components/Atoms";
-import { isAfter, isBefore } from "date-fns";
 import { useEffect, useState } from "react";
 
 const TypingAnimation = () => {
@@ -8,16 +7,7 @@ const TypingAnimation = () => {
   const [isDeleting, setIsDeleting] = useState(false);
 
   const getGreeting = () => {
-    const currentHour = new Date().getHours();
-    if (isAfter(currentHour, 5) && isBefore(currentHour, 10)) {
-      return ["Chào buổi sáng", "안녕하세요 아침"];
-    } else if (isAfter(currentHour, 10) && isBefore(currentHour, 13)) {
-      return ["Chào buổi trưa", "좋은 오후에요"];
-    } else if (isAfter(currentHour, 13) && isBefore(currentHour, 17)) {
-      return ["Chào buổi chiều", "좋은 오후에요"];
-    } else {
-      return ["Chào buổi tối", "좋은 저녁이에요"];
-    }
+    return [`안녕하세요`, `~ Xin Chào ~`];
   };
 
   const texts = getGreeting();

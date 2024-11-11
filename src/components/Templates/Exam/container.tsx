@@ -5,7 +5,7 @@ import { EXAM_CONSTANTS, NOTIFICATION_CONSTANTS } from "@/constants";
 import { useAuth, useCountdown, useLoading, useModal } from "@/hooks";
 import { IContext, IExam, IFile, IResult } from "@/interface";
 import { FileItem } from "@/interface/File";
-import { DateFNSUtils, ToastUtils } from "@/utils";
+import { DateFNSUtils, ExamUtils, ToastUtils } from "@/utils";
 import ResultsAPI from "@/apis/Result";
 import { EExamMode, EExamType } from "@/constants/exam";
 import UserUtils from "@/utils/User";
@@ -26,7 +26,9 @@ const ExamTemplateContainer: React.FC<Props> = ({ mode, exam, result }) => {
   const { handleModiferModalConfirm } =
     useModal() as unknown as IContext.IModalContext.UseModalReturnType;
 
-  const { time, startCountdown } = useCountdown(5);
+  const { time, startCountdown } = useCountdown(
+    exam.type === EExamType.LISTENING ? 3600 : 4200
+  );
 
   const [questions, setQuestions] = useState<string[]>([]);
   const [options, setOptions] = useState<Record<string, string>>({});
@@ -71,7 +73,7 @@ const ExamTemplateContainer: React.FC<Props> = ({ mode, exam, result }) => {
               (mode === EExamMode.RESULT &&
                 result &&
                 result.data[item.public_id].options) ||
-              "";
+              "A";
             return acc;
           }, {} as Record<string, string>)
         );
@@ -152,17 +154,18 @@ const ExamTemplateContainer: React.FC<Props> = ({ mode, exam, result }) => {
           Object.entries(payload.data).filter(
             (item) => item[1].answers === item[1].options
           ).length * EXAM_CONSTANTS.SCORE;
-        user.completedExams.push({
-          examId: exam.id,
-          resultId: response[0].id,
-          score: score,
-        });
-        UserUtils.setUser(user);
-        await UsersAPI.update(user);
-        navigate("/exam/result", {
-          state: response[0],
-          replace: true,
-        });
+        if (user) {
+          user.completedExams.push({
+            examId: exam.id,
+            resultId: response[0].id,
+            score: score,
+          });
+          UserUtils.setUser(user);
+          await UsersAPI.update(user);
+        } else {
+          ExamUtils.setCompletedExamLocalStorage(exam.id, response[0].id);
+        }
+
         await NotificationsAPI.createNotification({
           type: NOTIFICATION_CONSTANTS.ENotificationType.SCORING,
           message: `Người dùng <b>${
@@ -170,6 +173,10 @@ const ExamTemplateContainer: React.FC<Props> = ({ mode, exam, result }) => {
           }</b> đã đạt được ${score} điểm ở ${
             exam.name
           }</b> vào vào lúc ${DateFNSUtils.now()}`,
+        });
+        navigate("/exam/result", {
+          state: response[0],
+          replace: true,
         });
       }
     } catch (err) {

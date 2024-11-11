@@ -3,7 +3,7 @@ import { Badge, FloatButton, ProgressBar } from "@/components/Molecules";
 import { EXAM_CONSTANTS } from "@/constants";
 import { IExam, IFile, IResult } from "@/interface";
 import { DateFNSUtils, ExamUtils } from "@/utils";
-import { EExamMode } from "@/constants/exam";
+import { EExamMode, EExamType } from "@/constants/exam";
 import { FileHelpers } from "@/helpers";
 
 interface Props {
@@ -53,7 +53,10 @@ const ExamTemplatePresenter: React.FC<Props> = ({
                 ? time === EXAM_CONSTANTS.TIME_OUT_STRING
                   ? "Hết giờ"
                   : time
-                : DateFNSUtils.itTake(result?.time || "")}
+                : DateFNSUtils.itTake(
+                    result?.time || "",
+                    exam.type === EExamType.LISTENING ? 3600 : 4200
+                  )}
             </Heading>
             <Box className="flex justify-between items-center">
               <Box>
