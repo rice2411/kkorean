@@ -8,17 +8,17 @@ const DateFNSUtils = {
   fromNow: (time: Date | number): string => {
     return formatDistanceToNow(time, { addSuffix: true, locale: vi });
   },
-  itTake: (initialTime: string) => {
+  itTake: (initialTime: string, defaultValue: number) => {
     const [minutes, seconds] = initialTime.split(":").map(Number);
 
     // Convert the input time to total seconds
     let totalSeconds = minutes * 60 + seconds;
 
     // Check if total time is less than 60 minutes
-    if (totalSeconds < 3600) {
-      totalSeconds = 3600 - totalSeconds;
+    if (totalSeconds < defaultValue) {
+      totalSeconds = defaultValue - totalSeconds;
     } else {
-      totalSeconds -= 3600;
+      totalSeconds -= defaultValue;
     }
 
     // Calculate the resulting minutes and seconds

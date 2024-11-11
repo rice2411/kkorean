@@ -62,13 +62,18 @@ function HeroSection() {
               animationDelay="animation-deplay-4000"
             />
           </Box>
-          <Heading className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl">
-            Học tiếng Hàn cùng Kkorean nhé!
-          </Heading>
+          <Image
+            onClick={() => {
+              navigate("/");
+            }}
+            src={FileHelpers.getLocalFile("logo", "png")}
+            className="cursor-pointer"
+            alt="Kkorean Logo"
+          />
         </Box>
         <Paragraph className="mb-12 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 text-center">
-          Chúng mình có rất nhiều bộ để để cải thiện kỹ năng nghe và đọc của bạn
-          cho các đề thi TOPIK
+          Ở Kkorean có vô vàn bộ đề xịn xò giúp bạn nâng cao kỹ năng nghe và
+          đọc, sẵn sàng chinh phục TOPIK thôi nào!
         </Paragraph>
         <Box className="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
           <Button

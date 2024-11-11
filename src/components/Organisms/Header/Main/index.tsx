@@ -26,14 +26,6 @@ const MainHeader: React.FC<IProps> = ({ sidebarItems = [] }) => {
         <Box className="flex flex-wrap justify-between items-center mx-auto max-w-screen-2xl">
           <Box className="flex items-center">
             {!!sidebarItems?.length && <SidebarMobile links={sidebarItems} />}
-            <Image
-              onClick={() => {
-                navigate("/");
-              }}
-              src={FileHelpers.getLocalFile("logo", "png")}
-              className="h-6 sm:h-12 cursor-pointer"
-              alt="Kkorean Logo"
-            />
           </Box>
           <Box className="flex lg:flex-row-reverse">
             <Box className="flex items-center lg:ml-10">
@@ -41,7 +33,7 @@ const MainHeader: React.FC<IProps> = ({ sidebarItems = [] }) => {
                 <Dropdown.UserDropdown dropdownClass={"lg:right-32"} />
               ) : (
                 <Button
-                  variant="secondary-outline"
+                  variant="primary"
                   hover={true}
                   onClick={() => navigate("login")}
                 >

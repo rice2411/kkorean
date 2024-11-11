@@ -7,7 +7,7 @@ import { useAuth, useLoading, useModal } from "@/hooks";
 import { useNavigate } from "react-router-dom";
 import ResultsAPI from "@/apis/Result";
 import { EExamPlan, EExamType } from "@/constants/exam";
-import { DateFNSUtils, ToastUtils } from "@/utils";
+import { DateFNSUtils, ExamUtils, ToastUtils } from "@/utils";
 import { NotificationsAPI } from "@/apis";
 import { NOTIFICATION_CONSTANTS } from "@/constants";
 
@@ -46,10 +46,13 @@ function ExamListPageContainer() {
     try {
       setLoadingText("Đang lấy kết quả");
       showLoading();
-      const result = await ResultsAPI.get(
-        user.completedExams.filter((item) => item.examId === exam.id)[0]
-          .resultId
-      );
+      const resultId = user
+        ? user.completedExams.filter((item) => item.examId === exam.id)[0]
+            .resultId
+        : ExamUtils.getCompletedExamLocalStorage().filter(
+            (item: { examId: string }) => item.examId === exam.id
+          )[0].resultId;
+      const result = await ResultsAPI.get(resultId);
       navigate("result", {
         state: result,
       });
@@ -77,7 +80,13 @@ function ExamListPageContainer() {
       ToastUtils.warning("Đề này chỉ dành cho học viên");
       return;
     }
-    if (!exam.completedUser.includes(user?.id)) {
+    if (
+      !exam.completedUser.includes(user?.id) &&
+      !user &&
+      ExamUtils.getCompletedExamLocalStorage().filter(
+        (item: { examId: string }) => item.examId === exam.id
+      ).length === 0
+    ) {
       handleModiferModalConfirm({
         isOpen: true,
         text: `Bạn có muốn bắt đầu làm <b>${exam.name}</b> với thời gian <b>60 phút</b>`,

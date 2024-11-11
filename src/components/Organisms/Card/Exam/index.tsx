@@ -14,6 +14,11 @@ interface Props {
 const ExamCard: React.FC<Props> = ({ exam, onClick }) => {
   const { user } =
     useAuth() as unknown as IContext.IAuthContenxt.UseAuthReturnType;
+  const isCompleted = user
+    ? exam.completedUser?.includes(user?.id)
+    : ExamUtils.getCompletedExamLocalStorage().filter(
+        (item: { examId: string }) => item.examId === exam.id
+      ).length > 0;
   return (
     <Box
       onClick={() => {
@@ -29,7 +34,7 @@ const ExamCard: React.FC<Props> = ({ exam, onClick }) => {
               src={FileHelpers.getLocalFile("lock", "svg")}
             />
           </Box>
-        ) : exam.completedUser?.includes(user?.id) ? (
+        ) : isCompleted ? (
           <Image
             className="h-9 w-9 "
             src={FileHelpers.getLocalFile("complete-green", "svg")}
