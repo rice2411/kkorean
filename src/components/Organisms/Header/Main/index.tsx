@@ -1,10 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { Button, Image, Box } from "@/components/Atoms";
+import { Button, Box } from "@/components/Atoms";
 import { useAuth } from "@/hooks";
 import HeaderMobile from "./Mobile/mobile";
 import { Dropdown } from "@/components/Organisms";
 import { IContext, IUI } from "@/interface";
-import { FileHelpers } from "@/helpers";
 import SidebarMobile from "./Mobile/sidebar";
 
 interface IProps {

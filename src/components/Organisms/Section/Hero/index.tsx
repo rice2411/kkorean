@@ -2,7 +2,6 @@ import {
   BlurryBubble,
   Box,
   Button,
-  Heading,
   Image,
   Link,
   Paragraph,
