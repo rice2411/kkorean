@@ -15,13 +15,13 @@ const SocialMediaButton: React.FC = () => {
     {
       icon: "facebook",
       id: "facebook",
-      link: "https://www.facebook.com/rice2411/",
+      link: "https://www.facebook.com/v.kiim.303/",
       text: "Liên hệ tại Facebook",
     },
     {
       icon: "zalo",
       id: "zalo",
-      link: "https://zalo.me/0776750418",
+      link: "https://zalo.me/0938007469",
       text: "Liên hệ tại Zalo",
     },
   ];

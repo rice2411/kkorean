@@ -39,12 +39,8 @@ const GroupsUpsertFormContainer: React.FC<Props> = ({
         isOpen: true,
         text: textResult,
         okButton: {
-          text: "Tiếp tục tạo",
+          text: "OK",
           onClick: onContinue,
-        },
-        cancelButton: {
-          text: "Hủy",
-          onClick: onCancel,
         },
       });
     }
