@@ -1,5 +1,5 @@
 import React, { useEffect, useId, useState } from "react";
-import { Box, Button, Image } from "@/components/Atoms";
+import { Box, Image } from "@/components/Atoms";
 import { FileHelpers } from "@/helpers";
 import { Tooltip } from "@/components/Atoms";
 
@@ -48,16 +48,16 @@ const SocialMediaButton: React.FC = () => {
     <Box className={`flex flex-col fixed right-5 ${position}`}>
       {data.map((item) => (
         <Tooltip text={item.link} position="left" key={useId()}>
-          <Button
-            className="cursor-pointer  w-14 h-14 bg-white text-black p-3 !rounded-full shadow-lg mt-3"
+          <Box
+            className="cursor-pointer  h-14 bg-white text-black p-3 !rounded-full shadow-lg mt-3"
             aria-label="Social media link"
             onClick={() => handleClick(item.id)}
           >
             <Image
               src={FileHelpers.getLocalFile(item.icon, "png")}
-              className="h-6 w-6"
+              className="h-full"
             />
-          </Button>
+          </Box>
         </Tooltip>
       ))}
     </Box>
