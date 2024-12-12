@@ -45,28 +45,11 @@ const LoginFormContainer: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!data.email || !data.password) return;
-
-    const payload = {
-      ...data,
-      email: data.email + CONFIG_CONSTANTS.EMAIL_DOMAIN,
-    };
 
     try {
       showLoading();
-      const res = (await FirebaseService.login(
-        payload
-      )) as unknown as IAPI.ApiResponse<IUser.BaseUser>;
+      const res: any = null;
       if (res.data) {
-        const user = res.data as IUser.BaseUser;
-        handleLogin(user);
-        if (res?.data?.isFirstTimeLogin) handleShowPopupResetPassword();
-        await NotificationsAPI.createNotification({
-          type: NOTIFICATION_CONSTANTS.ENotificationType.LOGIN,
-          message: `Người dùng <b>${
-            res.data.email
-          }</b> đã <b>đăng nhập</b> vào hệ thống vào lúc ${DateFNSUtils.now()}`,
-        });
         return;
       }
       if (res.error) {

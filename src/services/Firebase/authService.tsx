@@ -47,7 +47,7 @@ const AuthService = {
     try {
       const res = await signInWithEmailAndPassword(
         auth,
-        data.email,
+        data.email + CONFIG_CONSTANTS.EMAIL_DOMAIN,
         data.password
       );
       const { user } = res;
