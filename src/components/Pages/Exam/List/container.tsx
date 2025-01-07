@@ -82,7 +82,6 @@ function ExamListPageContainer() {
     }
     if (
       !exam.completedUser.includes(user?.id) &&
-      !user &&
       ExamUtils.getCompletedExamLocalStorage().filter(
         (item: { examId: string }) => item.examId === exam.id
       ).length === 0
