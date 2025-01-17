@@ -105,11 +105,15 @@ const ExamPreviewerModal: React.FC<ExamPreviewerModalProps> = ({ exam }) => {
             {questions.map((question, index) => (
               <Box className="flex flex-col my-5" key={index}>
                 <Heading level={1}>{question}</Heading>
-
                 {images
                   .filter((item) =>
                     item.public_id.startsWith(`${exam?.id}_${index + 1}.`)
                   )
+                  .sort((a, b) => {
+                    const numA = parseFloat(a.public_id.split('.')[1]);
+                    const numB = parseFloat(b.public_id.split('.')[1]);
+                    return numA - numB;
+                  })
                   .map((item, subIndex) => (
                     <Box key={item.url} className="flex flex-col">
                       <Image src={item.url} className="h-auto w-22 m-5" />
